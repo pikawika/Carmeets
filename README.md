@@ -7,4 +7,20 @@ Volgende gebruikers bestaan:
     - username: web4
     - password: gelukkiggeennetbeans
     
+Meer informatie is te vinden op trello:
+- volledige trello:
+    - https://trello.com/web4opdracht
+- Branches:
+    - https://trello.com/b/w6b3P4nx/1-branches (public)
+- Users:
+    - https://trello.com/b/42NH89oB/2-users (public)
+- Bugs:
+    - https://trello.com/b/JQfYn9Y4/3-bugs (Lennert en Lector)
+- Dingen die ik wil implementeren:
+    - https://trello.com/b/3JObOUSS/4-dingen-die-ik-wil-implementeren (Lennert en Lector)
+- Vragen voor leerkracht:
+    - https://trello.com/b/GbzMltAR/5-vragen-voor-leerkracht (Lennert en Lector)
+- Aanbevelingen van leerkracht:
+    - https://trello.com/b/ZNrV66wj/6-aanbevelingen-van-leerkracht (Lennert en Lector)
+    
 © Bontinck Lennert 2TINA 2017-2018
