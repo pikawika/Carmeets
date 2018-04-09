@@ -1,12 +1,42 @@
-<p>
-  {{date | date : 'longDate'}}: {{name}}
-</p>
-<p>Deze soort wagens zullen er zijn:
-  <li *ngFor="let categorie of categories">
-        <app-category [name]="categorie"></app-category>
-  </li>
-</p>
-<p>
-  meer info op:
-  <a href="{{site}}" target="_blank">{{site}}</a>
-</p>
+<article class="post">
+  <header>
+    <div class="title">
+      <h2>
+        <a href="#">{{name}}</a>
+      </h2>
+      <p>{{shortdescription}}</p>
+    </div>
+    <div class="meta">
+      <time class="published" datetime="2015-11-01">{{date | date : 'longDate'}}</time>
+      <div class="author">
+        <a class="name">{{gemeente}}</a>
+        <i class="icon fa-map-marker font-40"></i>
+      </div>
+    </div>
+  </header>
+  <a href="#" class="image featured">
+    <img src="images/pic01.jpg" alt="" />
+  </a>
+  <p>{{fulldescription}}
+  </p>
+  <footer>
+    <ul class="actions">
+      <li>
+        <a href="#" class="button big">Lees verder</a>
+      </li>
+    </ul>
+    <ul class="stats">
+        <a class="no-hover">
+          <li class="" *ngFor="let categorie of categories">
+            <app-category [name]="categorie"></app-category>
+          </li>
+        </a>
+      <li>
+        <a href="#" class="icon fa-heart">{{likeAmount}}</a>
+      </li>
+      <li>
+        <a href="#" class="icon fa-comment">{{commentAmount}}</a>
+      </li>
+    </ul>
+  </footer>
+</article>

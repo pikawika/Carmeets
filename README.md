@@ -7,6 +7,11 @@ Volgende gebruikers bestaan:
     - username: web4
     - password: gelukkiggeennetbeans
     
+- Volgende npm commando's dienen uitgevoerd te worden wegens gitignore:
+    - npm install
+    - npm install bootstrap@3 --save
+    - npm install jquery --save
+    
 Meer informatie is te vinden op trello:
 - volledige trello:
     - https://trello.com/web4opdracht
