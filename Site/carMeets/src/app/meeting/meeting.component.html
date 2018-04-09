@@ -1,6 +1,12 @@
 <p>
-    {{date | date : 'longDate'}}: {{name}}
+  {{date | date : 'longDate'}}: {{name}}
+</p>
+<p>Deze soort wagens zullen er zijn:
+  <li *ngFor="let categorie of categories">
+        <app-category [name]="categorie"></app-category>
+  </li>
 </p>
 <p>
-    meer info op: <a href="{{site}}" target="_blank">{{site}}</a>
-  </p>
+  meer info op:
+  <a href="{{site}}" target="_blank">{{site}}</a>
+</p>

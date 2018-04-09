@@ -4,12 +4,14 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { MeetingComponent } from './meeting/meeting.component';
+import { CategoryComponent } from './category/category.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    MeetingComponent
+    MeetingComponent,
+    CategoryComponent
   ],
   imports: [
     BrowserModule
