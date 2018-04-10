@@ -6,6 +6,11 @@ Volgende gebruikers bestaan:
 - STANDAARD GEBRUIKER 1
     - username: web4
     - password: gelukkiggeennetbeans
+        
+- Project starten
+    - terminal1: mongod
+    - terminal 2: backend; npm install en start
+    - terminal 3: frontend; npm install en start
     
 Meer informatie is te vinden op trello:
 - volledige trello:
