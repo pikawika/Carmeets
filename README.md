@@ -11,6 +11,14 @@ Volgende gebruikers bestaan:
     - npm install
     - npm install bootstrap@3 --save
     - npm install jquery --save
+    - npm install -g express-generator
+    - npm install -g nodemon
+    - npm install mongoose --save
+    
+- Project starten
+    - mongod --dbpath mongodb/
+    - npm start backend & frontend
+    
     
 Meer informatie is te vinden op trello:
 - volledige trello:
