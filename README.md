@@ -6,18 +6,11 @@ Volgende gebruikers bestaan:
 - STANDAARD GEBRUIKER 1
     - username: web4
     - password: gelukkiggeennetbeans
-    
-- Volgende npm commando's dienen uitgevoerd te worden wegens gitignore:
-    - npm install bootstrap@3 --save
-    - npm install jquery --save
-    - npm install -g express-generator
-    - npm install -g nodemon
-    - npm install mongoose --save
-    
+        
 - Project starten
-    - mongod --dbpath mongodb/
-    - npm install en start backend & frontend
-    
+    - terminal1: mongod
+    - terminal 2: backend; npm install en start
+    - terminal 3: frontend; npm install en start
     
 Meer informatie is te vinden op trello:
 - volledige trello:
