@@ -19,6 +19,10 @@ export class AppComponent {
     return this._meetingDataService.meetings;
   }
 
+  addMeeting(meeting: Meeting) {
+    this._meetingDataService.addMeeting(meeting);
+  }
+
   applyFilter(filter: string) {
     this.filterMeetingName = filter;
   }

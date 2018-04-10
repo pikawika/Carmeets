@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { MeetingComponent } from './meeting/meeting.component';
 import { CategoryComponent } from './category/category.component';
 import { MeetingFilterPipe } from './meeting-filter.pipe';
+import { AddMeetingComponent } from './add-meeting/add-meeting.component';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { MeetingFilterPipe } from './meeting-filter.pipe';
     AppComponent,
     MeetingComponent,
     CategoryComponent,
-    MeetingFilterPipe
+    MeetingFilterPipe,
+    AddMeetingComponent
   ],
   imports: [
     BrowserModule

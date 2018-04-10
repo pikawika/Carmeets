@@ -18,4 +18,8 @@ export class MeetingDataService {
     return this._meetings;
   }
 
+  addMeeting(meeting: Meeting) {
+    this._meetings = [...this._meetings, meeting];
+  }
+
 }
