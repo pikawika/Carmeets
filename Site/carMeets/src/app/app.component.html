@@ -64,9 +64,8 @@
   <div class="col-lg-9" id="main">
 
     <!-- Meeting -->
-    <app-meeting></app-meeting>
-    <app-meeting></app-meeting>
-    <app-meeting></app-meeting>
+    <app-meeting *ngFor='let localMeeting of _meetings' 
+        [meeting]='localMeeting'></app-meeting>
   </div>
 
 </div>

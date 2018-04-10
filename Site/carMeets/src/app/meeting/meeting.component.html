@@ -2,22 +2,22 @@
   <header>
     <div class="title">
       <h2>
-        <a href="#">{{name}}</a>
+        <a href="#">{{meeting.name}}</a>
       </h2>
-      <p>{{shortdescription}}</p>
+      <p>{{meeting.shortDescription}}</p>
     </div>
     <div class="meta">
-      <time class="published" datetime="2015-11-01">{{date | date : 'longDate'}}</time>
+      <time class="published" datetime="2015-11-01">{{meeting.date | date : 'longDate'}}</time>
       <div class="author">
-        <a class="name">{{gemeente}}</a>
+        <a class="name">{{meeting.gemeente}}</a>
         <i class="icon fa-map-marker font-40"></i>
       </div>
     </div>
   </header>
   <a href="#" class="image featured">
-    <img src="images/pic01.jpg" alt="" />
+    <img src="{{meeting.imagePath}}" alt="" />
   </a>
-  <p>{{fulldescription}}
+  <p>{{meeting.fullDescription}}
   </p>
   <footer>
     <ul class="actions">
@@ -27,15 +27,15 @@
     </ul>
     <ul class="stats">
         <a class="no-hover">
-          <li class="" *ngFor="let categorie of categories">
+          <li class="" *ngFor="let categorie of meeting.categories">
             <app-category [name]="categorie"></app-category>
           </li>
         </a>
       <li>
-        <a href="#" class="icon fa-heart">{{likeAmount}}</a>
+        <a href="#" class="icon fa-heart">{{meeting.likeAmount}}</a>
       </li>
       <li>
-        <a href="#" class="icon fa-comment">{{commentAmount}}</a>
+        <a href="#" class="icon fa-comment">{{meeting.commentAmount}}</a>
       </li>
     </ul>
   </footer>
