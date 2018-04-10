@@ -10,7 +10,7 @@
         <img src="images/logo.png" class="navbar-brand">
       </div>
       <div class="collapse navbar-collapse" id="myNavbar">
-        
+
         <ul class="nav navbar-nav navbar-right">
           <li>
             <a href="#">
@@ -39,10 +39,12 @@
 
     <!-- Posts List -->
     <section class="blurb">
-      <h2>Filter de meetings</h2>
-      <div>
-        <input type='text' placeholder='filter meeting...' #filter>
-        <button (click)="applyFilter(filter.value)">filter</button>
+      <div class="pb-20">
+        <h2>Filter de meetings</h2>
+        <div>
+          <input class="mb-10" type='text' placeholder='filter meeting op naam...' #filter>
+          <button (click)="applyFilter(filter.value)">filter</button>
+        </div>
       </div>
       <app-add-meeting (newMeeting)="addMeeting($event)"></app-add-meeting>
     </section>
@@ -69,8 +71,7 @@
   <div class="col-lg-9" id="main">
 
     <!-- Meeting -->
-    <app-meeting *ngFor='let localMeeting of meetings | meetingFilter: filterMeetingName' 
-        [meeting]='localMeeting'></app-meeting>
+    <app-meeting *ngFor='let localMeeting of meetings | meetingFilter: filterMeetingName' [meeting]='localMeeting'></app-meeting>
   </div>
 
 </div>
