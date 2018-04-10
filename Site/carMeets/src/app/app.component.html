@@ -40,6 +40,10 @@
     <!-- Posts List -->
     <section class="blurb">
       <h2>Filter de meetings</h2>
+      <div>
+        <input type='text' placeholder='filter meeting...' #filter>
+        <button (click)="applyFilter(filter.value)">filter</button>
+      </div>
     </section>
 
     <!-- About -->
@@ -64,7 +68,7 @@
   <div class="col-lg-9" id="main">
 
     <!-- Meeting -->
-    <app-meeting *ngFor='let localMeeting of meetings' 
+    <app-meeting *ngFor='let localMeeting of meetings | meetingFilter: filterMeetingName' 
         [meeting]='localMeeting'></app-meeting>
   </div>
 

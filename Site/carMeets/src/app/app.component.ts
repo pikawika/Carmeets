@@ -10,10 +10,16 @@ import { Meeting } from './meeting/meeting.model';
 })
 export class AppComponent {
   title = 'CarMeets.be';
+  public filterMeetingName: string;
+
   constructor(private _meetingDataService : MeetingDataService) {
   }
-  
+
   get meetings(): Meeting[] {
     return this._meetingDataService.meetings;
+  }
+
+  applyFilter(filter: string) {
+    this.filterMeetingName = filter;
   }
 }

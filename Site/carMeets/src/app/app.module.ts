@@ -5,13 +5,15 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { MeetingComponent } from './meeting/meeting.component';
 import { CategoryComponent } from './category/category.component';
+import { MeetingFilterPipe } from './meeting-filter.pipe';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     MeetingComponent,
-    CategoryComponent
+    CategoryComponent,
+    MeetingFilterPipe
   ],
   imports: [
     BrowserModule
