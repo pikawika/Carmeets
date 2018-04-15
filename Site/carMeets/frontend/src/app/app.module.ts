@@ -13,13 +13,17 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { IndexPageComponent } from './indexPage/indexPage.component';
 import { AdminPageComponent } from './admin-page/admin-page.component';
 import { FooterComponent } from './footer/footer.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 
 const appRoutes: Routes = [
   { path: 'home', component: IndexPageComponent },
-  { path: 'detail', component: AddMeetingComponent },
+  { path: 'meet-detail/:id', component: AddMeetingComponent },
+  { path: 'register', component: AdminPageComponent },
+  { path: 'login', component: AdminPageComponent },
   { path: 'admin', component: AdminPageComponent },
-  { path: '', redirectTo: 'home', pathMatch: 'full'}
+  { path: '', redirectTo: 'home', pathMatch: 'full'},
+  { path: '**', component: PageNotFoundComponent}
 ];
 
 @NgModule({
@@ -32,7 +36,8 @@ const appRoutes: Routes = [
     NavbarComponent,
     IndexPageComponent,
     AdminPageComponent,
-    FooterComponent
+    FooterComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,

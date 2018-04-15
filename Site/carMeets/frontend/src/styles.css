@@ -2,6 +2,14 @@
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Raleway:400,800,900");
 /* Custom */
 
+.navbar-nav > li > a.active{
+  color: #E8175D!important;
+}
+
+.navbar-brand {
+  cursor: pointer;
+}
+
 .footer {
   border-top: solid 1px rgba(160, 160, 160, 0.3); 
   padding-top: 10px;
@@ -21,9 +29,9 @@
 
 .navbar {
 	padding-top: 20px;
-	margin-bottom: 55px;
-	background-color: white;
-}
+  margin-bottom: 55px;
+  border-bottom: solid 2px rgba(160, 160, 160, 0.3); 
+  }
 
 /* Custom colors */
 
