@@ -2,7 +2,7 @@
   <header>
     <div class="title">
       <h2>
-        <a [routerLink]="['/meet-detail', meeting?.id]">{{meeting.name}}</a>
+        <a [routerLink]="['/meet-detail', meeting.id]">{{meeting.name}}</a>
       </h2>
       <p>{{meeting.shortDescription}}</p>
     </div>
@@ -14,21 +14,35 @@
       </div>
     </div>
   </header>
-  <div class="col-lg-8">
-    <a [routerLink]="['/meet-detail', meeting?.id]" class="image featured">
+  <div class="col-lg-9">
+    <a [routerLink]="['/meet-detail', meeting.id]" class="image featured">
       <img src="{{meeting.imagePath}}" alt="" />
     </a>
   </div>
-  <div class="col-lg-4">
+  <div class="col-lg-3 visible-lg text-right">
+    <p class="mb-5">Categoriën:</p>
+    <div dir="rtl">
+    <li *ngFor="let categorie of meeting.categories">
+      <app-category [name]="categorie"></app-category>
+    </li>
+  </div>
+    <br>
+    <br>
+    <a href="#" class="icon fa-heart mr-20">{{meeting.likeAmount}}</a>
+    <a href="#" class="icon fa-comment">{{meeting.commentAmount}}</a>
+    <br>
+    <a [routerLink]="['/meet-detail', meeting?.id]" class="button big mt-10">Meer info</a>
+  </div>
+  <div class="col-lg-4 text-right hidden-lg">
     <footer>
       <ul class="actions">
         <li>
-          <a [routerLink]="['/meet-detail', meeting?.id]" class="button big">Meer info</a>
+          <a href="#" class="button big">Lees verder</a>
         </li>
       </ul>
       <ul class="stats">
         <a class="no-hover">
-          <li class="" *ngFor="let categorie of meeting?.categories">
+          <li class="" *ngFor="let categorie of meeting.categories">
             <app-category [name]="categorie"></app-category>
           </li>
         </a>
@@ -41,5 +55,4 @@
       </ul>
     </footer>
   </div>
-  <br>
 </article>
