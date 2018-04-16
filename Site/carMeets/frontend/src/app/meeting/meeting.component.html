@@ -14,27 +14,32 @@
       </div>
     </div>
   </header>
-  <a href="#" class="image featured">
-    <img src="{{meeting.imagePath}}" alt="" />
-  </a>
-  <footer>
-    <ul class="actions">
-      <li>
-        <a [routerLink]="['/meet-detail', meeting?.id]" class="button big">Meer info</a>
-      </li>
-    </ul>
-    <ul class="stats">
+  <div class="col-lg-8">
+    <a [routerLink]="['/meet-detail', meeting?.id]" class="image featured">
+      <img src="{{meeting.imagePath}}" alt="" />
+    </a>
+  </div>
+  <div class="col-lg-4">
+    <footer>
+      <ul class="actions">
+        <li>
+          <a [routerLink]="['/meet-detail', meeting?.id]" class="button big">Meer info</a>
+        </li>
+      </ul>
+      <ul class="stats">
         <a class="no-hover">
           <li class="" *ngFor="let categorie of meeting?.categories">
             <app-category [name]="categorie"></app-category>
           </li>
         </a>
-      <li>
-        <a href="#" class="icon fa-heart">{{meeting.likeAmount}}</a>
-      </li>
-      <li>
-        <a href="#" class="icon fa-comment">{{meeting.commentAmount}}</a>
-      </li>
-    </ul>
-  </footer>
+        <li>
+          <a href="#" class="icon fa-heart">{{meeting.likeAmount}}</a>
+        </li>
+        <li>
+          <a href="#" class="icon fa-comment">{{meeting.commentAmount}}</a>
+        </li>
+      </ul>
+    </footer>
+  </div>
+  <br>
 </article>
