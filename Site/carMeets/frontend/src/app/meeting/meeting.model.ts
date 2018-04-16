@@ -1,4 +1,5 @@
 export class Meeting {
+  private _id: string; 
   private _name: string;
   private _date = new Date();
   private _imagePath: string;
@@ -12,21 +13,25 @@ export class Meeting {
     name: string,
     date: Date,
     gemeente: string,
-    shortDesc: string,
-    fullDesc: string,
-    categ: Array<string>,
+    shortDescription: string,
+    fullDescription: string,
+    categories: Array<string>,
     site?: string
   ) {
     this._name = name;
     this._date = date;
     this._gemeente = gemeente;
-    this._shortDescription = shortDesc;
-    this._fullDescription = fullDesc;
-    this._categories = categ;
+    this._shortDescription = shortDescription;
+    this._fullDescription = fullDescription;
+    this._categories = categories;
     this._site = site;
   }
 
   //stored in DB
+  get id(): string {
+    return this._id;
+  }
+
   public get name() {
     return this._name;
   }
@@ -70,6 +75,7 @@ export class Meeting {
 
   toJSON() {
     return {
+      _id: this._id,
       name: this._name,
       date: this._date,
       gemeente: this._gemeente,
@@ -78,5 +84,11 @@ export class Meeting {
       categories: this._categories,
       site: this._site
     };
+  }
+
+  static fromJSON(json: any): Meeting {
+    const rec = new Meeting(json.name, json.date, json.gemeente, json.shortDescription, json.fullDescription, json.categories, json.site);
+    rec._id = json._id;
+    return rec;
   }
 }

@@ -6,7 +6,7 @@ import { map } from 'rxjs/operators';
 
 @Injectable()
 export class MeetingDataService {
-  private readonly _apiUrl = '/API/meetings/';
+  private readonly _apiUrl = '/API/';
 
   constructor(private _http: HttpClient) {
     
@@ -14,19 +14,25 @@ export class MeetingDataService {
 
   get meetings(): Observable<Meeting[]> {
     return this._http
-      .get(this._apiUrl)
-      .pipe(
-        map((list: any[]): Meeting[] =>
-          list.map(item => 
-            new Meeting(item.name, item.date, item.gemeente, item.shortDescription, item.fullDescription, item.categories, item.site)
-          )
-        )
-      );
+      .get(`${this._apiUrl}meetings/`)
+      .pipe(map((list: any[]): Meeting[] => list.map(Meeting.fromJSON)));
   }
 
-  addMeeting(meeting): Observable<Meeting> {
-    return this._http.post(this._apiUrl, meeting.toJSON())
-    .pipe(map((data:any) => new Meeting(data.name, data.date, data.gemeente, data.shortDescription, data.fullDescription, data.categories, data.site)))
+  addMeeting(meeting: Meeting): Observable<Meeting> {
+    return this._http
+      .post(`${this._apiUrl}meetings/`, meeting)
+      .pipe(map(Meeting.fromJSON));
+  }
+
+  deleteMeeting(rec) {
+    return this._http
+      .delete(`${this._apiUrl}meeting/${rec.id}`)
+      .pipe(map(Meeting.fromJSON));
+  }
+
+  getMeeting(id: string) {
+    const theUrl = `${this._apiUrl}meeting/${id}`;
+    return this._http.get(theUrl).pipe(map(Meeting.fromJSON));
   }
 
 }

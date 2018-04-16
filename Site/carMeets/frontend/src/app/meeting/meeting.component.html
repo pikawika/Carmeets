@@ -22,12 +22,12 @@
   <footer>
     <ul class="actions">
       <li>
-        <a [routerLink]="['/meet-detail', meeting.name]" class="button big">Lees verder</a>
+        <a [routerLink]="['/meet-detail', meeting?.id]" class="button big">Lees verder</a>
       </li>
     </ul>
     <ul class="stats">
         <a class="no-hover">
-          <li class="" *ngFor="let categorie of meeting.categories">
+          <li class="" *ngFor="let categorie of meeting?.categories">
             <app-category [name]="categorie"></app-category>
           </li>
         </a>

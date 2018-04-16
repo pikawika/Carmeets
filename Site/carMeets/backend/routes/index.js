@@ -15,10 +15,6 @@ router.get('/API/meetings', function(req, res, next) {
   });
 });
 
-router.get('/API/meetings/:meeting', function(req, res, next) {
-  res.json(req.meeting);
-});
-
 router.post('/API/meetings', function(req, res, next) {
   let meeting = new Meeting(req.body);
   meeting.save((err, rec) => {
@@ -27,10 +23,17 @@ router.post('/API/meetings', function(req, res, next) {
   });
 });
 
-router.delete('/API/meetings/:meeting', function(req, res, next) {
-  req.meeting.remove(function(err) {
-    if (err) return next(err);
-    res.json('meeting removed');
+router.param('meeting', function(req, res, next, id) {
+  let query = Meeting.findById(id);
+  query.exec(function(err, meeting) {
+    if (err) {
+      return next(err);
+    }
+    if (!meeting) {
+      return next(new Error('not found ' + id));
+    }
+    req.meeting = meeting;
+    return next();
   });
 });
 
