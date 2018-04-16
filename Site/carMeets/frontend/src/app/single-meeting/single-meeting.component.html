@@ -14,24 +14,7 @@
       </div>
     </div>
   </header>
-  <a href="#" class="image featured">
-    <img src="{{singleMeeting.imagePath}}" alt="" />
-  </a>
-  <p>{{singleMeeting.fullDescription}}
-  </p>
-  <footer>
-    <ul class="stats">
-      <a class="no-hover">
-        <li class="" *ngFor="let categorie of singleMeeting.categories">
-          <app-category [name]="categorie"></app-category>
-        </li>
-      </a>
-      <li>
-        <a href="#" class="icon fa-heart">{{singleMeeting.likeAmount}}</a>
-      </li>
-      <li>
-        <a href="#" class="icon fa-comment">{{singleMeeting.commentAmount}}</a>
-      </li>
-    </ul>
-  </footer>
+  <img class="mb-15" src="{{singleMeeting.imagePath}}" alt="" />
+  <p>{{singleMeeting.fullDescription}}</p>
+  <a href="#" class="icon fa-heart mr-20">{{singleMeeting.likeAmount}}</a>
 </article>
