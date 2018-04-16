@@ -24,6 +24,7 @@
 
 .no-hover:hover {
   color: inherit !important;
+  text-decoration: none;
 }
 
 .navbar-brand {
