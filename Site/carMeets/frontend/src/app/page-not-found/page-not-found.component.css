@@ -3,8 +3,6 @@
   text-align: center;
   display: block;
   position: relative;
-  width: 80%;
-  margin: 100px auto;
 }
 ._404 {
   font-size: 220px;
@@ -51,7 +49,7 @@
   height: 120px;
 
   background: #E8175D;
-  background: linear-gradient(top, #E8175D 100%);
+  background: linear-gradient(to bottom, #E8175D 100%);
   background: -webkit-linear-gradient(top, #E8175D 100%);
   background: -moz-linear-gradient(top, #E8175D 100%);
   background: -ms-linear-gradient(top, #E8175D 100%);
@@ -134,7 +132,7 @@
 
 .x3 {
   left: 250px;
-  bottom: -70px;
+  bottom: -20px;
 
   -webkit-transform: scale(0.6);
   -moz-transform: scale(0.6);
@@ -148,7 +146,7 @@
 
 .x4 {
   left: 470px;
-  botttom: 20px;
+  bottom: 20px;
 
   -webkit-transform: scale(0.75);
   -moz-transform: scale(0.75);
