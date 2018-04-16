@@ -1,0 +1,37 @@
+<article class="post">
+  <header>
+    <div class="title">
+      <h2>
+        <a href="#">{{singleMeeting.name}}</a>
+      </h2>
+      <p>{{singleMeeting.shortDescription}}</p>
+    </div>
+    <div class="meta">
+      <time class="published" datetime="2015-11-01">{{singleMeeting.date | date : 'longDate'}}</time>
+      <div class="author">
+        <a class="name">{{singleMeeting.gemeente}}</a>
+        <i class="icon fa-map-marker font-40"></i>
+      </div>
+    </div>
+  </header>
+  <a href="#" class="image featured">
+    <img src="{{singleMeeting.imagePath}}" alt="" />
+  </a>
+  <p>{{singleMeeting.fullDescription}}
+  </p>
+  <footer>
+    <ul class="stats">
+      <a class="no-hover">
+        <li class="" *ngFor="let categorie of singleMeeting.categories">
+          <app-category [name]="categorie"></app-category>
+        </li>
+      </a>
+      <li>
+        <a href="#" class="icon fa-heart">{{singleMeeting.likeAmount}}</a>
+      </li>
+      <li>
+        <a href="#" class="icon fa-comment">{{singleMeeting.commentAmount}}</a>
+      </li>
+    </ul>
+  </footer>
+</article>

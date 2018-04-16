@@ -2,7 +2,7 @@
   <header>
     <div class="title">
       <h2>
-        <a href="#">{{meeting.name}}</a>
+        <a [routerLink]="['/meet-detail', meeting?.id]">{{meeting.name}}</a>
       </h2>
       <p>{{meeting.shortDescription}}</p>
     </div>
@@ -17,12 +17,10 @@
   <a href="#" class="image featured">
     <img src="{{meeting.imagePath}}" alt="" />
   </a>
-  <p>{{meeting.fullDescription}}
-  </p>
   <footer>
     <ul class="actions">
       <li>
-        <a [routerLink]="['/meet-detail', meeting?.id]" class="button big">Lees verder</a>
+        <a [routerLink]="['/meet-detail', meeting?.id]" class="button big">Meer info</a>
       </li>
     </ul>
     <ul class="stats">
