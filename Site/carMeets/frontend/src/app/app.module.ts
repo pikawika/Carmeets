@@ -8,6 +8,18 @@ import { MeetingComponent } from './meeting/meeting.component';
 import { CategoryComponent } from './category/category.component';
 import { MeetingFilterPipe } from './meeting-filter.pipe';
 import { AddMeetingComponent } from './add-meeting/add-meeting.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { IndexPageComponent } from './indexPage/indexPage.component';
+import { AdminPageComponent } from './admin-page/admin-page.component';
+import { FooterComponent } from './footer/footer.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { AppRoutingModule } from './app-routing/app-routing.module';
+import { DetailPageComponent } from './detail-page/detail-page.component';
+import { MeetingDataService } from './meeting-data.service';
+import { MeetingResolver } from './meeting/meeting-resolver';
+import { SingleMeetingComponent } from './single-meeting/single-meeting.component';
+
+
 
 
 @NgModule({
@@ -16,13 +28,21 @@ import { AddMeetingComponent } from './add-meeting/add-meeting.component';
     MeetingComponent,
     CategoryComponent,
     MeetingFilterPipe,
-    AddMeetingComponent
-  ],
+    AddMeetingComponent,
+    NavbarComponent,
+    IndexPageComponent,
+    AdminPageComponent,
+    FooterComponent,
+    PageNotFoundComponent,
+    DetailPageComponent,
+    SingleMeetingComponent
+    ],
   imports: [
     BrowserModule,
+    AppRoutingModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [MeetingDataService, MeetingResolver],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

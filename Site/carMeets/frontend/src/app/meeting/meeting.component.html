@@ -2,41 +2,57 @@
   <header>
     <div class="title">
       <h2>
-        <a href="#">{{meeting.name}}</a>
+        <a [routerLink]="['/meet-detail', meeting.id]">{{meeting.name}}</a>
       </h2>
       <p>{{meeting.shortDescription}}</p>
     </div>
     <div class="meta">
       <time class="published" datetime="2015-11-01">{{meeting.date | date : 'longDate'}}</time>
       <div class="author">
-        <a class="name">{{meeting.gemeente}}</a>
+        <a class="no-hover name">{{meeting.gemeente}}</a>
         <i class="icon fa-map-marker font-40"></i>
       </div>
     </div>
   </header>
-  <a href="#" class="image featured">
-    <img src="{{meeting.imagePath}}" alt="" />
-  </a>
-  <p>{{meeting.fullDescription}}
-  </p>
-  <footer>
-    <ul class="actions">
-      <li>
-        <a href="#" class="button big">Lees verder</a>
-      </li>
-    </ul>
-    <ul class="stats">
+  <div class="col-lg-9">
+    <a [routerLink]="['/meet-detail', meeting.id]" class="image featured">
+      <img src="{{meeting.imagePath}}" alt="" />
+    </a>
+  </div>
+  <div class="col-lg-3 visible-lg text-right">
+    <p class="mb-5">Categoriën:</p>
+    <div dir="rtl">
+    <li *ngFor="let categorie of meeting.categories">
+      <app-category [name]="categorie"></app-category>
+    </li>
+  </div>
+    <br>
+    <br>
+    <a href="#" class="icon fa-heart mr-20">{{meeting.likeAmount}}</a>
+    <a href="#" class="icon fa-comment">{{meeting.commentAmount}}</a>
+    <br>
+    <a [routerLink]="['/meet-detail', meeting?.id]" class="button big mt-10">Meer info</a>
+  </div>
+  <div class="col-lg-4 text-right hidden-lg">
+    <footer>
+      <ul class="actions">
+        <li>
+          <a href="#" class="button big">Lees verder</a>
+        </li>
+      </ul>
+      <ul class="stats">
         <a class="no-hover">
           <li class="" *ngFor="let categorie of meeting.categories">
             <app-category [name]="categorie"></app-category>
           </li>
         </a>
-      <li>
-        <a href="#" class="icon fa-heart">{{meeting.likeAmount}}</a>
-      </li>
-      <li>
-        <a href="#" class="icon fa-comment">{{meeting.commentAmount}}</a>
-      </li>
-    </ul>
-  </footer>
+        <li>
+          <a href="#" class="icon fa-heart">{{meeting.likeAmount}}</a>
+        </li>
+        <li>
+          <a href="#" class="icon fa-comment">{{meeting.commentAmount}}</a>
+        </li>
+      </ul>
+    </footer>
+  </div>
 </article>

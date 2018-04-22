@@ -1,0 +1,41 @@
+<!-- Sidebar -->
+<section class="col-lg-3" id="sidebar">
+
+  <!-- Intro -->
+  <section id="intro">
+    <header>
+      <h2>CarMeets Belgium</h2>
+      <p>Vind car meetings bij jou in de buurt!</p>
+    </header>
+  </section>
+
+  <!-- Mini Posts -->
+
+  <!-- Posts List -->
+  <section class="blurb">
+    <div class="pb-20">
+      <h2>Filter de meetings</h2>
+      <div>
+        <input class="mb-10" type='text' placeholder='filter meeting op naam...' #filter>
+        <button (click)="applyFilter(filter.value)">filter</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="blurb">
+    <h2>Over CarMeets.be</h2>
+    <p>Net zoals vele autoliefhebbers was ik het beu steeds te moeten horen dat ik weer een kwaliteitsmeeting gemist had omdat
+      ik niet wist wanneer deze plaatsvond. Daarom besloot ik,
+      <a href="https://www.lennertbontinck.com/">Lennert Bontinck</a>, een website te maken waar je snel en eenvoudig alle meetings naar jouw smaak kan terugvinden
+      en bewaren in je agenda.</p>
+  </section>
+
+</section>
+
+<!-- Main -->
+<div class="col-lg-9" id="main">
+
+  <!-- Meeting -->
+  <app-meeting *ngFor='let localMeeting of meetings | meetingFilter: filterMeetingName' [meeting]='localMeeting'></app-meeting>
+</div>
