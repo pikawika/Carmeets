@@ -10,7 +10,7 @@
       <time class="published" datetime="2015-11-01">{{meeting.date | date : 'longDate'}}</time>
       <div class="author">
         <a class="no-hover name">{{meeting.gemeente}}</a>
-        <i class="icon fa-map-marker font-40"></i>
+        <i class="fab fa-periscope font-40"></i>
       </div>
     </div>
   </header>
@@ -28,8 +28,8 @@
   </div>
     <br>
     <br>
-    <a href="#" class="icon fa-heart mr-20">{{meeting.likeAmount}}</a>
-    <a href="#" class="icon fa-comment">{{meeting.commentAmount}}</a>
+    <a href="#" class="far fa-heart mr-20"> {{meeting.likeAmount}}</a>
+    <a href="#" class="far fa-comment"> {{meeting.commentAmount}}</a>
     <br>
     <a [routerLink]="['/meet-detail', meeting?.id]" class="button big mt-10">Meer info</a>
   </div>

@@ -10,11 +10,12 @@ import { PageNotFoundComponent } from '../page-not-found/page-not-found.componen
 import { DetailPageComponent } from '../detail-page/detail-page.component';
 import { MeetingResolver } from '../meeting/meeting-resolver';
 import { LoginPageComponent } from '../login-page/login-page.component';
+import { RegisterPageComponent } from '../register-page/register-page.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: IndexPageComponent },
   { path: 'meet-detail/:id', component: DetailPageComponent, resolve: {meeting: MeetingResolver} },
-  { path: 'registreer', component: AdminPageComponent },
+  { path: 'registreer', component: RegisterPageComponent },
   { path: 'login', component: LoginPageComponent },
   { path: 'admin', component: AdminPageComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full'},

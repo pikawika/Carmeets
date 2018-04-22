@@ -19,6 +19,7 @@ import { MeetingDataService } from './meeting-data.service';
 import { MeetingResolver } from './meeting/meeting-resolver';
 import { SingleMeetingComponent } from './single-meeting/single-meeting.component';
 import { LoginPageComponent } from './login-page/login-page.component';
+import { RegisterPageComponent } from './register-page/register-page.component';
 
 
 
@@ -37,7 +38,8 @@ import { LoginPageComponent } from './login-page/login-page.component';
     PageNotFoundComponent,
     DetailPageComponent,
     SingleMeetingComponent,
-    LoginPageComponent
+    LoginPageComponent,
+    RegisterPageComponent
     ],
   imports: [
     BrowserModule,

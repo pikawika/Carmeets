@@ -2,7 +2,8 @@
   <header>
     <div class="title">
       <h2>
-        <a href="#">{{singleMeeting.name}}</a>
+          <a href="#" class="far fa-heart"></a>
+        <a class="no-hover">{{singleMeeting.name}}</a>
       </h2>
       <p>{{singleMeeting.shortDescription}}</p>
     </div>
@@ -10,11 +11,11 @@
       <time class="published" datetime="2015-11-01">{{singleMeeting.date | date : 'longDate'}}</time>
       <div class="author">
         <a class="name">{{singleMeeting.gemeente}}</a>
-        <i class="icon fa-map-marker font-40"></i>
+        <i class="fab fa-periscope font-40"></i>
       </div>
     </div>
   </header>
   <img class="mb-15" src="{{singleMeeting.imagePath}}" alt="" />
   <p>{{singleMeeting.fullDescription}}</p>
-  <a href="#" class="icon fa-heart mr-20">{{singleMeeting.likeAmount}}</a>
+  <a href="#" class="far fa-heart">{{singleMeeting.likeAmount}}</a>
 </article>
