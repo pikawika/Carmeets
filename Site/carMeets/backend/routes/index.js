@@ -37,7 +37,7 @@ router.get('/API/meeting/:meeting', function(req, res, next) {
 });
 
 //toevoegen van een meeting -- geen controle?!
-router.post('/API/meeting', function(req, res, next) {
+router.post('/API/meeting', authentication, function(req, res, next) {
   let meeting = new Meeting(req.body);
   meeting.save((err, rec) => {
     if (err) return next(err);
