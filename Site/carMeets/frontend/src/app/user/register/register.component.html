@@ -1,4 +1,3 @@
-<div *ngIf='errorMsg' class="text-center text-danger">{{errorMsg}}</div>
 <form [formGroup]='user' (ngSubmit)='onSubmit()'>
   <span class="register100-form-title pb-0">
     Een account aanmaken
@@ -10,6 +9,7 @@
     </a>
   </div>
 
+  <div *ngIf='errorMsg' class="text-center text-danger">{{errorMsg}}</div>
   <div class="wrap-input100">
     <input class="input100" type="text" id="email" formControlName='email' placeholder="E-mailadres">
     <span class="focus-input100"></span>

@@ -1,4 +1,3 @@
-<div *ngIf='errorMsg' class="text-center text-danger">{{errorMsg}}</div>
 <form [formGroup]='user' (ngSubmit)='onSubmit()'>
   <span class="login100-form-title pb-0">
     Aanmelden op CarMeets.be
@@ -10,6 +9,7 @@
     </a>
   </div>
 
+  <div *ngIf='errorMsg' class="text-center text-danger">{{errorMsg}}</div>
   <!-- momenteel enkel met username mogelijkheid aan te melden -->
   <div class="wrap-input100">
     <input class="input100" type="text" id="username" formControlName='username' placeholder="gebruikersnaam">
@@ -26,7 +26,7 @@
       <i class="fa fa-lock" aria-hidden="true"></i>
     </span>
   </div>
-  
+
   <div class="container-login100-form-btn">
     <button type='submit' [disabled]='!user.valid' id='loginbtn' class="login100-form-btn">
       Aanmelden
@@ -35,7 +35,7 @@
 
   <div class="text-center p-t-12">
     <a class="txt2" routerLink="/404">
-       Wachtwoord vergeten?
+      Wachtwoord vergeten?
     </a>
   </div>
 </form>

@@ -1,14 +1,17 @@
-import { AuthenticationService } from '../authentication.service';
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Observable } from "rxjs/Observable";
+import { AuthenticationService } from "../authentication.service";
+import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 import {
   AbstractControl,
   FormBuilder,
   FormGroup,
   ValidatorFn,
-  Validators
-} from '@angular/forms';
-import { HttpErrorResponse } from '@angular/common/http';
+  Validators,
+  FormControl
+} from "@angular/forms";
+import { HttpErrorResponse } from "@angular/common/http";
+import { map } from "rxjs/operators";
 
 function passwordValidator(): ValidatorFn {
   return (control: AbstractControl): { [key: string]: any } => {
@@ -20,52 +23,78 @@ function passwordValidator(): ValidatorFn {
 }
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: "app-login",
+  templateUrl: "./login.component.html",
+  styleUrls: ["./login.component.css"]
 })
 export class LoginComponent implements OnInit {
   public user: FormGroup;
   public errorMsg: string;
 
   constructor(
-    private authService: AuthenticationService,
+    private authenticationService: AuthenticationService,
     private router: Router,
     private fb: FormBuilder
   ) {}
 
   ngOnInit() {
     this.user = this.fb.group({
-      username: ['', Validators.required],
-      password: ['', Validators.required]
+      username: ["", Validators.required],
+      password: ["", Validators.required]
     });
   }
 
+  serverSideValidateUsername(): ValidatorFn {
+    return (control: AbstractControl): Observable<{ [key: string]: any }> => {
+      return this.authenticationService
+        .checkUserNameAvailability(control.value)
+        .pipe(
+          map(available => {
+            if (available) {
+              return null;
+            }
+            return { userAlreadyExists: true };
+          })
+        );
+    };
+  }
+
+  serverSideValidateEmail(): ValidatorFn {
+    return (control: AbstractControl): Observable<{ [key: string]: any }> => {
+      return this.authenticationService
+        .checkEmailAvailability(control.value)
+        .pipe(
+          map(available => {
+            if (available) {
+              return null;
+            }
+            return { userAlreadyExists: true };
+          })
+        );
+    };
+  }
+
   onSubmit() {
-    this.authService
+    this.authenticationService
       .login(this.user.value.username, this.user.value.password)
       .subscribe(
         val => {
           if (val) {
-            if (this.authService.redirectUrl) {
-              this.router.navigateByUrl(this.authService.redirectUrl);
-              this.authService.redirectUrl = undefined;
+            if (this.authenticationService.redirectUrl) {
+              this.router.navigateByUrl(this.authenticationService.redirectUrl);
+              this.authenticationService.redirectUrl = undefined;
             } else {
-              this.router.navigate(['/recipe/list']);
+              this.router.navigate(["/home"]);
             }
           } else {
-            this.errorMsg = `Could not login`;
+            this.errorMsg = `Aanmelden mislukt`;
           }
         },
         (err: HttpErrorResponse) => {
           if (err.error instanceof Error) {
-            this.errorMsg = `Error while trying to login user ${
-              this.user.value.username
-            }: ${err.error.message}`;
+            this.errorMsg = `Aanmelden mislukt`;
           } else {
-            this.errorMsg = `Error ${err.status} while trying to login user ${
-              this.user.value.username
-            }: ${err.error}`;
+            this.errorMsg = `Aanmelden mislukt`;
           }
         }
       );
