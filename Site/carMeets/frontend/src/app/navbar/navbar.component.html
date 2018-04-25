@@ -10,16 +10,20 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
 
-      <ul class="nav navbar-nav navbar-right">
+
+      <ul *ngIf='(currentUser | async)' class="nav navbar-nav navbar-right" routerLinkActive='active' routerLink="/logout"> <li>logout, {{currentUser|async}}</li></ul>
+
+      <ul *ngIf='!(currentUser | async)' class="nav navbar-nav navbar-right">
         <li>
-          <a routerLinkActive='active' routerLink="/registreer" >
-            <span class="glyphicon glyphicon-user"></span> Registreer</a>
+          <a routerLinkActive='active' routerLink="/registreer">
+            <span class="glyphicon glyphicon-user"></span> Registreer {{currentUser|async}}</a>
         </li>
         <li>
-          <a routerLinkActive='active' routerLink="/login" >
+          <a routerLinkActive='active' routerLink="/login">
             <span class="glyphicon glyphicon-log-in"></span> Meld aan</a>
         </li>
       </ul>
+
     </div>
   </div>
 </nav>
