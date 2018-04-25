@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Meeting } from './meeting/meeting.model';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { map } from 'rxjs/operators';
+import { Meeting } from './meeting/meeting.model';
 
 @Injectable()
 export class MeetingDataService {

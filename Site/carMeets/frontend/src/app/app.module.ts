@@ -4,45 +4,37 @@ import { HttpClientModule } from '@angular/common/http';
 
 
 import { AppComponent } from './app.component';
-import { MeetingComponent } from './meeting/meeting.component';
-import { CategoryComponent } from './category/category.component';
-import { MeetingFilterPipe } from './meeting-filter.pipe';
-import { AddMeetingComponent } from './add-meeting/add-meeting.component';
-import { NavbarComponent } from './navbar/navbar.component';
-import { IndexPageComponent } from './indexPage/indexPage.component';
-import { AdminPageComponent } from './admin-page/admin-page.component';
-import { FooterComponent } from './footer/footer.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AppRoutingModule } from './app-routing/app-routing.module';
-import { DetailPageComponent } from './detail-page/detail-page.component';
+import { LayoutModule } from './layout/layout.module';
+import { DetailPageModule } from './detail-page/detail-page.module';
+import { IndexPageModule } from './indexPage/index-page.module';
+import { CategoryModule } from './category/category.module';
+import { MeetingModule } from './meeting/meeting.module';
+import { UserModule } from './user/user.module';
+import { httpInterceptorProviders } from './http-interceptors';
 import { MeetingDataService } from './meeting-data.service';
 import { MeetingResolver } from './meeting/meeting-resolver';
-import { SingleMeetingComponent } from './single-meeting/single-meeting.component';
-
-
-
+import { AuthenticationService } from './user/authentication.service';
+import { AuthGuardService } from './user/auth-guard.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MeetingComponent,
-    CategoryComponent,
-    MeetingFilterPipe,
-    AddMeetingComponent,
-    NavbarComponent,
-    IndexPageComponent,
-    AdminPageComponent,
-    FooterComponent,
-    PageNotFoundComponent,
-    DetailPageComponent,
-    SingleMeetingComponent
+    PageNotFoundComponent
     ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    LayoutModule,
+    DetailPageModule,
+    IndexPageModule,
+    CategoryModule,
+    MeetingModule,
+    UserModule
   ],
-  providers: [MeetingDataService, MeetingResolver],
+  providers: [httpInterceptorProviders, MeetingDataService, MeetingResolver, AuthenticationService, AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

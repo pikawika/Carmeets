@@ -1,0 +1,41 @@
+<form [formGroup]='user' (ngSubmit)='onSubmit()'>
+  <span class="login100-form-title pb-0">
+    Aanmelden op CarMeets.be
+  </span>
+  <div class="text-center pb-20">
+    <a class="txt2" routerLink="/registreer">
+      Of maak een account aan
+      <i class="fas fa-long-arrow-alt-right" aria-hidden="true"></i>
+    </a>
+  </div>
+
+  <div *ngIf='errorMsg' class="text-center text-danger">{{errorMsg}}</div>
+  <!-- momenteel enkel met username mogelijkheid aan te melden -->
+  <div class="wrap-input100">
+    <input class="input100" type="text" id="username" formControlName='username' placeholder="gebruikersnaam">
+    <span class="focus-input100"></span>
+    <span class="symbol-input100">
+      <i class="fa fa-envelope" aria-hidden="true"></i>
+    </span>
+  </div>
+
+  <div class="wrap-input100">
+    <input class="input100" type="password" id="password" formControlName='password' placeholder="Wachtwoord">
+    <span class="focus-input100"></span>
+    <span class="symbol-input100">
+      <i class="fa fa-lock" aria-hidden="true"></i>
+    </span>
+  </div>
+
+  <div class="container-login100-form-btn">
+    <button type='submit' [disabled]='!user.valid' id='loginbtn' class="login100-form-btn">
+      Aanmelden
+    </button>
+  </div>
+
+  <div class="text-center p-t-12">
+    <a class="txt2" routerLink="/404">
+      Wachtwoord vergeten?
+    </a>
+  </div>
+</form>

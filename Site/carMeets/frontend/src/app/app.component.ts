@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { AuthenticationService } from './user/authentication.service';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-root',
@@ -7,11 +9,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'CarMeets.be';
-
-  constructor() {
-  }
-
-  ngOnInit() {
-    
-  }
+  constructor() {}
 }

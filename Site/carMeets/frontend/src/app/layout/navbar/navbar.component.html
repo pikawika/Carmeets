@@ -1,0 +1,39 @@
+<nav class="navbar">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <img src="images/logo.png" [routerLink]="['/home']" class="navbar-brand">
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+
+
+      <ul *ngIf='(currentUser | async)' class="nav navbar-nav navbar-right dropdown" >
+        <li>
+            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="glyphicon glyphicon-user"></span> {{currentUser|async}} 
+              </a>
+              <ul class="dropdown-menu">
+                  <li><a routerLink="/account" href="#"><i class="fas fa-cogs"> </i> Uw account</a></li>
+                  <li><a routerLink="/logout"><i class="fas fa-sign-out-alt"></i> Afmelden</a></li>
+              </ul>
+        </li>
+      </ul>
+
+      <ul *ngIf='!(currentUser | async)' class="nav navbar-nav navbar-right">
+        <li>
+          <a routerLinkActive='active' routerLink="/registreer">
+            <span class="glyphicon glyphicon-user"></span> Registreer {{currentUser|async}}</a>
+        </li>
+        <li>
+          <a routerLinkActive='active' routerLink="/login">
+            <span class="glyphicon glyphicon-log-in"></span> Meld aan</a>
+        </li>
+      </ul>
+
+    </div>
+  </div>
+</nav>

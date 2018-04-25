@@ -23,10 +23,6 @@ export class IndexPageComponent implements OnInit {
     return this._meetings;
   }
 
-  addMeeting(meeting: Meeting) {
-    this._meetingDataService.addMeeting(meeting).subscribe(meet => this._meetings.push(meet), err => console.log(err));
-  }
-
   applyFilter(filter: string) {
     this.filterMeetingName = filter;
   }
