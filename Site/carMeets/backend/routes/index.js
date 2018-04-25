@@ -2,6 +2,11 @@ var express = require('express');
 var router = express.Router();
 let mongoose = require('mongoose');
 let Meeting = mongoose.model('Meeting');
+let jwt = require('express-jwt');
+
+let authentication = jwt({
+  secret: process.env.MEETING_BACKEND_SECRET
+});
 
 router.get('/API/meetings', function(req, res, next) {
   Meeting.find(function(err, meetings) {
@@ -11,7 +16,8 @@ router.get('/API/meetings', function(req, res, next) {
   });
 });
 
-router.post('/API/meetings', function(req, res, next) {
+//test -> om 1 element op te halen heb je authentication nodig?
+router.post('/API/meetings', authentication, function(req, res, next) {
   let meeting = new Meeting(req.body);
   meeting.save((err, rec) => {
     if (err) return next(err);

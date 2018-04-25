@@ -20,6 +20,12 @@ import { MeetingResolver } from './meeting/meeting-resolver';
 import { SingleMeetingComponent } from './single-meeting/single-meeting.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { RegisterPageComponent } from './register-page/register-page.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { LoginComponent } from './user/login/login.component';
+import { RegisterComponent } from './user/register/register.component';
+import { LogoutComponent } from './user/logout/logout.component';
+import { AuthGuardService } from './user/auth-guard.service';
+import { AuthenticationService } from './user/authentication.service';
 
 
 
@@ -39,14 +45,18 @@ import { RegisterPageComponent } from './register-page/register-page.component';
     DetailPageComponent,
     SingleMeetingComponent,
     LoginPageComponent,
-    RegisterPageComponent
+    RegisterPageComponent,
+    LoginComponent,
+    RegisterComponent,
+    LogoutComponent
     ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
-  providers: [MeetingDataService, MeetingResolver],
+  providers: [MeetingDataService, MeetingResolver, AuthenticationService, AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

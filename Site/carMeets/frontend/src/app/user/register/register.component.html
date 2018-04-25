@@ -1,0 +1,69 @@
+<div *ngIf='errorMsg' class="text-center text-danger">{{errorMsg}}</div>
+<form [formGroup]='user' (ngSubmit)='onSubmit()'>
+  <span class="register100-form-title pb-0">
+    Een account aanmaken
+  </span>
+  <div class="text-center pb-20">
+    <a class="txt2" routerLink="/login">
+      Of meld je aan
+      <i class="fas fa-long-arrow-alt-right" aria-hidden="true"></i>
+    </a>
+  </div>
+
+  <div class="wrap-input100">
+    <input class="input100" type="text" id="email" formControlName='email'placeholder="E-mailadres">
+    <span class="focus-input100"></span>
+    <span class="symbol-input100">
+      <i class="fa fa-envelope" aria-hidden="true"></i>
+    </span>
+  </div>
+
+  <div class="wrap-input100"> 
+    <input class="input100" type="text" id="username" formControlName='username' placeholder="Gebruikersnaam">
+    <span class="focus-input100"></span>
+    <span class="symbol-input100">
+      <i class="far fa-id-card" aria-hidden="true"></i>
+    </span>
+  </div>
+  <div class='text-danger' *ngIf=' user.get("username").errors?.required && user.get("username").touched'>
+    a username is required
+  </div>
+  <div class='text-danger' *ngIf='user.get("username").errors?.minlength && user.get("username").touched'>
+    the username should be at least {{user.get("username").errors?.minlength.requiredLength }} letters
+  </div>
+  <div class='text-danger' *ngIf='user.get("username").errors?.userAlreadyExists && user.get("username").touched'>
+    a user with that name already exists
+  </div>
+
+  <div formGroupName='passwordGroup'>
+    <div class="wrap-input100">
+      <input class="input100" type="password" id="password" formControlName='password' placeholder="Wachtwoord">
+      <span class="focus-input100"></span>
+      <span class="symbol-input100">
+        <i class="fa fa-lock" aria-hidden="true"></i>
+      </span>
+    </div>
+    <div class='text-danger' *ngIf='passwordControl.errors?.passwordTooShort && passwordControl.touched'>
+      password too short, please use at least {{passwordControl.errors?.passwordTooShort.requiredLength}} letters (got {{passwordControl.errors?.passwordTooShort.actualLength}})
+    </div>
+
+
+    <div class="wrap-input100">
+      <input class="input100" type="password" id="confirmPassword" formControlName='confirmPassword' placeholder="Bevestig wachtwoord">
+      <span class="focus-input100"></span>
+      <span class="symbol-input100">
+        <i class="fa fa-lock" aria-hidden="true"></i>
+      </span>
+    </div>
+    <div class='text-danger' *ngIf=' user.get("passwordGroup").errors?.passwordsDiffer && user.get("passwordGroup").get("confirmPassword").touched  && user.get("passwordGroup").get("password").touched'>
+      the two passwords should be the same
+    </div>
+  </div>
+  
+
+  <div class="container-register100-form-btn">
+    <button type='submit' [disabled]='!user.valid' class="register100-form-btn">
+      Registreer
+    </button>
+  </div>
+</form>
