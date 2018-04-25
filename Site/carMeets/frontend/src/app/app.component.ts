@@ -9,9 +9,5 @@ import { Observable } from 'rxjs/Observable';
 })
 export class AppComponent {
   title = 'CarMeets.be';
-  constructor(private authService: AuthenticationService) {}
-
-  get currentUser(): Observable<string> {
-    return this.authService.user$;
-  }
+  constructor() {}
 }

@@ -11,7 +11,17 @@
     <div class="collapse navbar-collapse" id="myNavbar">
 
 
-      <ul *ngIf='(currentUser | async)' class="nav navbar-nav navbar-right" routerLinkActive='active' routerLink="/logout"> <li>logout, {{currentUser|async}}</li></ul>
+      <ul *ngIf='(currentUser | async)' class="nav navbar-nav navbar-right dropdown" >
+        <li>
+            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="glyphicon glyphicon-user"></span> {{currentUser|async}} 
+              </a>
+              <ul class="dropdown-menu">
+                  <li><a routerLink="/account" href="#"><i class="fas fa-cogs"> </i> Uw account</a></li>
+                  <li><a routerLink="/logout"><i class="fas fa-sign-out-alt"></i> Afmelden</a></li>
+              </ul>
+        </li>
+      </ul>
 
       <ul *ngIf='!(currentUser | async)' class="nav navbar-nav navbar-right">
         <li>

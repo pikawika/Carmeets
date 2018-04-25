@@ -27,6 +27,7 @@ import { LogoutComponent } from './user/logout/logout.component';
 import { AuthGuardService } from './user/auth-guard.service';
 import { AuthenticationService } from './user/authentication.service';
 import { httpInterceptorProviders } from './http-interceptors/index';
+import { AccountComponent } from './user/account/account.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { httpInterceptorProviders } from './http-interceptors/index';
     RegisterPageComponent,
     LoginComponent,
     RegisterComponent,
-    LogoutComponent
+    LogoutComponent,
+    AccountComponent
     ],
   imports: [
     BrowserModule,
