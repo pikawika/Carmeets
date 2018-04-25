@@ -26,9 +26,7 @@ import { RegisterComponent } from './user/register/register.component';
 import { LogoutComponent } from './user/logout/logout.component';
 import { AuthGuardService } from './user/auth-guard.service';
 import { AuthenticationService } from './user/authentication.service';
-
-
-
+import { httpInterceptorProviders } from './http-interceptors/index';
 
 @NgModule({
   declarations: [
@@ -56,7 +54,7 @@ import { AuthenticationService } from './user/authentication.service';
     HttpClientModule,
     ReactiveFormsModule
   ],
-  providers: [MeetingDataService, MeetingResolver, AuthenticationService, AuthGuardService],
+  providers: [httpInterceptorProviders, MeetingDataService, MeetingResolver, AuthenticationService, AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
