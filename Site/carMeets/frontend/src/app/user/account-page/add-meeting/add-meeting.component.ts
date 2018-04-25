@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { Meeting } from '../../../indexPage/meeting/meeting.model';
+import { Meeting } from '../../../meeting/meeting.model';
 
 @Component({
   selector: 'app-add-meeting',
