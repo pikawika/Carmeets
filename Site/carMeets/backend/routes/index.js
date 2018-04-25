@@ -8,23 +8,15 @@ let authentication = jwt({
   secret: process.env.MEETING_BACKEND_SECRET
 });
 
+//alle meetings verkrijgen
 router.get('/API/meetings', function(req, res, next) {
   Meeting.find(function(err, meetings) {
     if (err) return next(err);
     res.json(meetings);
-    console.log("getsmeetings");
   });
 });
 
-//test -> om 1 element op te halen heb je authentication nodig?
-router.post('/API/meetings', authentication, function(req, res, next) {
-  let meeting = new Meeting(req.body);
-  meeting.save((err, rec) => {
-    if (err) return next(err);
-    res.json(rec);
-  });
-});
-
+//1 meeting met id krijgen
 router.param('meeting', function(req, res, next, id) {
   let query = Meeting.findById(id);
   query.exec(function(err, meeting) {
@@ -39,8 +31,18 @@ router.param('meeting', function(req, res, next, id) {
   });
 });
 
+//default meeting meegeven en return
 router.get('/API/meeting/:meeting', function(req, res, next) {
   res.json(req.meeting);
+});
+
+//toevoegen van een meeting -- geen controle?!
+router.post('/API/meeting', function(req, res, next) {
+  let meeting = new Meeting(req.body);
+  meeting.save((err, rec) => {
+    if (err) return next(err);
+    res.json(rec);
+  });
 });
 
 module.exports = router;
