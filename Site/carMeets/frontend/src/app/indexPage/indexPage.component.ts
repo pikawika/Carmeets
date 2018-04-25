@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MeetingDataService } from '../meeting-data.service';
-import { Meeting } from '../meeting/meeting.model';
+import { Meeting } from './meeting/meeting.model';
 
 @Component({
   selector: 'app-indexPage',

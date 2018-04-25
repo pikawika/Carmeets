@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Meeting } from './meeting/meeting.model';
+import { Meeting } from './indexPage/meeting/meeting.model';
 
 @Pipe({
   name: 'meetingFilter'

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Meeting } from '../meeting/meeting.model';
+import { Meeting } from '../../indexPage/meeting/meeting.model';
 import { ActivatedRoute } from '@angular/router';
-import { MeetingDataService } from '../meeting-data.service';
+import { MeetingDataService } from '../../meeting-data.service';
 
 @Component({
   selector: 'app-single-meeting',

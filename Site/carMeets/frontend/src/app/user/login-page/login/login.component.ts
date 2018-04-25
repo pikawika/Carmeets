@@ -1,5 +1,4 @@
 import { Observable } from "rxjs/Observable";
-import { AuthenticationService } from "../authentication.service";
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import {
@@ -12,6 +11,7 @@ import {
 } from "@angular/forms";
 import { HttpErrorResponse } from "@angular/common/http";
 import { map } from "rxjs/operators";
+import { AuthenticationService } from "../../authentication.service";
 
 function passwordValidator(): ValidatorFn {
   return (control: AbstractControl): { [key: string]: any } => {
