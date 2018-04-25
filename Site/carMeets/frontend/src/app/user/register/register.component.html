@@ -17,6 +17,15 @@
       <i class="fa fa-envelope" aria-hidden="true"></i>
     </span>
   </div>
+  <div class='text-danger' *ngIf='user.get("email").errors?.required && user.get("email").touched'>
+      a email is required
+    </div>
+    <div class='text-danger' *ngIf='!user.get("email").errors?.required && user.get("email").errors?.email && user.get("email").touched'>
+      is not valid
+    </div>
+    <div class='text-danger' *ngIf='user.get("email").errors?.userAlreadyExists && user.get("email").touched'>
+      email already exists
+    </div>
 
   <div class="wrap-input100"> 
     <input class="input100" type="text" id="username" formControlName='username' placeholder="Gebruikersnaam">

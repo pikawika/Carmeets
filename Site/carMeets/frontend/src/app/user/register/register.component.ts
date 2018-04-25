@@ -122,7 +122,7 @@ export class RegisterComponent implements OnInit {
         (error: HttpErrorResponse) => {
           this.errorMsg = `Error ${
             error.status
-          } while trying to register user ${this.user.value.username}: ${
+          } Fout tijdens het registreren van: ${this.user.value.username}: ${
             error.error
           }`;
         }
