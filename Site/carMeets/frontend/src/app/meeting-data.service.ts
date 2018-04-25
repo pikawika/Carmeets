@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { map } from 'rxjs/operators';
-import { Meeting } from './indexPage/meeting/meeting.model';
+import { Meeting } from './meeting/meeting.model';
 
 @Injectable()
 export class MeetingDataService {

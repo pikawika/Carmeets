@@ -6,12 +6,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { IndexPageComponent } from '../indexPage/indexPage.component';
 import { PageNotFoundComponent } from '../page-not-found/page-not-found.component';
 import { DetailPageComponent } from '../detail-page/detail-page.component';
-import { MeetingResolver } from '../indexPage/meeting/meeting-resolver';
 import { LoginPageComponent } from '../user/login-page/login-page.component';
 import { RegisterPageComponent } from '../user/register-page/register-page.component';
 import { AuthGuardService } from '../user/auth-guard.service';
 import { LogoutComponent } from '../user/logout/logout.component';
 import { AccountPageComponent } from '../user/account-page/account-page.component';
+import { MeetingResolver } from '../meeting/meeting-resolver';
 
 const appRoutes: Routes = [
   { path: 'home', component: IndexPageComponent },
