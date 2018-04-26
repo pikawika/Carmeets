@@ -83,12 +83,11 @@ export class AuthenticationService {
   }
 
   changePassword(password: string): Observable<boolean> {
-    return this.http.post(`${this._url}/registreer`, { username, password, email }).pipe(
+    return this.http.post(`${this._url}/changePassword`, { password }).pipe(
       map((res: any) => {
         const token = res.token;
         if (token) {
           localStorage.setItem(this._tokenKey, token);
-          this._user$.next(username);
           return true;
         } else {
           return false;

@@ -1,0 +1,43 @@
+<section class="PasswordChangeSection text-center">
+    <h3>Wachtwoord wijzigen</h3>
+    <form [formGroup]='changePasswordFormgroup' (ngSubmit)='onSubmitPasswordChange()'>
+        <div formGroupName='passwordGroup'>
+            <div class="wrap-input100 input100Max300px center-block">
+                <input class="input100" type="password" id="oldPassword" formControlName='oldPassword' placeholder="Oud wachtwoord">
+                <span class="focus-input100"></span>
+                <span class="symbol-input100">
+                    <i class="fa fa-lock" aria-hidden="true"></i>
+                </span>
+            </div>
+
+            <div class="wrap-input100 input100Max300px center-block">
+                <input class="input100" type="password" id="newPassword" formControlName='newPassword' placeholder="Niew wachtwoord">
+                <span class="focus-input100"></span>
+                <span class="symbol-input100">
+                    <i class="fa fa-lock" aria-hidden="true"></i>
+                </span>
+            </div>
+            <div class='wrap-input100 text-danger font-12 font-12' *ngIf='passwordControl.errors?.passwordTooShort && passwordControl.touched'>
+                Wachtwoord moet minstens {{passwordControl.errors?.passwordTooShort.requiredLength}} characters zijn.
+            </div>
+
+
+            <div class="wrap-input100 input100Max300px center-block">
+                <input class="input100" type="password" id="confirmPassword" formControlName='confirmPassword' placeholder="Bevestig wachtwoord">
+                <span class="focus-input100"></span>
+                <span class="symbol-input100">
+                    <i class="fa fa-lock" aria-hidden="true"></i>
+                </span>
+            </div>
+            <div class='wrap-input100 text-danger font-12 font-12' *ngIf=' changePasswordFormgroup.get("passwordGroup").errors?.passwordsDiffer && changePasswordFormgroup.get("passwordGroup").get("confirmPassword").touched  && changePasswordFormgroup.get("passwordGroup").get("newPassword").touched'>
+                Wachtwoorden komen niet overeen
+            </div>
+        </div>
+
+        <div class="container-login100-form-btn input100Max300px center-block" [ngClass]="{'not-allowed-force':!changePasswordFormgroup.valid}">
+            <button type='submit' [disabled]='!changePasswordFormgroup.valid' id='chnangePasswordBtn' class="login100-form-btn">
+                Wijzig wachtwoord
+            </button>
+        </div>
+    </form>
+</section>

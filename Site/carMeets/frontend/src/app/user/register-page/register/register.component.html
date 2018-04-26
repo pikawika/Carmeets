@@ -70,7 +70,7 @@
   </div>
 
 
-  <div class="container-register100-form-btn">
+  <div class="container-register100-form-btn" [ngClass]="{'not-allowed-force':!user.valid}">
     <button type='submit' [disabled]='!user.valid' class="register100-form-btn">
       Registreer
     </button>

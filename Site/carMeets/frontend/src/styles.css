@@ -3,6 +3,21 @@
 
 /*---------------------------------------------------------------------------------------------------------------------------------------------------*/
 /* Custom */
+.not-allowed-force {
+  cursor: not-allowed !important;
+}
+
+hr.cleanPinkSeperator {
+  border: solid #e8175d;
+  border-width: 1px 0 0;
+  height: 0;
+  max-width: 400px;
+}
+
+.text-center-force {
+  text-align: center !important;
+}
+
 .force-right {
   right: 0;
   position: absolute;

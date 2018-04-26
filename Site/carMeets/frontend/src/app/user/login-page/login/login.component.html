@@ -27,7 +27,7 @@
     </span>
   </div>
 
-  <div class="container-login100-form-btn">
+  <div class="container-login100-form-btn" [ngClass]="{'not-allowed-force':!user.valid}">
     <button type='submit' [disabled]='!user.valid' id='loginbtn' class="login100-form-btn">
       Aanmelden
     </button>

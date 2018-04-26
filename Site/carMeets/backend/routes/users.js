@@ -1,17 +1,19 @@
-let express = require('express');
+let express = require("express");
 let router = express.Router();
-let mongoose = require('mongoose');
-let User = mongoose.model('User');
-let passport = require('passport');
-let jwt = require('express-jwt');
+let mongoose = require("mongoose");
+let User = mongoose.model("User");
+let passport = require("passport");
+let jwt = require("express-jwt");
 
 let authentication = jwt({
   secret: process.env.MEETING_BACKEND_SECRET
 });
 
-router.post('/registreer', function(req, res, next) {
+router.post("/registreer", function(req, res, next) {
   if (!req.body.username || !req.body.password || !req.body.email) {
-    return res.status(400).json({ message: 'U heeft een veld open gelaten. Vul deze aub in.' });
+    return res
+      .status(400)
+      .json({ message: "U heeft een veld open gelaten. Vul deze aub in." });
   }
   let user = new User();
   user.username = req.body.username;
@@ -26,11 +28,13 @@ router.post('/registreer', function(req, res, next) {
   });
 });
 
-router.post('/login', function(req, res, next) {
+router.post("/login", function(req, res, next) {
   if (!req.body.username || !req.body.password) {
-    return res.status(400).json({ message: 'U heeft een veld open gelaten. Vul deze aub in.' });
+    return res
+      .status(400)
+      .json({ message: "U heeft een veld open gelaten. Vul deze aub in." });
   }
-  passport.authenticate('local', function(err, user, info) {
+  passport.authenticate("local", function(err, user, info) {
     if (err) {
       return next(err);
     }
@@ -42,32 +46,35 @@ router.post('/login', function(req, res, next) {
   })(req, res, next);
 });
 
-router.post('/checkusername', function(req, res, next) {
+router.post("/checkusername", function(req, res, next) {
   User.find({ username: req.body.username }, function(err, result) {
     if (result.length) {
-      res.json({ username: 'alreadyexists' });
+      res.json({ username: "alreadyexists" });
     } else {
-      res.json({ username: 'ok' });
+      res.json({ username: "ok" });
     }
   });
 });
 
-router.post('/checkemail', function(req, res, next) {
+router.post("/checkemail", function(req, res, next) {
   User.find({ email: req.body.email }, function(err, result) {
     if (result.length) {
-      res.json({ email: 'alreadyexists' });
+      res.json({ email: "alreadyexists" });
     } else {
-      res.json({ email: 'ok' });
+      res.json({ email: "ok" });
     }
   });
 });
 
 //moet authenticated zijn!
-router.post('/changePassword', authentication, function(req, res, next) {
+router.post("/changePassword", authentication, function(req, res, next) {
   if (!req.body.password) {
-    return res.status(400).json({ message: 'U heeft een veld open gelaten. Vul deze aub in.' });
+    return res
+      .status(400)
+      .json({ message: "U heeft een veld open gelaten. Vul deze aub in." });
   }
   
+    return res.json({ token: user.generateJWT() });
 });
 
 module.exports = router;
