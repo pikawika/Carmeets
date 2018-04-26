@@ -1,12 +1,12 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { Meeting } from '../../../meeting/meeting.model';
+import { Meeting } from '../../meeting/meeting.model';
 
 @Component({
-  selector: 'app-add-meeting',
-  templateUrl: './add-meeting.component.html',
-  styleUrls: ['./add-meeting.component.css']
+  selector: 'app-add-meeting-page',
+  templateUrl: './add-meeting-page.component.html',
+  styleUrls: ['./add-meeting-page.component.css']
 })
-export class AddMeetingComponent implements OnInit {
+export class AddMeetingPageComponent implements OnInit {
   @Output() newMeeting = new EventEmitter<Meeting>();
 
   constructor() { }
