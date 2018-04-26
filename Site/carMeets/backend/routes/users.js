@@ -3,6 +3,11 @@ let router = express.Router();
 let mongoose = require('mongoose');
 let User = mongoose.model('User');
 let passport = require('passport');
+let jwt = require('express-jwt');
+
+let authentication = jwt({
+  secret: process.env.MEETING_BACKEND_SECRET
+});
 
 router.post('/registreer', function(req, res, next) {
   if (!req.body.username || !req.body.password || !req.body.email) {
@@ -56,4 +61,13 @@ router.post('/checkemail', function(req, res, next) {
     }
   });
 });
+
+//moet authenticated zijn!
+router.post('/changePassword', authentication, function(req, res, next) {
+  if (!req.body.password) {
+    return res.status(400).json({ message: 'U heeft een veld open gelaten. Vul deze aub in.' });
+  }
+  
+});
+
 module.exports = router;

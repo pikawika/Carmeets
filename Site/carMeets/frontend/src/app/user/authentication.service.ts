@@ -82,6 +82,21 @@ export class AuthenticationService {
     );
   }
 
+  changePassword(password: string): Observable<boolean> {
+    return this.http.post(`${this._url}/registreer`, { username, password, email }).pipe(
+      map((res: any) => {
+        const token = res.token;
+        if (token) {
+          localStorage.setItem(this._tokenKey, token);
+          this._user$.next(username);
+          return true;
+        } else {
+          return false;
+        }
+      })
+    );
+  }
+
   checkUserNameAvailability(username: string): Observable<boolean> {
     return this.http.post(`${this._url}/checkusername`, { username }).pipe(
       map((item: any) => {

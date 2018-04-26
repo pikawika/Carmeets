@@ -1,0 +1,31 @@
+<app-account-submenu></app-account-submenu>
+<div class="col-md-8">
+
+    <form [formGroup]='changePasswordFormgroup' (ngSubmit)='onSubmitPasswordChange()'>
+        <div formGroupName='passwordGroup'>
+            <div class="wrap-input100">
+                <input class="input100" type="password" id="password" formControlName='password' placeholder="Wachtwoord">
+                <span class="focus-input100"></span>
+                <span class="symbol-input100">
+                    <i class="fa fa-lock" aria-hidden="true"></i>
+                </span>
+            </div>
+            <div class='wrap-input100 text-danger font-12 font-12' *ngIf='passwordControl.errors?.passwordTooShort && passwordControl.touched'>
+                Wachtwoord moet minstens {{passwordControl.errors?.passwordTooShort.requiredLength}} characters zijn.
+            </div>
+
+
+            <div class="wrap-input100">
+                <input class="input100" type="password" id="confirmPassword" formControlName='confirmPassword' placeholder="Bevestig wachtwoord">
+                <span class="focus-input100"></span>
+                <span class="symbol-input100">
+                    <i class="fa fa-lock" aria-hidden="true"></i>
+                </span>
+            </div>
+            <div class='wrap-input100 text-danger font-12 font-12' *ngIf=' changePasswordFormgroup.get("passwordGroup").errors?.passwordsDiffer && changePasswordFormgroup.get("passwordGroup").get("confirmPassword").touched  && changePasswordFormgroup.get("passwordGroup").get("password").touched'>
+                Wachtwoorden komen niet overeen
+            </div>
+        </div>
+    </form>
+
+</div>
