@@ -66,15 +66,93 @@ router.post("/checkemail", function(req, res, next) {
   });
 });
 
-//moet authenticated zijn!
-router.post("/changePassword", authentication, function(req, res, next) {
-  if (!req.body.password) {
+router.post("/changeUsername", authentication, function(req, res, next) {
+  if (!req.body.newUsername) {
     return res
       .status(400)
       .json({ message: "U heeft een veld open gelaten. Vul deze aub in." });
   }
-  
-    return res.json({ token: user.generateJWT() });
+
+  //id uit token halen -- to implement
+  let idGebruiker = "5ae0b4fabed63f39dca69c12";
+
+  User.findOneAndUpdate(
+    { _id: idGebruiker },
+    { $set: { username: req.body.newUsername } },
+
+    function(err, obj) {
+      if (err || obj == null) {
+        return res.status(401).json({
+          message:
+            "Er liep iets mis met het uitvoeren van deze beveiligde actie."
+        });
+      }
+      return res.json({ token: obj.generateJWT() });
+    }
+  );
+});
+
+//id uit token halen -- to implement
+router.post("/changePassword", authentication, function(req, res, next) {
+  if (!req.body.newPassword) {
+    return res
+      .status(400)
+      .json({ message: "U heeft een veld open gelaten. Vul deze aub in." });
+  }
+
+  //id uit token halen -- to implement
+  let idGebruiker = "5ae0b4fabed63f39dca69c12";
+
+  User.findOne(
+    { _id: idGebruiker },
+
+    function(err, obj) {
+      if (err || obj == null) {
+        return res.status(401).json({
+          message:
+            "Er liep iets mis met het uitvoeren van deze beveiligde actie."
+        });
+      }
+      obj.setPassword(req.body.newPassword);
+
+      obj.save(function (err) {
+        if(err) {
+          return res.status(401).json({
+            message:
+              "Er liep iets mis met het uitvoeren van deze beveiligde actie."
+          });
+        }
+    });
+
+      return res.json({ token: obj.generateJWT() });
+    }
+  );
+});
+
+router.post("/changeEmail", authentication, function(req, res, next) {
+  if (!req.body.newEmail) {
+    return res
+      .status(400)
+      .json({ message: "U heeft een veld open gelaten. Vul deze aub in." });
+  }
+
+  //id uit token halen -- to implement
+  let idGebruiker = "5ae0b4fabed63f39dca69c12";
+
+  User.findOneAndUpdate(
+    { _id: idGebruiker },
+    { $set: { email: req.body.newEmail } },
+
+    function(err, obj) {
+      if (err || obj == null) {
+        return res.status(401).json({
+          message:
+            "Er liep iets mis met het uitvoeren van deze beveiligde actie."
+        });
+      }
+      return res.json({ token: obj.generateJWT() });
+    }
+  );
 });
 
 module.exports = router;

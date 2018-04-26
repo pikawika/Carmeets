@@ -1,5 +1,6 @@
 <section class="UsernameChangeSection text-center">
   <h3>Gebruikersnaam wijzigen</h3>
+  <div *ngIf='usernameMessage' class="text-center text-danger">{{usernameMessage}}</div>
   <form [formGroup]='changeUsernameFormgroup' (ngSubmit)='onSubmitUsernameChange()'>
 
     <div class="wrap-input100 input100Max300px center-block">

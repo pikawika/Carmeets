@@ -3,6 +3,7 @@ import { FormGroup, FormControl, FormBuilder, Validators, ValidatorFn, AbstractC
 import { AuthenticationService } from '../../../authentication.service';
 import { Observable } from 'rxjs/Observable';
 import { map } from 'rxjs/operators';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-account-settings-emailchange',
@@ -44,7 +45,21 @@ export class AccountSettingsEmailchangeComponent implements OnInit {
     };
   }
 
-  //werkt niet doet niets
-  onSubmitUsernameChange() {
+  onSubmitEmailChange() {
+    this.authenticationService
+    .changeEmail(this.changeEmailFormgroup.value.newEmail)
+    .subscribe(
+      val => {
+        if (val) {
+          this.emailMessage = `Email gewijzigd!`;
+        }else{
+          this.emailMessage = `Fout tijdens wijzigen Email!`;
+        }
+      },
+      (error: HttpErrorResponse) => {
+        this.emailMessage = `Fout tijdens wijzigen Email`;
+      }
+    );
+  }
 
 }

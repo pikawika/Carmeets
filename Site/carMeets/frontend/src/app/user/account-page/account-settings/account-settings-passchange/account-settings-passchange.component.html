@@ -1,5 +1,6 @@
 <section class="PasswordChangeSection text-center">
   <h3>Wachtwoord wijzigen</h3>
+  <div *ngIf='wachtwoordMessage' class="text-center text-danger">{{wachtwoordMessage}}</div>
   <form [formGroup]='changePasswordFormgroup' (ngSubmit)='onSubmitPasswordChange()'>
     <div class="wrap-input100 input100Max300px center-block">
       <input class="input100" type="password" id="oldPassword" formControlName='oldPassword' placeholder="Oud wachtwoord">

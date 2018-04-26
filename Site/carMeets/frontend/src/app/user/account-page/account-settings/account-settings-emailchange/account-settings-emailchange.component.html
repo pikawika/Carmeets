@@ -1,5 +1,6 @@
 <section class="EmailChangeSection text-center">
   <h3>E-mailadres wijzigen</h3>
+  <div *ngIf='emailMessage' class="text-center text-danger">{{emailMessage}}</div>
   <form [formGroup]='changeEmailFormgroup' (ngSubmit)='onSubmitEmailChange()'>
 
     <div class="wrap-input100 input100Max300px center-block">

@@ -42,20 +42,19 @@ export class AccountSettingsUsernamechangeComponent implements OnInit {
     };
   }
 
-   //werkt nog niet
    onSubmitUsernameChange() {
     this.authenticationService
-    .changePassword(this.changeUsernameFormgroup.value.username)
+    .changeUsername(this.changeUsernameFormgroup.value.newUsername)
     .subscribe(
       val => {
         if (val) {
-          this.usernameMessage = `Wachtwoord gewijzigd!`;
+          this.usernameMessage = `Username gewijzigd!`;
         }else{
-          this.usernameMessage = `Fout tijdens wijzigen wachtwoord!`;
+          this.usernameMessage = `Fout tijdens wijzigen username!`;
         }
       },
       (error: HttpErrorResponse) => {
-        this.usernameMessage = `Fout tijdens wijzigen wachtwoord`;
+        this.usernameMessage = `Fout tijdens wijzigen username`;
       }
     );
   }
