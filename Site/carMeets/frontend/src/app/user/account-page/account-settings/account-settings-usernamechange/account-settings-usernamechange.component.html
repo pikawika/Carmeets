@@ -1,3 +1,29 @@
-<p>
-  account-settings-usernamechange works!
-</p>
+<section class="UsernameChangeSection text-center">
+  <h3>Gebruikersnaam wijzigen</h3>
+  <form [formGroup]='changeUsernameFormgroup' (ngSubmit)='onSubmitUsernameChange()'>
+
+    <div class="wrap-input100 input100Max300px center-block">
+      <input class="input100" type="text" id="newUsername" formControlName='newUsername' placeholder="Nieuwe gebruikersnaam">
+      <span class="focus-input100"></span>
+      <span class="symbol-input100">
+        <i class="far fa-id-card" aria-hidden="true"></i>
+      </span>
+    </div>
+    <div class='wrap-input100 text-danger font-12 font-12' *ngIf='changeUsernameFormgroup.get("newUsername").errors?.required && changeUsernameFormgroup.get("newUsername").touched'>
+      Gebruikersnaam is verplicht
+    </div>
+    <div class='wrap-input100 text-danger font-12 font-12' *ngIf='changeUsernameFormgroup.get("newUsername").errors?.minlength && changeUsernameFormgroup.get("newUsername").touched'>
+      Gebruikersnaam moet minstens {{changeUsernameFormgroup.get("newUsername").errors?.minlength.requiredLength }} characters
+      zijn
+    </div>
+    <div class='wrap-input100 text-danger font-12 font-12' *ngIf='changeUsernameFormgroup.get("newUsername").errors?.userAlreadyExists && changeUsernameFormgroup.get("newUsername").touched'>
+      Gebruikersnaam reeds in gebruik
+    </div>
+
+    <div class="container-login100-form-btn input100Max300px center-block" [ngClass]="{'not-allowed-force':!changeUsernameFormgroup.valid}">
+      <button type='submit' [disabled]='!changeUsernameFormgroup.valid' id='changeUsernamedBtn' class="login100-form-btn">
+        Wijzig gebruikersnaam
+      </button>
+    </div>
+  </form>
+</section>

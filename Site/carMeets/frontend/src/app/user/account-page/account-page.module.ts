@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AccountSettingsPasschangeComponent } from './account-settings/account-settings-passchange/account-settings-passchange.component';
 import { AccountSettingsUsernamechangeComponent } from './account-settings/account-settings-usernamechange/account-settings-usernamechange.component';
+import { AccountSettingsEmailchangeComponent } from './account-settings/account-settings-emailchange/account-settings-emailchange.component';
 
 @NgModule({
   imports: [
@@ -19,7 +20,8 @@ import { AccountSettingsUsernamechangeComponent } from './account-settings/accou
     AccountPreferencesComponent,
     AccountSubmenuComponent,
     AccountSettingsPasschangeComponent,
-    AccountSettingsUsernamechangeComponent
+    AccountSettingsUsernamechangeComponent,
+    AccountSettingsEmailchangeComponent
   ]
 })
 export class AccountPageModule { }

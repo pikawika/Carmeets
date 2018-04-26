@@ -41,9 +41,9 @@ export class AccountSettingsPasschangeComponent implements OnInit {
 
   ngOnInit() {
     this.changePasswordFormgroup = this.changePasswordFb.group({
+      oldPassword: ['', Validators.required],
       passwordGroup: this.changePasswordFb.group(
         {
-          oldPassword : ['', Validators.required],
           //minimaal lengte 7 chars
           newPassword: ['', [Validators.required, passwordValidator(7)]],
           confirmPassword: ['', Validators.required]
@@ -53,6 +53,7 @@ export class AccountSettingsPasschangeComponent implements OnInit {
     });
   }
 
+  //werkt niet doet niets
   onSubmitPasswordChange() {
     this.authenticationService
       .changePassword(this.passwordControl.value)
