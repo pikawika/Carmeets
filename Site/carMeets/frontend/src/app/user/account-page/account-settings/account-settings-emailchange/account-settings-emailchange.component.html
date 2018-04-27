@@ -1,0 +1,29 @@
+<section class="EmailChangeSection text-center">
+  <h3>E-mailadres wijzigen</h3>
+  <div *ngIf='emailMessage' class="text-center text-danger">{{emailMessage}}</div>
+  <form [formGroup]='changeEmailFormgroup' (ngSubmit)='onSubmitEmailChange()'>
+
+    <div class="wrap-input100 input100Max300px center-block">
+      <input class="input100" type="email" id="newEmail" formControlName='newEmail' placeholder="Nieuw e-mailadres">
+      <span class="focus-input100"></span>
+      <span class="symbol-input100">
+        <i class="fa fa-envelope" aria-hidden="true"></i>
+      </span>
+    </div>
+    <div class='wrap-input100 text-danger font-12 font-12' *ngIf='changeEmailFormgroup.get("newEmail").errors?.required && changeEmailFormgroup.get("newEmail").touched'>
+      E-mailadres is verplicht
+    </div>
+    <div class='wrap-input100 text-danger font-12 font-12' *ngIf='!changeEmailFormgroup.get("newEmail").errors?.required && changeEmailFormgroup.get("newEmail").errors?.email && changeEmailFormgroup.get("newEmail").touched'>
+      Ongeldig E-mailadres
+    </div>
+    <div class='wrap-input100 text-danger font-12 font-12' *ngIf='changeEmailFormgroup.get("newEmail").errors?.userAlreadyExists && changeEmailFormgroup.get("newEmail").touched'>
+      E-mailadres reeds in gebruik
+    </div>
+
+    <div class="container-login100-form-btn input100Max300px center-block" [ngClass]="{'not-allowed-force':!changeEmailFormgroup.valid}">
+      <button type='submit' [disabled]='!changeEmailFormgroup.valid' id='changeEmaildBtn' class="login100-form-btn">
+        Wijzig E-mailadres
+      </button>
+    </div>
+  </form>
+</section>

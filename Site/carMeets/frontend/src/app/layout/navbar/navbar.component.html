@@ -14,7 +14,7 @@
       <ul *ngIf='(currentUser | async)' class="nav navbar-nav navbar-right dropdown" >
         <li>
             <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="glyphicon glyphicon-user"></span> {{currentUser|async}} 
+                <span class="glyphicon glyphicon-user"></span> {{currentUser|async}} <i class="far fa-caret-square-down color-dark-red"></i>
               </a>
               <ul class="dropdown-menu">
                   <li><a routerLink="/account" href="#"><i class="fas fa-cogs"> </i> Uw account</a></li>

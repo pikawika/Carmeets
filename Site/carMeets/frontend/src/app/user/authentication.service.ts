@@ -15,7 +15,7 @@ function parseJwt(token) {
 
 @Injectable()
 export class AuthenticationService {
-  private readonly _tokenKey = 'currentUser';
+  private readonly _tokenKey = 'CarMeetsUser';
   private readonly _url = '/API/users';
   private _user$: BehaviorSubject<string>;
 
@@ -101,6 +101,51 @@ export class AuthenticationService {
           return false;
         } else {
           return true;
+        }
+      })
+    );
+  }
+
+  //werkt maar id niet uit token maar hardcoded 
+  changeUsername(newUsername: string): Observable<boolean> {
+    return this.http.post(`${this._url}/changeUsername`, { newUsername }).pipe(
+      map((res: any) => {
+        const token = res.token;
+        if (token) {
+          localStorage.setItem(this._tokenKey, token);
+          this._user$.next(newUsername);
+          return true;
+        } else {
+          return false;
+        }
+      })
+    );
+  }
+
+  //werkt maar id niet uit token maar hardcoded 
+  changePassword(newPassword: string): Observable<boolean> {
+    return this.http.post(`${this._url}/changePassword`, { newPassword }).pipe(
+      map((res: any) => {
+        const token = res.token;
+        if (token) {
+          localStorage.setItem(this._tokenKey, token);
+          return true;
+        } else {
+          return false;
+        }
+      })
+    );
+  }
+
+  changeEmail(newEmail: string): Observable<boolean> {
+    return this.http.post(`${this._url}/changeEmail`, { newEmail }).pipe(
+      map((res: any) => {
+        const token = res.token;
+        if (token) {
+          localStorage.setItem(this._tokenKey, token);
+          return true;
+        } else {
+          return false;
         }
       })
     );
