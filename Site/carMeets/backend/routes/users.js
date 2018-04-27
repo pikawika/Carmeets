@@ -74,7 +74,7 @@ router.post("/changeUsername", authentication, function(req, res, next) {
   }
 
   //id uit token halen -- to implement
-  let idGebruiker = "5ae06748a843dd22d0187001";
+  let idGebruiker = "5ae0b4fabed63f39dca69c12";
 
   User.findOneAndUpdate(
     { _id: idGebruiker },
@@ -101,7 +101,7 @@ router.post("/changePassword", authentication, function(req, res, next) {
   }
 
   //id uit token halen -- to implement
-  let idGebruiker = "5ae06748a843dd22d0187001";
+  let idGebruiker = "5ae0b4fabed63f39dca69c12";
 
   User.findOne(
     { _id: idGebruiker },
@@ -137,7 +137,7 @@ router.post("/changeEmail", authentication, function(req, res, next) {
   }
 
   //id uit token halen -- to implement
-  let idGebruiker = "5ae06748a843dd22d0187001";
+  let idGebruiker = "5ae0b4fabed63f39dca69c12";
 
   User.findOneAndUpdate(
     { _id: idGebruiker },
