@@ -74,7 +74,9 @@ router.post("/changeUsername", authentication, function(req, res, next) {
   }
 
   //id uit token halen -- to implement
-  let idGebruiker = "5ae0b4fabed63f39dca69c12";
+  let token = req.headers.authorization.substring(7);
+  let idUitToken = new Buffer(token.split(".")[1], "base64").toString();
+  let idGebruiker = JSON.parse(idUitToken)._id;
 
   User.findOneAndUpdate(
     { _id: idGebruiker },
@@ -101,7 +103,9 @@ router.post("/changePassword", authentication, function(req, res, next) {
   }
 
   //id uit token halen -- to implement
-  let idGebruiker = "5ae0b4fabed63f39dca69c12";
+  let token = req.headers.authorization.substring(7);
+  let idUitToken = new Buffer(token.split(".")[1], "base64").toString();
+  let idGebruiker = JSON.parse(idUitToken)._id;
 
   User.findOne(
     { _id: idGebruiker },
@@ -115,14 +119,14 @@ router.post("/changePassword", authentication, function(req, res, next) {
       }
       obj.setPassword(req.body.newPassword);
 
-      obj.save(function (err) {
-        if(err) {
+      obj.save(function(err) {
+        if (err) {
           return res.status(401).json({
             message:
               "Er liep iets mis met het uitvoeren van deze beveiligde actie."
           });
         }
-    });
+      });
 
       return res.json({ token: obj.generateJWT() });
     }
@@ -137,7 +141,9 @@ router.post("/changeEmail", authentication, function(req, res, next) {
   }
 
   //id uit token halen -- to implement
-  let idGebruiker = "5ae0b4fabed63f39dca69c12";
+  let token = req.headers.authorization.substring(7);
+  let idUitToken = new Buffer(token.split(".")[1], "base64").toString();
+  let idGebruiker = JSON.parse(idUitToken)._id;
 
   User.findOneAndUpdate(
     { _id: idGebruiker },
