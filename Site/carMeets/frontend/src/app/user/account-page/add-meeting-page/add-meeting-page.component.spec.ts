@@ -1,8 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+
 import { AddMeetingPageComponent } from './add-meeting-page.component';
 
-
-describe('AddMeetingComponent', () => {
+describe('AddMeetingPageComponent', () => {
   let component: AddMeetingPageComponent;
   let fixture: ComponentFixture<AddMeetingPageComponent>;
 

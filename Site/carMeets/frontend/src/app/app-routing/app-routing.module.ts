@@ -13,6 +13,7 @@ import { LogoutComponent } from '../user/logout/logout.component';
 import { MeetingResolver } from '../meeting/meeting-resolver';
 import { AccountSettingsComponent } from '../user/account-page/account-settings/account-settings.component';
 import { AccountPreferencesComponent } from '../user/account-page/account-preferences/account-preferences.component';
+import { AddMeetingPageComponent } from '../user/account-page/add-meeting-page/add-meeting-page.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: IndexPageComponent },
@@ -25,6 +26,7 @@ const appRoutes: Routes = [
   { path: 'account', canActivate: [ AuthGuardService ], redirectTo: 'account/instellingen', pathMatch: 'full' },
   { path: 'account/instellingen', canActivate: [ AuthGuardService ], component: AccountSettingsComponent },
   { path: 'account/voorkeuren', canActivate: [ AuthGuardService ], component: AccountPreferencesComponent },
+  { path: 'meetingToevoegen', canActivate: [ AuthGuardService ], component: AddMeetingPageComponent },
 
   { path: '', redirectTo: 'home', pathMatch: 'full'},
   { path: '**', component: PageNotFoundComponent}
