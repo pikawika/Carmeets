@@ -5,6 +5,9 @@ export class Meeting {
   private _imagePath: string;
   private _site: string;
   private _gemeente: string;
+  private _postcode: string;
+  private _straatnaam: string;
+  private _straatnr: string;
   private _shortDescription: string;
   private _fullDescription: string;
   private _categories = new Array<string>();
@@ -13,6 +16,9 @@ export class Meeting {
     name: string,
     date: Date,
     gemeente: string,
+    postcode: string,
+    straatnaam: string,
+    straatnr: string,
     shortDescription: string,
     fullDescription: string,
     categories: Array<string>,
@@ -21,6 +27,9 @@ export class Meeting {
     this._name = name;
     this._date = date;
     this._gemeente = gemeente;
+    this._postcode = postcode;
+    this._straatnaam = straatnaam;
+    this._straatnr = straatnaam;
     this._shortDescription = shortDescription;
     this._fullDescription = fullDescription;
     this._categories = categories;
@@ -79,6 +88,9 @@ export class Meeting {
       name: this._name,
       date: this._date,
       gemeente: this._gemeente,
+      postcode: this._postcode,
+      straatnaam: this._straatnaam,
+      straatnr: this._straatnr,
       shortDescription: this._shortDescription,
       fullDescription: this._fullDescription,
       categories: this._categories,
@@ -87,7 +99,7 @@ export class Meeting {
   }
 
   static fromJSON(json: any): Meeting {
-    const rec = new Meeting(json.name, json.date, json.gemeente, json.shortDescription, json.fullDescription, json.categories, json.site);
+    const rec = new Meeting(json.name, json.date, json.gemeente, json.postcode, json.straatnaam, json.straatnr, json.shortDescription, json.fullDescription, json.categories, json.site);
     rec._id = json._id;
     return rec;
   }

@@ -13,6 +13,7 @@ require('./models/User');
 require('./config/passport');
 
 var index = require('./routes/index');
+var meetings = require('./routes/meetings');
 var users = require('./routes/users');
 
 var app = express();
@@ -25,6 +26,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(passport.initialize());
 
 app.use('/', index);
+app.use('/API/meetings', meetings);
 app.use('/API/users', users);
 
 // catch 404 and forward to error handler

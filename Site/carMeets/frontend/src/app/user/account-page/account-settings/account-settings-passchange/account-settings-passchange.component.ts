@@ -53,7 +53,6 @@ export class AccountSettingsPasschangeComponent implements OnInit {
     });
   }
 
-  //werkt niet doet niets
   onSubmitPasswordChange() {
     this.authenticationService
       .changePassword(this.passwordControl.value)

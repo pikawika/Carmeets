@@ -15,7 +15,7 @@ import { AddMeetingPageComponent } from './add-meeting-page/add-meeting-page.com
     CommonModule,
     RouterModule,
     ReactiveFormsModule
-  ],
+    ],
   declarations: [
     AccountSettingsComponent,
     AccountPreferencesComponent,

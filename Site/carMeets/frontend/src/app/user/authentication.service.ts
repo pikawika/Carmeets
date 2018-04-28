@@ -3,6 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
+import { Meeting } from '../meeting/meeting.model';
 
 function parseJwt(token) {
   if (!token) {
@@ -16,7 +17,8 @@ function parseJwt(token) {
 @Injectable()
 export class AuthenticationService {
   private readonly _tokenKey = 'CarMeetsUser';
-  private readonly _url = '/API/users';
+  private readonly _urlusers = '/API/users';
+  private readonly _urlmeeting = '/API/meetings';
   private _user$: BehaviorSubject<string>;
 
   public redirectUrl: string;
@@ -46,7 +48,7 @@ export class AuthenticationService {
   }
 
   login(username: string, password: string): Observable<boolean> {
-    return this.http.post(`${this._url}/login`, { username, password }).pipe(
+    return this.http.post(`${this._urlusers}/login`, { username, password }).pipe(
       map((res: any) => {
         const token = res.token;
         if (token) {
@@ -68,7 +70,7 @@ export class AuthenticationService {
   }
 
   register(username: string, password: string, email: string): Observable<boolean> {
-    return this.http.post(`${this._url}/registreer`, { username, password, email }).pipe(
+    return this.http.post(`${this._urlusers}/registreer`, { username, password, email }).pipe(
       map((res: any) => {
         const token = res.token;
         if (token) {
@@ -83,7 +85,7 @@ export class AuthenticationService {
   }
 
   checkUserNameAvailability(username: string): Observable<boolean> {
-    return this.http.post(`${this._url}/checkusername`, { username }).pipe(
+    return this.http.post(`${this._urlusers}/checkusername`, { username }).pipe(
       map((item: any) => {
         if (item.username === 'alreadyexists') {
           return false;
@@ -95,7 +97,7 @@ export class AuthenticationService {
   }
 
   checkEmailAvailability(email: string): Observable<boolean> {
-    return this.http.post(`${this._url}/checkemail`, { email }).pipe(
+    return this.http.post(`${this._urlusers}/checkemail`, { email }).pipe(
       map((item: any) => {
         if (item.email === 'alreadyexists') {
           return false;
@@ -106,9 +108,8 @@ export class AuthenticationService {
     );
   }
 
-  //werkt maar id niet uit token maar hardcoded 
   changeUsername(newUsername: string): Observable<boolean> {
-    return this.http.post(`${this._url}/changeUsername`, { newUsername }).pipe(
+    return this.http.post(`${this._urlusers}/changeUsername`, { newUsername }).pipe(
       map((res: any) => {
         const token = res.token;
         if (token) {
@@ -122,9 +123,8 @@ export class AuthenticationService {
     );
   }
 
-  //werkt maar id niet uit token maar hardcoded 
   changePassword(newPassword: string): Observable<boolean> {
-    return this.http.post(`${this._url}/changePassword`, { newPassword }).pipe(
+    return this.http.post(`${this._urlusers}/changePassword`, { newPassword }).pipe(
       map((res: any) => {
         const token = res.token;
         if (token) {
@@ -138,7 +138,7 @@ export class AuthenticationService {
   }
 
   changeEmail(newEmail: string): Observable<boolean> {
-    return this.http.post(`${this._url}/changeEmail`, { newEmail }).pipe(
+    return this.http.post(`${this._urlusers}/changeEmail`, { newEmail }).pipe(
       map((res: any) => {
         const token = res.token;
         if (token) {
@@ -150,4 +150,19 @@ export class AuthenticationService {
       })
     );
   }
+
+  //voorlopig een bool maar kan meeting worden om toe te voegen aan lokale lijst
+  addMeeting(meeting: Meeting): Observable<boolean> {
+    return this.http
+      .post(`${this._urlmeeting}/addMeeting`, meeting).pipe(
+        map((res: any) => {
+          const toegevoegd = res.toegevoegd;
+          if (toegevoegd) {
+            return true;
+          } else {
+            return false;
+          }
+        })
+      );
+    }
 }
