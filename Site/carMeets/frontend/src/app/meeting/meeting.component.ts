@@ -8,6 +8,13 @@ import { Meeting } from "./meeting.model";
 })
 export class MeetingComponent implements OnInit {
   @Input() public meeting:Meeting;
+  public get drieCategorien() {
+    let drieCategorien = this.meeting.categories.filter((item, index) => index < 3 );
+    if (this.meeting.categories.length > 3){
+      drieCategorien.push("...");
+    }
+    return drieCategorien;
+ }
 
   constructor() {
     
