@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { FormGroup, Validators, FormBuilder, FormArray, FormControl } from "@angular/forms";
+import { FormGroup, Validators, FormBuilder, FormArray, FormControl, ValidatorFn, AbstractControl } from "@angular/forms";
 import { AuthenticationService } from "../../authentication.service";
 import { HttpErrorResponse } from "@angular/common/http";
 import { Meeting } from "../../../meeting/meeting.model";
@@ -12,6 +12,7 @@ import { Meeting } from "../../../meeting/meeting.model";
 export class AddMeetingPageComponent implements OnInit {
   public newMeetingFormGroup: FormGroup;
   public newMeetingErrorMsg: string;
+  public categoryeErrorMsg: string;
   public soortenMeetings: string[];
 
   constructor(
@@ -70,7 +71,7 @@ export class AddMeetingPageComponent implements OnInit {
       straatnr: ["", [Validators.required]],
       shortDescription: ["", [Validators.required, Validators.maxLength(80)]],
       fullDescription: ["", [Validators.required, Validators.maxLength(1500)]],
-      categories: new FormArray([]),
+      categories: new FormArray([], Validators.required),
       site: [
         "",
         [
@@ -88,6 +89,7 @@ export class AddMeetingPageComponent implements OnInit {
     //gelsecteerde veld
     if(event.target.checked){
       // Toevoegen in array
+      this.categoryeErrorMsg = "";
       formArray.push(new FormControl(event.target.value));
     }
     // verwijderde item
@@ -98,6 +100,10 @@ export class AddMeetingPageComponent implements OnInit {
       formArray.controls.forEach((ctrl: FormControl) => {
         if(ctrl.value == event.target.value) {
           formArray.removeAt(i);
+          if (formArray.length == 0){
+            this.categoryeErrorMsg = "U moet minstens 1 categorie kiezen.";
+          }
+          
           return;
         }
   

@@ -117,8 +117,9 @@
         Ongeldige url.
       </div>
 
-      <h4>Kies alle passende categorieën*</h4>
-      <div>
+      <div class="wrap-input100 input100Max600px center-block">
+        <h4>Kies alle passende categorieën*</h4>
+        <div *ngIf='categoryeErrorMsg != ""' class="text-center text-danger">{{categoryeErrorMsg}}</div>
         <div *ngFor="let keuze of soortenMeetings">
           <a class="col-md-4">
             <input type="checkbox" name="categorie" [value]="keuze" (change)="onCheckChange($event)">{{keuze}}</a>
