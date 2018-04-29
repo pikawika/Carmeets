@@ -107,17 +107,6 @@
       </div>
 
       <div class="wrap-input100 input100Max600px center-block">
-        <input class="input100" type="text" id="categories" formControlName='categories' placeholder="Categorieen event*">
-        <span class="focus-input100"></span>
-        <span class="symbol-input100">
-          <i class="fas fa-ellipsis-v" aria-hidden="true"></i>
-        </span>
-      </div>
-      <div class='wrap-input100 text-danger font-12 font-12' *ngIf='newMeetingFormGroup.get("categories").touched && newMeetingFormGroup.get("categories").errors?.required'>
-        Uw event moet minstens 1 categorie hebben.
-      </div>
-
-      <div class="wrap-input100 input100Max600px center-block">
         <input class="input100" type="text" id="site" formControlName='site' placeholder="Website van uw event">
         <span class="focus-input100"></span>
         <span class="symbol-input100">
@@ -126,6 +115,14 @@
       </div>
       <div class='wrap-input100 text-danger font-12 font-12' *ngIf='newMeetingFormGroup.get("site").touched && newMeetingFormGroup.get("site").errors?.pattern'>
         Ongeldige url.
+      </div>
+
+      <h4>Kies alle passende categorieën*</h4>
+      <div>
+        <div *ngFor="let keuze of soortenMeetings">
+          <a class="col-md-4">
+            <input type="checkbox" name="categorie" [value]="keuze" (change)="onCheckChange($event)">{{keuze}}</a>
+        </div>
       </div>
 
       <div class="container-addmeeting100-form-btn input100Max600px center-block" [ngClass]="{'not-allowed-force':!newMeetingFormGroup.valid}">
