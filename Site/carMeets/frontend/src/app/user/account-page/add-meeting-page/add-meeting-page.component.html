@@ -4,7 +4,7 @@
   <section class="AddMeetingSection text-center">
     <h3>Meeting toevoegen</h3>
     <div *ngIf='newMeetingErrorMsg' class="text-center text-danger">{{newMeetingErrorMsg}}</div>
-    <form [formGroup]='newMeetingFormGroup' (ngSubmit)='onSubmitAddMeeting()'>
+    <form [formGroup]='newMeetingFormGroup' (ngSubmit)='onSubmitAddMeeting()' enctype="multipart/form-data">
 
       <div class="wrap-input100 input100Max600px center-block">
         <input class="input100" type="text" id="name" formControlName='name' placeholder="Event naam*">
