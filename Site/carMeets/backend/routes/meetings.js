@@ -31,7 +31,7 @@ router.post("/addMeeting", function(req, res, next) {
     if (err) {
       return next(err);
     }
-    return res.json({ toegevoegd: "yaaas" });
+    return res.json({ toegevoegd: newMeeting._id });
   });
 });
 

@@ -118,13 +118,27 @@
       </div>
 
       <div class="wrap-input100 input100Max600px center-block">
+        <div *ngIf='afbeeldingErrorMsg != ""' class="text-center text-danger">{{afbeeldingErrorMsg}}</div>
+        <div *ngIf='afbeeldingConfirmMsg != ""' class="text-center text-success">{{afbeeldingConfirmMsg}}</div>
+        <label class="addmeeting100-form-btn" id="thumbSelection">
+          <a id="thumbTekst">Selecteer 1 thumbnail afbeelding (16:9 / max 500kb)*.
+          </a>
+          <input type="file" accept=".jpg" (change)="onImgUploadChange($event)" name="thumbToUpload" id="thumbToUpload"
+            style="display: none;">
+        </label>
+      </div>
+
+      <div class="input100Max600px center-block">
         <h4>Kies alle passende categorieën*</h4>
-        <div *ngIf='categoryeErrorMsg != ""' class="text-center text-danger">{{categoryeErrorMsg}}</div>
+        <div *ngIf='categoryErrorMsg != ""' class="text-center text-danger">{{categoryErrorMsg}}</div>
         <div *ngFor="let keuze of soortenMeetings">
           <a class="col-md-4">
             <input type="checkbox" name="categorie" [value]="keuze" (change)="onCheckChange($event)">{{keuze}}</a>
         </div>
       </div>
+
+
+
 
       <div class="container-addmeeting100-form-btn input100Max600px center-block" [ngClass]="{'not-allowed-force':!newMeetingFormGroup.valid}">
         <button type='submit' [disabled]='!newMeetingFormGroup.valid' id='chnangePasswordBtn' class="addmeeting100-form-btn">

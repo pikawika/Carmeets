@@ -152,15 +152,15 @@ export class AuthenticationService {
   }
 
   //voorlopig een bool maar kan meeting worden om toe te voegen aan lokale lijst
-  addMeeting(meeting: Meeting): Observable<boolean> {
+  addMeeting(meeting: Meeting): Observable<string> {
     return this.http
       .post(`${this._urlmeeting}/addMeeting`, meeting).pipe(
         map((res: any) => {
           const toegevoegd = res.toegevoegd;
           if (toegevoegd) {
-            return true;
+            return toegevoegd;
           } else {
-            return false;
+            return null;
           }
         })
       );
