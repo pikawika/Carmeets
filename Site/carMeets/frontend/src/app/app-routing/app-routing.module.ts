@@ -17,7 +17,7 @@ import { AddMeetingPageComponent } from '../user/account-page/add-meeting-page/a
 import { PreferenceResolver } from '../user/account-page/account-preferences/preference-resolver';
 
 const appRoutes: Routes = [
-  { path: 'home', component: IndexPageComponent },
+  { path: 'home', component: IndexPageComponent, resolve: {dbSoortenMeetings: PreferenceResolver}},
   { path: 'meet-detail/:id', component: DetailPageComponent, resolve: {meeting: MeetingResolver} },
 
   { path: 'registreer', component: RegisterPageComponent },

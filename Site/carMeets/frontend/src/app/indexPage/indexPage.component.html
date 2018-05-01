@@ -9,33 +9,54 @@
     </header>
   </section>
 
-  <!-- Mini Posts -->
+  <!-- Search -->
+  <section class="blurb text-center mb-20">
+    <h2>Filter de meetings</h2>
+    <!-- naam -->
+    <div>
+      <input class="mb-10 width-100prcnt" type='text' placeholder='filter meeting op naam...' #filterNaam>
+      <button (click)="applyFilterName(filterNaam.value)">filter op naam</button>
+    </div>
 
-  <!-- Posts List -->
-  <section class="blurb">
-    <div class="pb-20">
-      <h2>Filter de meetings</h2>
-      <div>
-        <input class="mb-10" type='text' placeholder='filter meeting op naam...' #filter>
-        <button (click)="applyFilter(filter.value)">filter</button>
+    <!-- datum -->
+    <form [formGroup]='filterDateFormGroup' (ngSubmit)='applyFilterDate()'>
+      <div class="mt-30">
+        <input class="col-xs-5" type='text' placeholder='Startdatum' formControlName='startDate'>
+        <input class="col-xs-offset-2 col-xs-5" type='text' placeholder='Einddatum' formControlName='endDate'>
+        <div class='wrap-input100 text-danger font-12 font-12' *ngIf='(filterDateFormGroup.get("startDate").touched && filterDateFormGroup.get("startDate").errors?.pattern) || (filterDateFormGroup.get("endDate").touched && filterDateFormGroup.get("endDate").errors?.pattern)'>
+          Het datumveld moet volgende indeling hebben: dd/mm/yyyy.
+        </div>
+        <button class="mt-10" type="submit" [disabled]='!filterDateFormGroup.valid'>filter op datum</button>
+      </div>
+    </form>
+
+    <!-- categorie uitklappen -->
+    <div class="mt-30">
+      <button data-toggle="collapse" data-target="#categorieFilter">Toon filter voor categorie</button>
+    </div>
+    <div class="collapse" id="categorieFilter">
+      <div class="center-block">
+        <div *ngFor="let keuze of soortenMeetings" class="text-left">
+          <a>
+            <input type="checkbox" name="categorie" [value]="keuze" [checked]="isCheckedInDb(keuze)" (change)="onCheckChange($event)">{{keuze}}</a>
+        </div>
       </div>
     </div>
-  </section>
+  </section> 
 
   <!-- About -->
-  <section class="blurb">
+  <section class="blurb text-center">
     <h2>Over CarMeets.be</h2>
     <p>Net zoals vele autoliefhebbers was ik het beu steeds te moeten horen dat ik weer een kwaliteitsmeeting gemist had omdat
       ik niet wist wanneer deze plaatsvond. Daarom besloot ik,
       <a href="https://www.lennertbontinck.com/">Lennert Bontinck</a>, een website te maken waar je snel en eenvoudig alle meetings naar jouw smaak kan terugvinden
       en bewaren in je agenda.</p>
   </section>
-
 </section>
 
 <!-- Main -->
 <div class="col-lg-9" id="main">
 
   <!-- Meeting -->
-  <app-meeting *ngFor='let localMeeting of meetings | meetingFilter: filterMeetingName' [meeting]='localMeeting'></app-meeting>
+  <app-meeting *ngFor='let localMeeting of meetings | meetingFilter: filterMeetingName:filterDateStart:filterDateEnd:soortenMeetingsFilter' [meeting]='localMeeting'></app-meeting>
 </div>
