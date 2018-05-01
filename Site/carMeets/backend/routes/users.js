@@ -75,7 +75,7 @@ router.post("/changeUsername", authentication, function(req, res, next) {
 
   //id uit token halen -- to implement
   let token = req.headers.authorization.substring(7);
-  let idUitToken = new Buffer(token.split(".")[1], "base64").toString();
+  let idUitToken = new Buffer(token.split('.')[1], 'base64').toString();
   let idGebruiker = JSON.parse(idUitToken)._id;
 
   User.findOneAndUpdate(
@@ -104,7 +104,7 @@ router.post("/changePassword", authentication, function(req, res, next) {
 
   //id uit token halen -- to implement
   let token = req.headers.authorization.substring(7);
-  let idUitToken = new Buffer(token.split(".")[1], "base64").toString();
+  let idUitToken = new Buffer(token.split('.')[1], 'base64').toString();
   let idGebruiker = JSON.parse(idUitToken)._id;
 
   User.findOne(
@@ -142,7 +142,7 @@ router.post("/changeEmail", authentication, function(req, res, next) {
 
   //id uit token halen -- to implement
   let token = req.headers.authorization.substring(7);
-  let idUitToken = new Buffer(token.split(".")[1], "base64").toString();
+  let idUitToken = new Buffer(token.split('.')[1], 'base64').toString();
   let idGebruiker = JSON.parse(idUitToken)._id;
 
   User.findOneAndUpdate(
@@ -151,7 +151,7 @@ router.post("/changeEmail", authentication, function(req, res, next) {
 
     function(err, obj) {
       if (err || obj == null) {
-        return res.status(401).json({
+        return res.status(400).json({
           message:
             "Er liep iets mis met het uitvoeren van deze beveiligde actie."
         });
