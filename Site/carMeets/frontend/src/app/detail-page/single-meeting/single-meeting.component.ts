@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { MeetingDataService } from '../../meeting-data.service';
 import { Meeting } from '../../meeting/meeting.model';
 
 @Component({
@@ -10,8 +9,7 @@ import { Meeting } from '../../meeting/meeting.model';
 })
 export class SingleMeetingComponent implements OnInit {
   singleMeeting: Meeting;
-  constructor(private route: ActivatedRoute,
-    private meetingDataService: MeetingDataService) { }
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.route.data.subscribe(item=>this.singleMeeting = item['meeting']);

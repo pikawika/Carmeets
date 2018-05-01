@@ -69,8 +69,8 @@ export class AuthenticationService {
     }
   }
 
-  register(username: string, password: string, email: string): Observable<boolean> {
-    return this.http.post(`${this._urlusers}/registreer`, { username, password, email }).pipe(
+  register(username: string, password: string, email: string, soortenMeetings: string[]): Observable<boolean> {
+    return this.http.post(`${this._urlusers}/registreer`, { username, password, email, soortenMeetings }).pipe(
       map((res: any) => {
         const token = res.token;
         if (token) {
@@ -146,6 +146,30 @@ export class AuthenticationService {
           return true;
         } else {
           return false;
+        }
+      })
+    );
+  }
+
+  changePreferences(soortenMeetings: string[]): Observable<boolean> {
+    return this.http.post(`${this._urlusers}/changePreferences`, { soortenMeetings }).pipe(
+      map((res: any) => {
+        if (res.succes) {
+          return true;
+        } else {
+          return false;
+        }
+      })
+    );
+  }
+
+  getPreferences(): Observable<string[]> {
+    return this.http.get(`${this._urlusers}/getPreferences`).pipe(
+      map((res: any) => {
+        if (res.soortenMeetings) {
+          return res.soortenMeetings;
+        } else {
+          return null;
         }
       })
     );

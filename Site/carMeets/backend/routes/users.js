@@ -19,6 +19,7 @@ router.post("/registreer", function(req, res, next) {
   user.username = req.body.username;
   user.email = req.body.email;
   user.role = "standaard";
+  user.soortenMeetings = req.body.soortenMeetings;
   user.setPassword(req.body.password);
   user.save(function(err) {
     if (err) {
@@ -75,7 +76,7 @@ router.post("/changeUsername", authentication, function(req, res, next) {
 
   //id uit token halen -- to implement
   let token = req.headers.authorization.substring(7);
-  let idUitToken = new Buffer(token.split('.')[1], 'base64').toString();
+  let idUitToken = new Buffer(token.split(".")[1], "base64").toString();
   let idGebruiker = JSON.parse(idUitToken)._id;
 
   User.findOneAndUpdate(
@@ -104,7 +105,7 @@ router.post("/changePassword", authentication, function(req, res, next) {
 
   //id uit token halen -- to implement
   let token = req.headers.authorization.substring(7);
-  let idUitToken = new Buffer(token.split('.')[1], 'base64').toString();
+  let idUitToken = new Buffer(token.split(".")[1], "base64").toString();
   let idGebruiker = JSON.parse(idUitToken)._id;
 
   User.findOne(
@@ -142,7 +143,7 @@ router.post("/changeEmail", authentication, function(req, res, next) {
 
   //id uit token halen -- to implement
   let token = req.headers.authorization.substring(7);
-  let idUitToken = new Buffer(token.split('.')[1], 'base64').toString();
+  let idUitToken = new Buffer(token.split(".")[1], "base64").toString();
   let idGebruiker = JSON.parse(idUitToken)._id;
 
   User.findOneAndUpdate(
@@ -157,6 +158,56 @@ router.post("/changeEmail", authentication, function(req, res, next) {
         });
       }
       return res.json({ token: obj.generateJWT() });
+    }
+  );
+});
+
+router.get("/getPreferences", authentication, function(req, res, next) {
+  //id uit token halen -- to implement
+  let token = req.headers.authorization.substring(7);
+  let idUitToken = new Buffer(token.split(".")[1], "base64").toString();
+  let idGebruiker = JSON.parse(idUitToken)._id;
+
+  User.findOne(
+    { _id: idGebruiker },
+
+    function(err, obj) {
+      if (err || obj == null) {
+        return res.status(401).json({
+          message:
+            "Er liep iets mis met het uitvoeren van deze beveiligde actie."
+        });
+      }
+
+      return res.json({ soortenMeetings: obj.soortenMeetings });
+    }
+  );
+});
+
+router.post("/changePreferences", authentication, function(req, res, next) {
+  if (!req.body.soortenMeetings) {
+    return res
+      .status(400)
+      .json({ message: "U heeft een veld open gelaten. Vul deze aub in." });
+  }
+
+  //id uit token halen -- to implement
+  let token = req.headers.authorization.substring(7);
+  let idUitToken = new Buffer(token.split(".")[1], "base64").toString();
+  let idGebruiker = JSON.parse(idUitToken)._id;
+
+  User.findOneAndUpdate(
+    { _id: idGebruiker },
+    { $set: { soortenMeetings: req.body.soortenMeetings } },
+
+    function(err, obj) {
+      if (err || obj == null) {
+        return res.status(401).json({
+          message:
+            "Er liep iets mis met het uitvoeren van deze beveiligde actie."
+        });
+      }
+      return res.json({ succes: "yes" });
     }
   );
 });

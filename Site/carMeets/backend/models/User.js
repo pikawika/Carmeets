@@ -13,6 +13,7 @@ let UserSchema = new mongoose.Schema({
     lowercase: true,
     unique: true
   },
+  soortenMeetings: [String],
   role: {
     type: String,
     lowercase: true

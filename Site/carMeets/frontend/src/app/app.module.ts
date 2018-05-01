@@ -17,6 +17,7 @@ import { MeetingDataService } from './meeting-data.service';
 import { MeetingResolver } from './meeting/meeting-resolver';
 import { AuthenticationService } from './user/authentication.service';
 import { AuthGuardService } from './user/auth-guard.service';
+import { PreferenceResolver } from './user/account-page/account-preferences/preference-resolver';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,7 @@ import { AuthGuardService } from './user/auth-guard.service';
     MeetingModule,
     UserModule
   ],
-  providers: [httpInterceptorProviders, MeetingDataService, MeetingResolver, AuthenticationService, AuthGuardService],
+  providers: [httpInterceptorProviders, MeetingDataService, MeetingResolver, AuthenticationService, AuthGuardService, PreferenceResolver],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

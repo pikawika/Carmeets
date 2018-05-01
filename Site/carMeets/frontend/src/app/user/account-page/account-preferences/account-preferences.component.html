@@ -1,1 +1,27 @@
 <app-account-submenu></app-account-submenu>
+
+<section class="changePreferencesSection">
+  <div class="col-md-8">
+    <div class="center-block">
+      <h4 class="mb-30 text-center">Kies de categorieën waarvan u meetings wil zien*</h4>
+
+      <form [formGroup]='changePreferencesFormGroup' (ngSubmit)='onSubmitChangePreferences()'>
+
+        <div class="input100Max600px center-block">
+          <div *ngIf='categoryErrorMsg != ""' class="text-center text-danger">{{categoryErrorMsg}}</div>
+          <div *ngFor="let keuze of soortenMeetings">
+            <a class="col-md-4">
+              <input type="checkbox" name="categorie" [value]="keuze" [checked]="isCheckedInDb(keuze)" (change)="onCheckChange($event)">{{keuze}}</a>
+          </div>
+        </div>
+
+        <div class="container-changePreferences100-form-btn input100Max600px center-block" [ngClass]="{'not-allowed-force':!changePreferencesFormGroup.valid}">
+          <button type='submit' [disabled]='!changePreferencesFormGroup.valid' id='chnangePasswordBtn' class="changePreferences100-form-btn">
+            Wijzig uw voorkeuren
+          </button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</section>
