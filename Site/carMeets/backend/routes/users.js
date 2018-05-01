@@ -162,8 +162,11 @@ router.post("/changeEmail", authentication, function(req, res, next) {
   );
 });
 
-router.get("/getPreferences", authentication, function(req, res, next) {
+router.get("/getPreferences", function(req, res, next) {
   //id uit token halen -- to implement
+  if (!req.headers.authorization){
+    return res.json({ soortenMeetings: [] });
+  }
   let token = req.headers.authorization.substring(7);
   let idUitToken = new Buffer(token.split(".")[1], "base64").toString();
   let idGebruiker = JSON.parse(idUitToken)._id;
