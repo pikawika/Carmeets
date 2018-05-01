@@ -15,12 +15,13 @@ export class IndexPageComponent implements OnInit {
   public filterDateEnd: Date;
   private _meetings: Meeting[];
 
+  
+
   constructor(private _meetingDataService : MeetingDataService, private filterDateFb: FormBuilder,) { }
 
   ngOnInit() {
-    this._meetingDataService.meetings
-    .subscribe(data => this._meetings = data);
-
+    this.filterDateStart = new Date(new Date().setHours(0,0,0,0));
+    this._meetingDataService.meetings.subscribe(data => this._meetings = data);
 
     this.filterDateFormGroup = this.filterDateFb.group({
       startDate: [
@@ -40,7 +41,6 @@ export class IndexPageComponent implements OnInit {
         ]
       ]
     });
-
   }
 
   get meetings() {
