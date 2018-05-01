@@ -22,7 +22,7 @@
   <div class="col-lg-3 visible-lg text-right">
     <p class="mb-5">Categoriën:</p>
     <div dir="rtl">
-      <li *ngFor="let categorie of meeting.categories">
+      <li *ngFor="let categorie of drieCategorien">
         <app-category [name]="categorie"></app-category>
       </li>
     </div>
@@ -31,7 +31,7 @@
     <a href="#">
       <i class="far fa-heart"></i> {{meeting.likeAmount}}</a>
     <a href="#">
-      <i class="far fa-heart"></i> {{meeting.commentAmount}}</a>
+      <i class="far fa-comment"></i> {{meeting.commentAmount}}</a>
     <br>
     <a [routerLink]="['/meet-detail', meeting?.id]" class="button big mt-10">Meer info</a>
   </div>
@@ -44,7 +44,7 @@
           <a href="#">
               <i class="far fa-heart"></i> {{meeting.likeAmount}}</a>
             <a href="#" class="pr-20">
-              <i class="far fa-heart"></i> {{meeting.commentAmount}}</a>
+              <i class="far fa-comment"></i> {{meeting.commentAmount}}</a>
       </div>
       
     </footer>

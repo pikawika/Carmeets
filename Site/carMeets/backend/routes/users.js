@@ -78,7 +78,6 @@ router.post("/changeUsername", authentication, function(req, res, next) {
   let idUitToken = new Buffer(token.split('.')[1], 'base64').toString();
   let idGebruiker = JSON.parse(idUitToken)._id;
 
-
   User.findOneAndUpdate(
     { _id: idGebruiker },
     { $set: { username: req.body.newUsername } },
@@ -120,14 +119,14 @@ router.post("/changePassword", authentication, function(req, res, next) {
       }
       obj.setPassword(req.body.newPassword);
 
-      obj.save(function (err) {
-        if(err) {
+      obj.save(function(err) {
+        if (err) {
           return res.status(401).json({
             message:
               "Er liep iets mis met het uitvoeren van deze beveiligde actie."
           });
         }
-    });
+      });
 
       return res.json({ token: obj.generateJWT() });
     }

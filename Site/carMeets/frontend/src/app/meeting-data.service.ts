@@ -18,18 +18,6 @@ export class MeetingDataService {
       .pipe(map((list: any[]): Meeting[] => list.map(Meeting.fromJSON)));
   }
 
-  addMeeting(meeting: Meeting): Observable<Meeting> {
-    return this._http
-      .post(`${this._apiUrl}meetings/`, meeting)
-      .pipe(map(Meeting.fromJSON));
-  }
-
-  deleteMeeting(rec) {
-    return this._http
-      .delete(`${this._apiUrl}meeting/${rec.id}`)
-      .pipe(map(Meeting.fromJSON));
-  }
-
   getMeeting(id: string) {
     const theUrl = `${this._apiUrl}meeting/${id}`;
     return this._http.get(theUrl).pipe(map(Meeting.fromJSON));
