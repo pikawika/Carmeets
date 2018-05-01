@@ -12,6 +12,9 @@ let authentication = jwt({
 router.get('/API/meetings', function(req, res, next) {
   Meeting.find(function(err, meetings) {
     if (err) return next(err);
+    meetings = meetings.sort(function(a,b){
+      return new Date(a.date) - new Date(b.date);
+    })
     res.json(meetings);
   });
 });
