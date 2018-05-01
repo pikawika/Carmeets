@@ -42,6 +42,7 @@ function comparePasswords(control: AbstractControl): { [key: string]: any } {
 export class RegisterComponent implements OnInit {
   public user: FormGroup;
   public errorMsg: string;
+  public soortenMeetings: string[];
 
   get passwordControl(): FormControl {
     return <FormControl>this.user.get('passwordGroup').get('password');
@@ -58,6 +59,38 @@ export class RegisterComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.soortenMeetings = [
+      "American Muscle",
+      "Audio",
+      "British",
+      "Cabrio",
+      "Car limbo",
+      "Classics",
+      "Daily",
+      "Drifting",
+      "Exoctics",
+      "French",
+      "German",
+      "Grand tourers",
+      "Hatchbacks",
+      "Hypercars",
+      "Italian",
+      "JDM",
+      "Kit cars",
+      "Korean",
+      "Lowered",
+      "Movie cars",
+      "Off-road",
+      "Oldtimers",
+      "Racing",
+      "Show and shine",
+      "Sportcars",
+      "Stock",
+      "Supercars",
+      "Tuning",
+      "Underground",
+      "VAG"
+    ];
     this.user = this.fb.group({
       email: [
         '',
@@ -112,7 +145,7 @@ export class RegisterComponent implements OnInit {
 
   onSubmit() {
     this.authenticationService
-      .register(this.user.value.username, this.passwordControl.value, this.emailControl.value)
+      .register(this.user.value.username, this.passwordControl.value, this.emailControl.value, this.soortenMeetings)
       .subscribe(
         val => {
           if (val) {
