@@ -11,13 +11,13 @@
           <div *ngIf='categoryErrorMsg != ""' class="text-center text-danger">{{categoryErrorMsg}}</div>
           <div *ngFor="let keuze of soortenMeetings">
             <a class="col-md-4">
-              <input type="checkbox" name="categorie" [value]="keuze" (change)="onCheckChange($event)">{{keuze}}</a>
+              <input type="checkbox" name="categorie" [value]="keuze" [checked]="isCheckedInDb(keuze)" (change)="onCheckChange($event)">{{keuze}}</a>
           </div>
         </div>
 
         <div class="container-changePreferences100-form-btn input100Max600px center-block" [ngClass]="{'not-allowed-force':!changePreferencesFormGroup.valid}">
           <button type='submit' [disabled]='!changePreferencesFormGroup.valid' id='chnangePasswordBtn' class="changePreferences100-form-btn">
-            Voeg meeting toe
+            Wijzig uw voorkeuren
           </button>
         </div>
 

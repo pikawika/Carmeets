@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray, Validators, FormControl } from '@angular/forms';
 import { AuthenticationService } from '../../authentication.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-account-preferences',
@@ -10,12 +11,14 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class AccountPreferencesComponent implements OnInit {
   public soortenMeetings: string[];
+  public dbSoortenMeetings: string[];
   public categoryErrorMsg: string;
   public changePreferencesFormGroup: FormGroup;
 
-  constructor(private changePreferencesfb: FormBuilder, private authenticationService: AuthenticationService) { }
+  constructor(private changePreferencesfb: FormBuilder, private authenticationService: AuthenticationService, private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.route.data.subscribe(item=>this.dbSoortenMeetings = item['dbSoortenMeetings']);
     this.soortenMeetings = [
       "American Muscle",
       "Audio",
@@ -52,6 +55,9 @@ export class AccountPreferencesComponent implements OnInit {
     this.changePreferencesFormGroup = this.changePreferencesfb.group({
       soortenMeetings: new FormArray([], Validators.required),
     });
+
+    this.fillFormArrayWithDBChecked();
+
   }
 
   onCheckChange(event) {
@@ -79,6 +85,18 @@ export class AccountPreferencesComponent implements OnInit {
         i++;
       });
     }
+  }
+
+  fillFormArrayWithDBChecked() {
+    const formArray: FormArray = this.changePreferencesFormGroup.get('soortenMeetings') as FormArray;
+    
+    this.dbSoortenMeetings.forEach(element => {
+      formArray.push(new FormControl(element));
+    });
+  }
+
+  isCheckedInDb(value) {
+    return this.dbSoortenMeetings.includes(value);
   }
 
   onSubmitChangePreferences() {

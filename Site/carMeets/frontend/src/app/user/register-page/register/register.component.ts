@@ -149,7 +149,7 @@ export class RegisterComponent implements OnInit {
       .subscribe(
         val => {
           if (val) {
-            this.router.navigate(['/home']);
+            this.router.navigate(['/account/voorkeuren']);
           }
         },
         (error: HttpErrorResponse) => {
