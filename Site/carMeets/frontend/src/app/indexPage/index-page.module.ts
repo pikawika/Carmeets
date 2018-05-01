@@ -5,12 +5,14 @@ import { IndexPageComponent } from './indexPage.component';
 import { MeetingFilterPipe } from '../meeting-filter.pipe';
 import { MeetingModule } from '../meeting/meeting.module';
 import { RouterModule } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
     MeetingModule,
-    RouterModule
+    RouterModule,
+    ReactiveFormsModule
   ],
   declarations: [
     IndexPageComponent,

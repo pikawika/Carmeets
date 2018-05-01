@@ -10,19 +10,22 @@
   </section>
 
   <!-- Search -->
-  <section class="blurb text-center">
-    <div class="pb-20">
-      <h2>Filter de meetings</h2>
-      <div>
-        <input class="mb-10 width-100prcnt" type='text' placeholder='filter meeting op naam...' #filterNaam>
-        <button (click)="applyFilterName(filterNaam.value)">filter op naam</button>
-      </div>
-      <div class="mt-30">
-        <input class="col-xs-5" type='text' placeholder='Startdatum' #filterDateStart>
-        <input class="col-xs-offset-2 col-xs-5" type='text' placeholder='Einddatum' #filterDateEnd>
-        <button class="mt-10" (click)="applyFilterDate(filterDateStart, filterDateEnd)">filter op datum</button>
-      </div>
+  <section class="blurb text-center mb-20">
+    <h2>Filter de meetings</h2>
+    <div>
+      <input class="mb-10 width-100prcnt" type='text' placeholder='filter meeting op naam...' #filterNaam>
+      <button (click)="applyFilterName(filterNaam.value)">filter op naam</button>
     </div>
+    <form [formGroup]='filterDateFormGroup' (ngSubmit)='applyFilterDate()'>
+      <div class="mt-30">
+        <input class="col-xs-5" type='text' placeholder='Startdatum' formControlName='startDate'>
+        <input class="col-xs-offset-2 col-xs-5" type='text' placeholder='Einddatum' formControlName='endDate'>
+        <div class='wrap-input100 text-danger font-12 font-12' *ngIf='(filterDateFormGroup.get("startDate").touched && filterDateFormGroup.get("startDate").errors?.pattern) || (filterDateFormGroup.get("endDate").touched && filterDateFormGroup.get("endDate").errors?.pattern)'>
+          Het datumveld moet volgende indeling hebben: dd/mm/yyyy.
+        </div>
+        <button class="mt-10" type="submit" [disabled]='!filterDateFormGroup.valid'>filter op datum</button>
+      </div>
+    </form>
   </section>
 
   <!-- About -->
@@ -33,12 +36,11 @@
       <a href="https://www.lennertbontinck.com/">Lennert Bontinck</a>, een website te maken waar je snel en eenvoudig alle meetings naar jouw smaak kan terugvinden
       en bewaren in je agenda.</p>
   </section>
-
 </section>
 
 <!-- Main -->
 <div class="col-lg-9" id="main">
 
   <!-- Meeting -->
-  <app-meeting *ngFor='let localMeeting of meetings | meetingFilter: filterMeetingName ' [meeting]='localMeeting'></app-meeting>
+  <app-meeting *ngFor='let localMeeting of meetings | meetingFilter: filterMeetingName:filterDateStart:filterDateEnd' [meeting]='localMeeting'></app-meeting>
 </div>
