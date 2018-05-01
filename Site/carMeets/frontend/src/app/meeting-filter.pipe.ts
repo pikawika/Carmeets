@@ -11,7 +11,7 @@ export class MeetingFilterPipe implements PipeTransform {
       return meetings;
     }
     return meetings.filter(meet =>
-      meet.name.toLowerCase().startsWith(name.toLowerCase())
+      meet.name.toLowerCase().includes(name.toLowerCase())
     );
   }
 

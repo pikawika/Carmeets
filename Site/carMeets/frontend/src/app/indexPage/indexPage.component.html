@@ -9,21 +9,24 @@
     </header>
   </section>
 
-  <!-- Mini Posts -->
-
-  <!-- Posts List -->
-  <section class="blurb">
+  <!-- Search -->
+  <section class="blurb text-center">
     <div class="pb-20">
       <h2>Filter de meetings</h2>
       <div>
-        <input class="mb-10" type='text' placeholder='filter meeting op naam...' #filter>
-        <button (click)="applyFilter(filter.value)">filter</button>
+        <input class="mb-10 width-100prcnt" type='text' placeholder='filter meeting op naam...' #filterNaam>
+        <button (click)="applyFilterName(filterNaam.value)">filter op naam</button>
+      </div>
+      <div class="mt-30">
+        <input class="col-xs-5" type='text' placeholder='Startdatum' #filterDateStart>
+        <input class="col-xs-offset-2 col-xs-5" type='text' placeholder='Einddatum' #filterDateEnd>
+        <button class="mt-10" (click)="applyFilterDate(filterDateStart, filterDateEnd)">filter op datum</button>
       </div>
     </div>
   </section>
 
   <!-- About -->
-  <section class="blurb">
+  <section class="blurb text-center">
     <h2>Over CarMeets.be</h2>
     <p>Net zoals vele autoliefhebbers was ik het beu steeds te moeten horen dat ik weer een kwaliteitsmeeting gemist had omdat
       ik niet wist wanneer deze plaatsvond. Daarom besloot ik,
@@ -37,5 +40,5 @@
 <div class="col-lg-9" id="main">
 
   <!-- Meeting -->
-  <app-meeting *ngFor='let localMeeting of meetings | meetingFilter: filterMeetingName' [meeting]='localMeeting'></app-meeting>
+  <app-meeting *ngFor='let localMeeting of meetings | meetingFilter: filterMeetingName ' [meeting]='localMeeting'></app-meeting>
 </div>

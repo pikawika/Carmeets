@@ -7,6 +7,10 @@
   cursor: not-allowed !important;
 }
 
+.width-100prcnt {
+  width: 100%;
+}
+
 hr.cleanPinkSeperator {
   border: solid #e8175d;
   border-width: 1px 0 0;
@@ -979,7 +983,6 @@ textarea {
   outline: 0;
   padding: 0 1em;
   text-decoration: none;
-  width: 100%;
 }
 
 input[type="text"]:invalid,
