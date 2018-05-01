@@ -12,10 +12,13 @@
   <!-- Search -->
   <section class="blurb text-center mb-20">
     <h2>Filter de meetings</h2>
+    <!-- naam -->
     <div>
       <input class="mb-10 width-100prcnt" type='text' placeholder='filter meeting op naam...' #filterNaam>
       <button (click)="applyFilterName(filterNaam.value)">filter op naam</button>
     </div>
+
+    <!-- datum -->
     <form [formGroup]='filterDateFormGroup' (ngSubmit)='applyFilterDate()'>
       <div class="mt-30">
         <input class="col-xs-5" type='text' placeholder='Startdatum' formControlName='startDate'>
@@ -26,7 +29,20 @@
         <button class="mt-10" type="submit" [disabled]='!filterDateFormGroup.valid'>filter op datum</button>
       </div>
     </form>
-  </section>
+
+    <!-- categorie uitklappen -->
+    <div class="mt-30">
+      <button data-toggle="collapse" data-target="#categorieFilter">Toon filter voor categorie</button>
+    </div>
+    <div class="collapse" id="categorieFilter">
+      <div class="center-block">
+        <div *ngFor="let keuze of soortenMeetings" class="text-left">
+          <a>
+            <input type="checkbox" name="categorie" [value]="keuze" [checked]="isCheckedInDb(keuze)" (change)="onCheckChange($event)">{{keuze}}</a>
+        </div>
+      </div>
+    </div>
+  </section> 
 
   <!-- About -->
   <section class="blurb text-center">
@@ -42,5 +58,5 @@
 <div class="col-lg-9" id="main">
 
   <!-- Meeting -->
-  <app-meeting *ngFor='let localMeeting of meetings | meetingFilter: filterMeetingName:filterDateStart:filterDateEnd' [meeting]='localMeeting'></app-meeting>
+  <app-meeting *ngFor='let localMeeting of meetings | meetingFilter: filterMeetingName:filterDateStart:filterDateEnd:soortenMeetingsFilter' [meeting]='localMeeting'></app-meeting>
 </div>

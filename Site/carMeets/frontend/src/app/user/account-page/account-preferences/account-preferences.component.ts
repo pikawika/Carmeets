@@ -53,7 +53,7 @@ export class AccountPreferencesComponent implements OnInit {
     ];
 
     this.changePreferencesFormGroup = this.changePreferencesfb.group({
-      soortenMeetings: new FormArray([], Validators.required),
+      soortenMeetings: new FormArray([], Validators.required)
     });
 
     this.fillFormArrayWithDBChecked();
