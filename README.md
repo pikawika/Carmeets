@@ -18,7 +18,7 @@ Meer informatie is te vinden op trello:
 - Branches:
     - https://trello.com/b/w6b3P4nx/1-branches (public)
 - Users:
-    - https://trello.com/b/42NH89oB/2-users (public)
+    - https://trello.com/b/scDIM7Ob/2-users (public)
 - Bugs:
     - https://trello.com/b/JQfYn9Y4/3-bugs (Lennert en Lector)
 - Dingen die ik wil implementeren:
