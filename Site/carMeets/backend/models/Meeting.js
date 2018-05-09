@@ -10,9 +10,9 @@ var MeetSchema = new mongoose.Schema({
   shortDescription: String,
   fullDescription: String,
   categories: [String],
+  afbeeldingNaam: String,
   site: String,
-  idToevoeger: String,
-  afbeeldingnaam: String
+  idToevoeger: String
 });
 
 mongoose.model('Meeting', MeetSchema);
