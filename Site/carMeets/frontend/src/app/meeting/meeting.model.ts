@@ -11,6 +11,8 @@ export class Meeting {
   private _shortDescription: string;
   private _fullDescription: string;
   private _categories = new Array<string>();
+  private _afbeeldingnaam: string;
+  private _idToevoeger: string;
 
   constructor(
     name: string,
@@ -22,6 +24,7 @@ export class Meeting {
     shortDescription: string,
     fullDescription: string,
     categories: Array<string>,
+    afbeeldingnaam: string,
     site?: string
   ) {
     this._name = name;
@@ -34,6 +37,7 @@ export class Meeting {
     this._fullDescription = fullDescription;
     this._categories = categories;
     this._site = site;
+    this._afbeeldingnaam = afbeeldingnaam;
   }
 
   //stored in DB
@@ -71,7 +75,7 @@ export class Meeting {
 
   //logisch berekende dingen
   public get imagePath() {
-    return "images/pic01.jpg";
+    return "images/" + this._afbeeldingnaam;
   }
 
   public get likeAmount() {
@@ -99,7 +103,7 @@ export class Meeting {
   }
 
   static fromJSON(json: any): Meeting {
-    const rec = new Meeting(json.name, json.date, json.gemeente, json.postcode, json.straatnaam, json.straatnr, json.shortDescription, json.fullDescription, json.categories, json.site);
+    const rec = new Meeting(json.name, json.date, json.gemeente, json.postcode, json.straatnaam, json.straatnr, json.shortDescription, json.fullDescription, json.categories, json.afbeeldingnaam, json.site);
     rec._id = json._id;
     return rec;
   }

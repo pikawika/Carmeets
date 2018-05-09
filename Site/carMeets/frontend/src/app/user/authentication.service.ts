@@ -192,10 +192,10 @@ export class AuthenticationService {
     }
 
     uploadMeetingImg(data: FormData): Observable<string> {
-      return this.http.post(`${this._urlUpload}/uploadMeetingImg`, { data }).pipe(
+      return this.http.post(`${this._urlUpload}/uploadMeetingImg`, data ).pipe(
         map((res: any) => {
-          if (res.pad) {
-            return res.pad;
+          if (res.filename) {
+            return res.filename;
           } else {
             return null;
           }

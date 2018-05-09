@@ -13,13 +13,13 @@ function fileFilter(req, file, cb){
 
 //maximum +-500kb en 1 file + fotocheck implemented
 var uploading = multer({
-  dest: "../public/images/",
+  dest: "../frontend/src/images/uploads",
   limits: {fileSize: 1024 * 500, files:1},
   fileFilter : fileFilter
 });
 
 router.post('/uploadMeetingImg', uploading.single('afbeelding'), function (req, res, next) {
-    res.json({pad: req.file.path});
+    res.json({filename: req.file.filename});
   })
 
 module.exports = router;

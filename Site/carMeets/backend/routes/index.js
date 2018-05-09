@@ -8,7 +8,7 @@ let authentication = jwt({
   secret: process.env.MEETING_BACKEND_SECRET
 });
 
-//alle meetings verkrijgen
+//alle meetings verkrijgen sorted on date
 router.get('/API/meetings', function(req, res, next) {
   Meeting.find(function(err, meetings) {
     if (err) return next(err);

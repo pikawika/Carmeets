@@ -11,7 +11,8 @@ var MeetSchema = new mongoose.Schema({
   fullDescription: String,
   categories: [String],
   site: String,
-  idToevoeger: String
+  idToevoeger: String,
+  afbeeldingnaam: String
 });
 
 mongoose.model('Meeting', MeetSchema);
