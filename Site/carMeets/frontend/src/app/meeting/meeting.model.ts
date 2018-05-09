@@ -82,7 +82,7 @@ export class Meeting {
     return 40;
   }
 
-  public get commentAmount() {
+  public get goingAmount() {
     return 400;
   }
 

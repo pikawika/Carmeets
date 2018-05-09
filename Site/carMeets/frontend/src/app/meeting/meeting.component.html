@@ -15,7 +15,7 @@
     </div>
   </header>
   <div class="col-lg-9">
-    <a [routerLink]="['/meet-detail', meeting.id]" class="image featured">
+    <a title="Meer info" [routerLink]="['/meet-detail', meeting.id]" class="image featured">
       <img src="{{meeting.imagePath}}" alt="" />
     </a>
   </div>
@@ -28,10 +28,10 @@
     </div>
     <br>
     <br>
-    <a href="#">
+    <a title="Vind ik leuk!">
       <i class="far fa-heart"></i> {{meeting.likeAmount}}</a>
-    <a href="#">
-      <i class="far fa-comment"></i> {{meeting.commentAmount}}</a>
+    <a title="Daar ga ik heen!">
+      <i class="far fa-check-circle"></i> {{meeting.goingAmount}}</a>
     <br>
     <a [routerLink]="['/meet-detail', meeting?.id]" class="button big mt-10">Meer info</a>
   </div>
