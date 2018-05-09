@@ -191,13 +191,13 @@ export class AuthenticationService {
       );
     }
 
-    uploadMeetingImg(data: FormData): Observable<boolean> {
+    uploadMeetingImg(data: FormData): Observable<string> {
       return this.http.post(`${this._urlUpload}/uploadMeetingImg`, { data }).pipe(
         map((res: any) => {
-          if (res.succes) {
-            return true;
+          if (res.pad) {
+            return res.pad;
           } else {
-            return false;
+            return null;
           }
         })
       );

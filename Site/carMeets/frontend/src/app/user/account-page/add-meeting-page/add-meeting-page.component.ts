@@ -13,6 +13,7 @@ import { HttpErrorResponse } from "@angular/common/http";
 import { Meeting } from "../../../meeting/meeting.model";
 import { Router } from "@angular/router";
 
+
 @Component({
   selector: "app-add-meeting-page",
   templateUrl: "./add-meeting-page.component.html",
@@ -169,15 +170,18 @@ export class AddMeetingPageComponent implements OnInit {
         val => {
           if (val != null) {
             const data = new FormData();
-            data.append("afbeelding", this.newMeetingFormGroup.value.afbeelding);
-            data.append("idVanMeeting", val);
+            var afbeelding = this.newMeetingFormGroup.value.afbeelding
+            afbeelding.name = val + ".jpg";
+            data.append("afbeelding", afbeelding);
 
             this.authenticationService.uploadMeetingImg(data).subscribe(
-              val => {
-                if (val != true) {
+              pad => {
+                if (pad == null) {
                   this.newMeetingErrorMsg = `Fout tijdens toevoegen meeting!`;
                 } else {
+                  //fs.rename(pad, "public/" + val);
                   this.newMeetingErrorMsg = `Meeting toegevoegd`;
+                  
                 }
               },
               (error: HttpErrorResponse) => {
