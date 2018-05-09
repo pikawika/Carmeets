@@ -1,9 +1,17 @@
 import { Component, OnInit } from "@angular/core";
-import { FormGroup, Validators, FormBuilder, FormArray, FormControl, ValidatorFn, AbstractControl } from "@angular/forms";
+import {
+  FormGroup,
+  Validators,
+  FormBuilder,
+  FormArray,
+  FormControl,
+  ValidatorFn,
+  AbstractControl
+} from "@angular/forms";
 import { AuthenticationService } from "../../authentication.service";
 import { HttpErrorResponse } from "@angular/common/http";
 import { Meeting } from "../../../meeting/meeting.model";
-import {Router} from '@angular/router';
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-add-meeting-page",
@@ -75,7 +83,7 @@ export class AddMeetingPageComponent implements OnInit {
       straatnr: ["", [Validators.required]],
       shortDescription: ["", [Validators.required, Validators.maxLength(80)]],
       fullDescription: ["", [Validators.required, Validators.maxLength(1500)]],
-      afbeeldingNaam: ["", [Validators.required]],
+      afbeelding: ["", [Validators.required]],
       categories: new FormArray([], Validators.required),
       site: [
         "",
@@ -89,29 +97,31 @@ export class AddMeetingPageComponent implements OnInit {
   }
 
   onCheckChange(event) {
-    const formArray: FormArray = this.newMeetingFormGroup.get('categories') as FormArray;
-  
+    const formArray: FormArray = this.newMeetingFormGroup.get(
+      "categories"
+    ) as FormArray;
+
     //gelsecteerde veld
-    if(event.target.checked){
+    if (event.target.checked) {
       // Toevoegen in array
       this.categoryErrorMsg = "";
       formArray.push(new FormControl(event.target.value));
     }
     // verwijderde item
-    else{
+    else {
       // ittereren tot match
       let i: number = 0;
-  
+
       formArray.controls.forEach((ctrl: FormControl) => {
-        if(ctrl.value == event.target.value) {
+        if (ctrl.value == event.target.value) {
           formArray.removeAt(i);
-          if (formArray.length == 0){
+          if (formArray.length == 0) {
             this.categoryErrorMsg = "U moet minstens 1 categorie kiezen.";
           }
-          
+
           return;
         }
-  
+
         i++;
       });
     }
@@ -119,20 +129,19 @@ export class AddMeetingPageComponent implements OnInit {
 
   onImgUploadChange(event) {
     let geuploadBestand = event.target.files;
-    
-    if (geuploadBestand.length != 1){
+
+    if (geuploadBestand.length != 1) {
       this.afbeeldingErrorMsg = "U moet één foto kiezen voor uw meeting";
       this.newMeetingFormGroup.patchValue({
-        afbeeldingNaam: null
+        afbeelding: null
       });
       this.afbeeldingConfirmMsg = "";
-    }
-    else{
-      let filenaam = geuploadBestand[0].name
+    } else {
+      let file = geuploadBestand[0];
       this.newMeetingFormGroup.patchValue({
-        afbeeldingNaam: filenaam
+        afbeelding: file
       });
-      this.afbeeldingConfirmMsg = "U heeft een foto geselecteerd: " + filenaam;
+      this.afbeeldingConfirmMsg = "U heeft een foto geselecteerd";
       this.afbeeldingErrorMsg = "";
     }
   }
@@ -159,6 +168,23 @@ export class AddMeetingPageComponent implements OnInit {
       .subscribe(
         val => {
           if (val != null) {
+            const data = new FormData();
+            data.append("afbeelding", this.newMeetingFormGroup.value.afbeelding);
+            data.append("idVanMeeting", val);
+
+            this.authenticationService.uploadMeetingImg(data).subscribe(
+              val => {
+                if (val != true) {
+                  this.newMeetingErrorMsg = `Fout tijdens toevoegen meeting!`;
+                } else {
+                  this.newMeetingErrorMsg = `Meeting toegevoegd`;
+                }
+              },
+              (error: HttpErrorResponse) => {
+                this.newMeetingErrorMsg = `Fout tijdens toevoegen meeting!`;
+              }
+            );
+
             this.router.navigate(['meet-detail/' + val]);
           } else {
             this.newMeetingErrorMsg = `Fout tijdens toevoegen meeting!`;

@@ -18,6 +18,7 @@ function parseJwt(token) {
 export class AuthenticationService {
   private readonly _tokenKey = 'CarMeetsUser';
   private readonly _urlusers = '/API/users';
+  private readonly _urlUpload = '/API/upload';
   private readonly _urlmeeting = '/API/meetings';
   private _user$: BehaviorSubject<string>;
 
@@ -185,6 +186,18 @@ export class AuthenticationService {
             return toegevoegd;
           } else {
             return null;
+          }
+        })
+      );
+    }
+
+    uploadMeetingImg(data: FormData): Observable<boolean> {
+      return this.http.post(`${this._urlUpload}/uploadMeetingImg`, { data }).pipe(
+        map((res: any) => {
+          if (res.succes) {
+            return true;
+          } else {
+            return false;
           }
         })
       );

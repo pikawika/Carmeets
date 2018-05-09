@@ -123,7 +123,7 @@
         <label class="addmeeting100-form-btn" id="thumbSelection">
           <a id="thumbTekst">Selecteer 1 thumbnail afbeelding (16:9 / max 500kb)*.
           </a>
-          <input type="file" accept=".jpg" (change)="onImgUploadChange($event)" name="thumbToUpload" id="thumbToUpload"
+          <input type="file" accept=".jpg" (change)="onImgUploadChange($event)" name="afbeelding" id="thumbToUpload"
             style="display: none;">
         </label>
       </div>
@@ -137,9 +137,7 @@
         </div>
       </div>
 
-
-
-
+      
       <div class="container-addmeeting100-form-btn input100Max600px center-block" [ngClass]="{'not-allowed-force':!newMeetingFormGroup.valid}">
         <button type='submit' [disabled]='!newMeetingFormGroup.valid' id='chnangePasswordBtn' class="addmeeting100-form-btn">
           Voeg meeting toe
