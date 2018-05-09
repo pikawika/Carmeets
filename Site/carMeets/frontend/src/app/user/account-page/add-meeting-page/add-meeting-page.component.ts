@@ -13,8 +13,7 @@ import { HttpErrorResponse } from "@angular/common/http";
 import { Meeting } from "../../../meeting/meeting.model";
 import { Router } from "@angular/router";
 declare var require: any;
-let fs = require('fs');
-
+let fs = require("fs");
 
 @Component({
   selector: "app-add-meeting-page",
@@ -28,6 +27,7 @@ export class AddMeetingPageComponent implements OnInit {
   public afbeeldingErrorMsg: string;
   public afbeeldingConfirmMsg: string;
   public soortenMeetings: string[];
+  filesToUpload: Array<File> = [];
 
   constructor(
     private newMeetingfb: FormBuilder,
@@ -86,7 +86,7 @@ export class AddMeetingPageComponent implements OnInit {
       straatnr: ["", [Validators.required]],
       shortDescription: ["", [Validators.required, Validators.maxLength(80)]],
       fullDescription: ["", [Validators.required, Validators.maxLength(1500)]],
-      afbeelding: ["", [Validators.required]],
+      afbeeldingnaam: ["", [Validators.required]],
       categories: new FormArray([], Validators.required),
       site: [
         "",
@@ -136,16 +136,18 @@ export class AddMeetingPageComponent implements OnInit {
     if (geuploadBestand.length != 1) {
       this.afbeeldingErrorMsg = "U moet één foto kiezen voor uw meeting";
       this.newMeetingFormGroup.patchValue({
-        afbeelding: null
+        afbeeldingnaam: null
       });
       this.afbeeldingConfirmMsg = "";
     } else {
-      let file = geuploadBestand[0];
+      let filename = geuploadBestand[0].name;
       this.newMeetingFormGroup.patchValue({
-        afbeelding: file
+        afbeeldingnaam: filename
       });
-      this.afbeeldingConfirmMsg = "U heeft een foto geselecteerd";
+      this.afbeeldingConfirmMsg = "U heeft een foto geselecteerd: " + filename;
       this.afbeeldingErrorMsg = "";
+
+      this.filesToUpload = <Array<File>>event.target.files;
     }
   }
 
@@ -153,49 +155,50 @@ export class AddMeetingPageComponent implements OnInit {
     let dateFrom = this.newMeetingFormGroup.value.date.split("/");
     let date = new Date(dateFrom[2], dateFrom[1] - 1, dateFrom[0]);
 
-    this.authenticationService
-      .addMeeting(
-        new Meeting(
-          this.newMeetingFormGroup.value.name,
-          date,
-          this.newMeetingFormGroup.value.gemeente,
-          this.newMeetingFormGroup.value.postcode,
-          this.newMeetingFormGroup.value.straatnaam,
-          this.newMeetingFormGroup.value.straatnr,
-          this.newMeetingFormGroup.value.shortDescription,
-          this.newMeetingFormGroup.value.fullDescription,
-          this.newMeetingFormGroup.value.categories,
-          this.newMeetingFormGroup.value.site
-        )
-      )
-      .subscribe(
-        val => {
-          if (val != null) {
-            const data = new FormData();
-            data.append("afbeelding", this.newMeetingFormGroup.value.afbeelding);
+    const data: any = new FormData();
+    const files: Array<File> = this.filesToUpload;
 
-            this.authenticationService.uploadMeetingImg(data).subscribe(
-              pad => {
-                if (pad == null) {
-                  this.newMeetingErrorMsg = `Fout tijdens toevoegen meeting!`;
+    //slechts 1 afbeelding
+    data.append("afbeelding", files[0], files[0]["name"]);
+
+    this.authenticationService.uploadMeetingImg(data).subscribe(
+      filename => {
+        if (filename == null) {
+          this.newMeetingErrorMsg = `Fout tijdens uploaden afbeelding`;
+        } else {
+          this.authenticationService
+            .addMeeting(
+              new Meeting(
+                this.newMeetingFormGroup.value.name,
+                date,
+                this.newMeetingFormGroup.value.gemeente,
+                this.newMeetingFormGroup.value.postcode,
+                this.newMeetingFormGroup.value.straatnaam,
+                this.newMeetingFormGroup.value.straatnr,
+                this.newMeetingFormGroup.value.shortDescription,
+                this.newMeetingFormGroup.value.fullDescription,
+                this.newMeetingFormGroup.value.categories,
+                filename,
+                this.newMeetingFormGroup.value.site
+              )
+            )
+            .subscribe(
+              val => {
+                if (val != null) {
+                  this.router.navigate(["meet-detail/" + val]);
                 } else {
-                  fs.rename(pad, "public/images" + val + ".jpg");
-                  this.newMeetingErrorMsg = `Meeting toegevoegd`;
+                  this.newMeetingErrorMsg = `Fout tijdens toevoegen meeting!`;
                 }
               },
               (error: HttpErrorResponse) => {
                 this.newMeetingErrorMsg = `Fout tijdens toevoegen meeting!`;
               }
             );
-
-            this.router.navigate(['meet-detail/' + val]);
-          } else {
-            this.newMeetingErrorMsg = `Fout tijdens toevoegen meeting!`;
-          }
-        },
-        (error: HttpErrorResponse) => {
-          this.newMeetingErrorMsg = `Fout tijdens toevoegen meeting!`;
         }
-      );
+      },
+      (error: HttpErrorResponse) => {
+        this.newMeetingErrorMsg = `Fout tijdens uploaden afbeelding!`;
+      }
+    );
   }
 }

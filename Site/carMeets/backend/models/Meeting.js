@@ -10,6 +10,7 @@ var MeetSchema = new mongoose.Schema({
   shortDescription: String,
   fullDescription: String,
   categories: [String],
+  afbeeldingNaam: String,
   site: String,
   idToevoeger: String
 });
