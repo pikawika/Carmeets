@@ -12,7 +12,9 @@ export class Meeting {
   private _fullDescription: string;
   private _categories = new Array<string>();
   private _afbeeldingNaam: string;
-  private _idToevoeger: string;
+  private _idToevoeger: String;
+  private _listUsersGoing = new Array<String>();
+  private _listUsersLiked = new Array<String>();
 
   constructor(
     name: string,
@@ -25,7 +27,10 @@ export class Meeting {
     fullDescription: string,
     categories: Array<string>,
     afbeeldingNaam: string,
-    site?: string
+    site?: string,
+    idToevoeger?: String,
+    listUsersGoing?: Array<String>,
+    listUsersLiked?: Array<String>
   ) {
     this._name = name;
     this._date = date;
@@ -38,6 +43,9 @@ export class Meeting {
     this._categories = categories;
     this._afbeeldingNaam = afbeeldingNaam;
     this._site = site;
+    this._idToevoeger = idToevoeger;
+    this._listUsersGoing = listUsersGoing;
+    this._listUsersLiked = listUsersLiked;
   }
 
   //stored in DB
@@ -99,12 +107,15 @@ export class Meeting {
       fullDescription: this._fullDescription,
       categories: this._categories,
       afbeeldingNaam: this._afbeeldingNaam,
-      site: this._site
+      site: this._site,
+      idToevoeger: this._idToevoeger,
+      listUsersGoing: this._listUsersGoing, 
+      listUsersLiked: this._listUsersLiked
     };
   }
 
   static fromJSON(json: any): Meeting {
-    const rec = new Meeting(json.name, json.date, json.gemeente, json.postcode, json.straatnaam, json.straatnr, json.shortDescription, json.fullDescription, json.categories, json.afbeeldingNaam, json.site);
+    const rec = new Meeting(json.name, json.date, json.gemeente, json.postcode, json.straatnaam, json.straatnr, json.shortDescription, json.fullDescription, json.categories, json.afbeeldingNaam, json.site, json.idToevoeger, json.listUsersGoing, json.listUsersLiked);
     rec._id = json._id;
     return rec;
   }

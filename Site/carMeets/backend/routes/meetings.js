@@ -9,10 +9,8 @@ let authentication = jwt({
   secret: process.env.MEETING_BACKEND_SECRET
 });
 
-router.post("/addMeeting", function(req, res, next) {
-  if (
-    !req.body
-  ) {
+router.post("/addMeeting", authentication, function(req, res, next) {
+  if (!req.body) {
     return res
       .status(400)
       .json({ message: "U heeft een veld open gelaten. Vul deze aub in." });
@@ -26,6 +24,8 @@ router.post("/addMeeting", function(req, res, next) {
   let idGebruiker = JSON.parse(idUitToken)._id;
 
   newMeeting.idToevoeger = idGebruiker;
+  newMeeting.listUsersGoing = [];
+  newMeeting.listUsersLiked = [];
 
   newMeeting.save(function(err, rec) {
     if (err) {
@@ -33,6 +33,96 @@ router.post("/addMeeting", function(req, res, next) {
     }
     return res.json({ toegevoegd: newMeeting._id });
   });
+});
+
+router.post("/toggleGoing", authentication, function(req, res, next) {
+  if (!req.body.idMeeting) {
+    return res
+      .status(400)
+      .json({ message: "Vereiste paramater niet voorzien." });
+  }
+
+  let token = req.headers.authorization.substring(7);
+  let idUitToken = new Buffer(token.split(".")[1], "base64").toString();
+  let idGebruiker = JSON.parse(idUitToken)._id;
+
+  //indien in de lijst delete
+  Meeting.findOneAndUpdate(
+    { _id: req.body.idMeeting, listUsersGoing: idGebruiker },
+    { $pull: { listUsersGoing: idGebruiker } },
+
+    function(err, obj) {
+      if (err) {
+        return res.status(401).json({
+          message:
+            "Er liep iets mis met het uitvoeren van deze beveiligde actie (undo going)."
+        });
+      }
+      if (obj == null) {
+        //indien geen gevonden in vorige mag hij liken
+        Meeting.findOneAndUpdate(
+          { _id: req.body.idMeeting },
+          { $push: { listUsersGoing: idGebruiker } },
+
+          function(err, obj) {
+            if (err) {
+              return res.status(401).json({
+                message:
+                  "Er liep iets mis met het uitvoeren van deze beveiligde actie (going)."
+              });
+            }
+          }
+        );
+        //end going
+      }
+      return res.json({ succes: "yes" });
+    }
+  );
+});
+
+router.post("/toggleLike", authentication, function(req, res, next) {
+  if (!req.body.idMeeting) {
+    return res
+      .status(400)
+      .json({ message: "Vereiste paramater niet voorzien." });
+  }
+
+  let token = req.headers.authorization.substring(7);
+  let idUitToken = new Buffer(token.split(".")[1], "base64").toString();
+  let idGebruiker = JSON.parse(idUitToken)._id;
+
+  //indien in de lijst delete
+  Meeting.findOneAndUpdate(
+    { _id: req.body.idMeeting, listUsersLiked: idGebruiker },
+    { $pull: { listUsersLiked: idGebruiker } },
+
+    function(err, obj) {
+      if (err) {
+        return res.status(401).json({
+          message:
+            "Er liep iets mis met het uitvoeren van deze beveiligde actie (undo like)."
+        });
+      }
+      if (obj == null) {
+        //indien geen gevonden in vorige mag hij liken
+        Meeting.findOneAndUpdate(
+          { _id: req.body.idMeeting },
+          { $push: { listUsersLiked: idGebruiker } },
+
+          function(err, obj) {
+            if (err) {
+              return res.status(401).json({
+                message:
+                  "Er liep iets mis met het uitvoeren van deze beveiligde actie (like)."
+              });
+            }
+          }
+        );
+        //end liken
+      }
+      return res.json({ succes: "yes" });
+    }
+  );
 });
 
 module.exports = router;
