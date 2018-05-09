@@ -12,6 +12,8 @@ import { AuthenticationService } from "../../authentication.service";
 import { HttpErrorResponse } from "@angular/common/http";
 import { Meeting } from "../../../meeting/meeting.model";
 import { Router } from "@angular/router";
+declare var require: any;
+let fs = require('fs');
 
 
 @Component({
@@ -170,18 +172,15 @@ export class AddMeetingPageComponent implements OnInit {
         val => {
           if (val != null) {
             const data = new FormData();
-            var afbeelding = this.newMeetingFormGroup.value.afbeelding
-            afbeelding.name = val + ".jpg";
-            data.append("afbeelding", afbeelding);
+            data.append("afbeelding", this.newMeetingFormGroup.value.afbeelding);
 
             this.authenticationService.uploadMeetingImg(data).subscribe(
               pad => {
                 if (pad == null) {
                   this.newMeetingErrorMsg = `Fout tijdens toevoegen meeting!`;
                 } else {
-                  //fs.rename(pad, "public/" + val);
+                  fs.rename(pad, "public/images" + val + ".jpg");
                   this.newMeetingErrorMsg = `Meeting toegevoegd`;
-                  
                 }
               },
               (error: HttpErrorResponse) => {
