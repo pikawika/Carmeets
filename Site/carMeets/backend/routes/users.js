@@ -42,7 +42,7 @@ router.post("/login", function(req, res, next) {
     if (user) {
       return res.json({ token: user.generateJWT() });
     } else {
-      return res.status(401).json(info);
+      return res.status(417).json(info);
     }
   })(req, res, next);
 });
@@ -85,7 +85,7 @@ router.post("/changeUsername", authentication, function(req, res, next) {
 
     function(err, obj) {
       if (err || obj == null) {
-        return res.status(401).json({
+        return res.status(417).json({
           message:
             "Er liep iets mis met het uitvoeren van deze beveiligde actie."
         });
@@ -113,7 +113,7 @@ router.post("/changePassword", authentication, function(req, res, next) {
 
     function(err, obj) {
       if (err || obj == null) {
-        return res.status(401).json({
+        return res.status(417).json({
           message:
             "Er liep iets mis met het uitvoeren van deze beveiligde actie."
         });
@@ -122,7 +122,7 @@ router.post("/changePassword", authentication, function(req, res, next) {
 
       obj.save(function(err) {
         if (err) {
-          return res.status(401).json({
+          return res.status(417).json({
             message:
               "Er liep iets mis met het uitvoeren van deze beveiligde actie."
           });
@@ -152,7 +152,7 @@ router.post("/changeEmail", authentication, function(req, res, next) {
 
     function(err, obj) {
       if (err || obj == null) {
-        return res.status(400).json({
+        return res.status(417).json({
           message:
             "Er liep iets mis met het uitvoeren van deze beveiligde actie."
         });
@@ -176,7 +176,7 @@ router.get("/getPreferences", function(req, res, next) {
 
     function(err, obj) {
       if (err || obj == null) {
-        return res.status(401).json({
+        return res.status(417).json({
           message:
             "Er liep iets mis met het uitvoeren van deze beveiligde actie."
         });
@@ -205,7 +205,7 @@ router.post("/changePreferences", authentication, function(req, res, next) {
 
     function(err, obj) {
       if (err || obj == null) {
-        return res.status(401).json({
+        return res.status(417).json({
           message:
             "Er liep iets mis met het uitvoeren van deze beveiligde actie."
         });

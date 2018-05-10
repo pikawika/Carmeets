@@ -54,7 +54,7 @@ router.post("/toggleGoing", authentication, function(req, res, next) {
 
     function(err, obj) {
       if (err) {
-        return res.status(401).json({
+        return res.status(417).json({
           message:
             "Er liep iets mis met het uitvoeren van deze beveiligde actie (undo going)."
         });
@@ -68,7 +68,7 @@ router.post("/toggleGoing", authentication, function(req, res, next) {
 
           function(err, obj2) {
             if (err) {
-              return res.status(401).json({
+              return res.status(417).json({
                 message:
                   "Er liep iets mis met het uitvoeren van deze beveiligde actie (going)."
               });
@@ -104,7 +104,7 @@ router.post("/toggleLiked", authentication, function(req, res, next) {
 
     function(err, obj) {
       if (err) {
-        return res.status(401).json({
+        return res.status(417).json({
           message:
             "Er liep iets mis met het uitvoeren van deze beveiligde actie (undo like)."
         });
@@ -118,7 +118,7 @@ router.post("/toggleLiked", authentication, function(req, res, next) {
 
           function(err, obj2) {
             if (err) {
-              return res.status(401).json({
+              return res.status(417).json({
                 message:
                   "Er liep iets mis met het uitvoeren van deze beveiligde actie (like)."
               });
