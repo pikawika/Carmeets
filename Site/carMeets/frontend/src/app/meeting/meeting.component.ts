@@ -44,7 +44,7 @@ export class MeetingComponent implements OnInit {
         }
       });
     } else {
-      alert("niet aangemeld!");
+      document.getElementById("modalAanmeldenVereistKnop").click();
     }
   }
 
@@ -57,7 +57,7 @@ export class MeetingComponent implements OnInit {
         }
       });
     } else {
-      alert("niet aangemeld!");
+      document.getElementById("modalAanmeldenVereistKnop").click();
     }
   }
 }

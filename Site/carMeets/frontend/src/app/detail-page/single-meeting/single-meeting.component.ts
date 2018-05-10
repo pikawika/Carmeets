@@ -37,7 +37,7 @@ export class SingleMeetingComponent implements OnInit {
         }
       });
     } else {
-      alert("niet aangemeld!");
+      document.getElementById("modalAanmeldenVereistKnop").click();
     }
   }
 
@@ -50,7 +50,7 @@ export class SingleMeetingComponent implements OnInit {
         }
       });
     } else {
-      alert("niet aangemeld!");
+      document.getElementById("modalAanmeldenVereistKnop").click();
     }
   }
 
