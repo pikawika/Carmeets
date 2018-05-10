@@ -50,6 +50,7 @@ hr.cleanPinkSeperator {
 @media screen and (max-width: 1200px) {
   .post {
     position: relative;
+    display: block !important;
   }
   .image.featured img {
     width: 100% !important;
