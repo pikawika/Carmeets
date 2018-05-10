@@ -29,31 +29,35 @@ export class MeetingComponent implements OnInit {
     this.likeAmount = this.meeting.likeAmount.toString();
     this.goingAmount = this.meeting.goingAmount.toString();
     let id = this.authenticationService.idFromToken;
-    if (id != "-1"){
-      this.hasLiked = (this.meeting.listUsersLiked.indexOf(id) > -1);
-      this.isGoing = (this.meeting.listUsersGoing.indexOf(id) > -1);
+    if (id != "-1") {
+      this.hasLiked = this.meeting.listUsersLiked.indexOf(id) > -1;
+      this.isGoing = this.meeting.listUsersGoing.indexOf(id) > -1;
     }
   }
 
   onClickLike() {
-    this.authenticationService
-      .toggleLiked(this.meeting.id)
-      .subscribe(val => {
+    if (this.authenticationService.isLoggedIn) {
+      this.authenticationService.toggleLiked(this.meeting.id).subscribe(val => {
         if (val != null) {
           this.likeAmount = val;
           this.hasLiked = !this.hasLiked;
         }
       });
+    } else {
+      alert("niet aangemeld!");
+    }
   }
 
   onClickGoing() {
-    this.authenticationService
-      .toggleGoing(this.meeting.id)
-      .subscribe(val => {
+    if (this.authenticationService.isLoggedIn) {
+      this.authenticationService.toggleGoing(this.meeting.id).subscribe(val => {
         if (val != null) {
           this.goingAmount = val;
           this.isGoing = !this.isGoing;
         }
       });
+    } else {
+      alert("niet aangemeld!");
+    }
   }
 }

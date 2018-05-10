@@ -33,7 +33,6 @@ export class MeetingFilterPipe implements PipeTransform {
 
     //als een meeting 1 categorie uit lijst heeft toon ze
     if (soortenMeetingsFilter && (soortenMeetingsFilter.length > 0) && (soortenMeetingsFilter != null)){
-      console.log("test")
       filterMeetingsLijst = filterMeetingsLijst.filter(meet =>
         meet.categories.some(eenCategorie=> soortenMeetingsFilter.includes(eenCategorie)));
     }

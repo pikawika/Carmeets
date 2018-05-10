@@ -48,6 +48,10 @@ export class AuthenticationService {
     return !!localToken ? localToken : "";
   }
 
+  get isLoggedIn(): boolean {
+    return (localStorage.getItem(this._tokenKey) != null);
+  }
+
   get idFromToken(): string {
     if (this.token == ""){
       return "-1";

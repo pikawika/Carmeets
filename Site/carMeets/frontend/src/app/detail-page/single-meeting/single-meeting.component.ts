@@ -29,27 +29,29 @@ export class SingleMeetingComponent implements OnInit {
 
 
   onClickLike() {
-    this.authenticationService.toggleLiked(this.singleMeeting.id)
-    .subscribe(
-      val => {
+    if (this.authenticationService.isLoggedIn) {
+      this.authenticationService.toggleLiked(this.singleMeeting.id).subscribe(val => {
         if (val != null) {
           this.likeAmount = val;
           this.hasLiked = !this.hasLiked;
         }
-      }
-    );
+      });
+    } else {
+      alert("niet aangemeld!");
+    }
   }
 
   onClickGoing() {
-    this.authenticationService.toggleGoing(this.singleMeeting.id)
-    .subscribe(
-      val => {
+    if (this.authenticationService.isLoggedIn) {
+      this.authenticationService.toggleGoing(this.singleMeeting.id).subscribe(val => {
         if (val != null) {
           this.goingAmount = val;
           this.isGoing = !this.isGoing;
         }
-      }
-    );
+      });
+    } else {
+      alert("niet aangemeld!");
+    }
   }
 
 }
