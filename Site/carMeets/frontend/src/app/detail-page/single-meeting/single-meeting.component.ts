@@ -12,12 +12,19 @@ export class SingleMeetingComponent implements OnInit {
   singleMeeting: Meeting;
   likeAmount: string;
   goingAmount: string;
+  hasLiked: boolean;
+  isGoing: boolean;
   constructor(private route: ActivatedRoute, private authenticationService: AuthenticationService) { }
 
   ngOnInit() {
     this.route.data.subscribe(item=>this.singleMeeting = item['meeting']);
     this.likeAmount = this.singleMeeting.likeAmount.toString();
     this.goingAmount = this.singleMeeting.goingAmount.toString();
+    let id = this.authenticationService.idFromToken;
+    if (id != "-1"){
+      this.hasLiked = (this.singleMeeting.listUsersLiked.indexOf(id) > -1);
+      this.isGoing = (this.singleMeeting.listUsersGoing.indexOf(id) > -1);
+    }
   }
 
 
@@ -27,6 +34,7 @@ export class SingleMeetingComponent implements OnInit {
       val => {
         if (val != null) {
           this.likeAmount = val;
+          this.hasLiked = !this.hasLiked;
         }
       }
     );
@@ -38,6 +46,7 @@ export class SingleMeetingComponent implements OnInit {
       val => {
         if (val != null) {
           this.goingAmount = val;
+          this.isGoing = !this.isGoing;
         }
       }
     );

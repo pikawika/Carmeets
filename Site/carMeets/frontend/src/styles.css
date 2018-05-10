@@ -7,6 +7,10 @@
   cursor: not-allowed !important;
 }
 
+.clickable-force {
+  cursor: pointer !important;
+}
+
 .width-100prcnt {
   width: 100%;
 }

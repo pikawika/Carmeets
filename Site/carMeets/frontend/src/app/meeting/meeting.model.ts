@@ -81,6 +81,14 @@ export class Meeting {
     return this._categories;
   }
 
+  public get listUsersLiked() {
+    return this._listUsersLiked;
+  }
+
+  public get listUsersGoing() {
+    return this._listUsersGoing;
+  }
+
   //logisch berekende dingen
   public get imagePath() {
     return "images/uploads/" + this._afbeeldingNaam;

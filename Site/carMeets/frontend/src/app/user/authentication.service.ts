@@ -48,6 +48,14 @@ export class AuthenticationService {
     return !!localToken ? localToken : "";
   }
 
+  get idFromToken(): string {
+    if (this.token == ""){
+      return "-1";
+    }
+    let idUitToken = new Buffer(this.token.split(".")[1], "base64").toString();
+    return JSON.parse(idUitToken)._id;
+  }
+
   login(username: string, password: string): Observable<boolean> {
     return this.http
       .post(`${this._urlusers}/login`, { username, password })

@@ -20,12 +20,19 @@ export class MeetingComponent implements OnInit {
   }
   likeAmount: string;
   goingAmount: string;
+  hasLiked: boolean;
+  isGoing: boolean;
 
   constructor(private authenticationService: AuthenticationService) {}
 
   ngOnInit() {
     this.likeAmount = this.meeting.likeAmount.toString();
     this.goingAmount = this.meeting.goingAmount.toString();
+    let id = this.authenticationService.idFromToken;
+    if (id != "-1"){
+      this.hasLiked = (this.meeting.listUsersLiked.indexOf(id) > -1);
+      this.isGoing = (this.meeting.listUsersGoing.indexOf(id) > -1);
+    }
   }
 
   onClickLike() {
@@ -34,6 +41,7 @@ export class MeetingComponent implements OnInit {
       .subscribe(val => {
         if (val != null) {
           this.likeAmount = val;
+          this.hasLiked = !this.hasLiked;
         }
       });
   }
@@ -44,6 +52,7 @@ export class MeetingComponent implements OnInit {
       .subscribe(val => {
         if (val != null) {
           this.goingAmount = val;
+          this.isGoing = !this.isGoing;
         }
       });
   }

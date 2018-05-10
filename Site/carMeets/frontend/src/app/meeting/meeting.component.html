@@ -29,24 +29,25 @@
     <br>
     <br>
     <a (click)="onClickLike()" title="Vind ik leuk!">
-      <i class="far fa-heart"></i> {{likeAmount}}</a>
+      <i [ngClass]="{'color-dark-red': hasLiked}" class="far fa-heart"></i> {{likeAmount}}</a>
     <a (click)="onClickGoing()" title="Daar ga ik heen!">
-      <i class="far fa-check-circle"></i> {{goingAmount}}</a>
+      <i [ngClass]="{'color-dark-red': isGoing}" class="far fa-check-circle"></i> {{goingAmount}}</a>
     <br>
     <a [routerLink]="['/meet-detail', meeting?.id]" class="button big mt-10">Meer info</a>
   </div>
   <div class="hidden-lg">
     <footer class="col-sm-9">
       <div class="">
-          <a [routerLink]="['/meet-detail', meeting?.id]" class="button big mb-15">Meer info</a>
+        <a [routerLink]="['/meet-detail', meeting?.id]" class="button big mb-15">Meer info</a>
       </div>
-      <div class="force-right">
-          <a (click)="onClickLike()">
-              <i class="far fa-heart"></i> {{likeAmount}}</a>
-            <a (click)="onClickGoing()" class="pr-20">
-              <i class="far fa-check-circle"></i> {{goingAmount}}</a>
+      <div class="force-right pb-15">
+        <a (click)="onClickLike()">
+          <i [ngClass]="{'color-dark-red': hasLiked}" class="far fa-heart"></i> {{likeAmount}}</a>
+          <br>
+        <a (click)="onClickGoing()" class="pr-20">
+          <i [ngClass]="{'color-dark-red': isGoing}" class="far fa-check-circle"></i> {{goingAmount}}</a>
       </div>
-      
+
     </footer>
   </div>
 </article>
