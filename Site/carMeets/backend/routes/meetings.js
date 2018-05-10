@@ -177,7 +177,7 @@ router.get('/likedMeetings', authentication, function(req, res, next) {
   let idGebruiker = JSON.parse(idUitToken)._id;
 
   Meeting.find(
-    { listUsersLiked: idGebruiker },
+    { listUsersLiked: idGebruiker, date: { $gte : new Date().getDate() - 7} },
     
     function(err, meetings) {
     if (err) return next(err);
@@ -194,7 +194,7 @@ router.get('/goingMeetings', authentication, function(req, res, next) {
   let idGebruiker = JSON.parse(idUitToken)._id;
 
   Meeting.find(
-    { listUsersGoing: idGebruiker },
+    { listUsersGoing: idGebruiker, date: { $gte : new Date().getDate() - 7} },
     
     function(err, meetings) {
     if (err) return next(err);

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Meeting } from '../../../meeting/meeting.model';
 
 @Component({
   selector: 'app-liked-meetings',
@@ -6,10 +8,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./liked-meetings.component.css']
 })
 export class LikedMeetingsComponent implements OnInit {
+  public likedMeetings: Meeting[];
 
-  constructor() { }
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.route.data.subscribe(item=>this.likedMeetings = item['likedMeetings']);
   }
 
 }

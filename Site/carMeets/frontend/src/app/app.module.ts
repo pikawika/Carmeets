@@ -18,6 +18,8 @@ import { MeetingResolver } from './meeting/meeting-resolver';
 import { AuthenticationService } from './user/authentication.service';
 import { AuthGuardService } from './user/auth-guard.service';
 import { PreferenceResolver } from './user/account-page/account-preferences/preference-resolver';
+import { LikedMeetingsResolver } from './user/account-page/liked-meetings/liked-meetings-resolver';
+import { GoingMeetingsResolver } from './user/account-page/going-meetings/going-meetings-resolver';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,7 @@ import { PreferenceResolver } from './user/account-page/account-preferences/pref
     MeetingModule,
     UserModule
   ],
-  providers: [httpInterceptorProviders, MeetingDataService, MeetingResolver, AuthenticationService, AuthGuardService, PreferenceResolver],
+  providers: [httpInterceptorProviders, MeetingDataService, MeetingResolver, AuthenticationService, AuthGuardService, PreferenceResolver, LikedMeetingsResolver, GoingMeetingsResolver],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

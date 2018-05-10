@@ -1,12 +1,41 @@
 <app-account-submenu></app-account-submenu>
 
-<section class="changePreferencesSection">
-  <div class="col-md-8">
-    <div class="center-block">
-      <h4 class="mb-30 text-center">Meetings waar je heen gaat</h4>
-
-      
+<section class="goingMeetingsSection">
+    <div class="col-md-8">
+      <div class="center-block">
+        <h4 class="mb-30 text-center">Meetings waar je heen gaat</h4>
+        <div class="wrap-table100">
+          <div class="table100 ver2 m-b-110">
+            <div class="table100-head">
+              <table>
+                <thead>
+                  <tr class="row100 head">
+                    <th class="cell100 column1">Naam</th>
+                    <th class="cell100 column2">Datum</th>
+                    <th class="cell100 column3">Info</th>
+                  </tr>
+                </thead>
+              </table>
+            </div>
+            <div class="table100-body js-pscroll">
+              <table>
+                <tbody>
+  
+                  <tr *ngFor="let meeting of goingMeetings" class="row100 body">
+                    <td class="cell100 column1"> {{ meeting.name }} </td>
+                    <td class="cell100 column2"> {{ meeting.date | date : 'dd/MM/yy' }} </td>
+                    <td class="cell100 column3">
+                      <i [routerLink]="['/meet-detail', meeting._id]" class="fas fa-ellipsis-h clickable-force"></i>
+                    </td>
+                  </tr>
+  
+  
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
