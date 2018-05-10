@@ -42,7 +42,7 @@
         </div>
       </div>
     </div>
-  </section> 
+  </section>
 
   <!-- About -->
   <section class="blurb text-center">
@@ -58,27 +58,29 @@
 <div class="col-lg-9" id="main">
 
   <!-- Meeting -->
-  <app-meeting *ngFor='let localMeeting of meetings | meetingFilter: filterMeetingName:filterDateStart:filterDateEnd:soortenMeetingsFilter' [meeting]='localMeeting'></app-meeting>
+  <app-meeting *ngFor='let localMeeting of meetings | meetingFilter: filterMeetingName:filterDateStart:filterDateEnd:soortenMeetingsFilter'
+    [meeting]='localMeeting'></app-meeting>
 </div>
 
 <!-- Button trigger modal -->
-<button type="button" id="modalAanmeldenVereistKnop" [hidden]="true" data-toggle="modal" data-target="#modalAanmeldenVereist" ></button>
+<button type="button" id="modalAanmeldenVereistKnop" [hidden]="true" data-toggle="modal" data-target="#modalAanmeldenVereist"></button>
 
 <!-- Modal: U Moet aanmelden voor deze functies -->
 <div class="modal fade" id="modalAanmeldenVereist" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title pt-20 pl-10 pb-10">Aanmelden vereist <a type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <i class="far fa-window-close color-dark-red"></i>
-        </a></h5>
-        
+        <h5 class="modal-title pt-20 pl-10 pb-10">Aanmelden vereist
+          <a type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <i class="far fa-window-close color-dark-red"></i>
+          </a>
+        </h5>
+
       </div>
       <div class="modal-body">
         Om deze actie uit te voeren moet u aangemeld zijn.
         <br>
-        <br>
-        Meld je aan of maak éénvoudig een account aan en profiteer van alle functies dat carmeets.be te offeren heeft!
+        <br> Meld je aan of maak éénvoudig een account aan en profiteer van alle functies dat carmeets.be te offeren heeft!
       </div>
       <div class="modal-footer">
         <button data-dismiss="modal" routerLink="/registreer" type="button" class="button">Registreer</button>
