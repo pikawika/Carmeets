@@ -4,10 +4,11 @@ Dit is de GitHub repository voor mijn project carmeets.be dat ik realiseerde als
 
 ## Inhoudsopgave
 
-- [Online versie van dit project](#online-versie-van-dit-project)
-- [Gebruikers](#gebruikers)
-- [Trello](#trello)
-- [Project lokaal starten](#project-lokaal-starten)
+> - [Online versie van dit project](#online-versie-van-dit-project)
+> - [Gebruikers](#gebruikers)
+> - [Trello](#trello)
+> - [Project lokaal starten](#project-lokaal-starten)
+> - [Ondersteunde afbeeldingen voor meeting](#ondersteunde-afbeeldingen-voor-meeting)
 
 ## Online versie van dit project
 
@@ -47,6 +48,12 @@ Meer informatie over het project is te vinden op [Trello](https://trello.com/web
 >     - npm start
 > - Browser (Google Chrome aanbevolen):
 >     - [localhost:4200](http://localhost:4200/)
+
+## Ondersteunde afbeeldingen voor meeting
+
+Via multer wordt de geslecteerde afbeelding voor een nieuwe meeting gecontroleerd op enkele parameters.
+
+U kan enkele afbeeldingen die voldoen aan deze parameters onder [de map "Sample images"](Sample%20images) vinden.
 
 
 * * *
