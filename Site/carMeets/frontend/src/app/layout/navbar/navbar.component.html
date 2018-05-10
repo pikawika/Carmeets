@@ -14,9 +14,9 @@
       <ul *ngIf='(currentUser | async)' class="nav navbar-nav navbar-right dropdown">
         <li id="notificationsIcon">
           <a class="nav-link font-20 pt-5 pb-0">
-            <span class="p1 fa-stack has-badge" data-count="10">
+            <a class="p1 fa-stack has-badge" rel="{{aantalLiked7D + aantalGoing7D}}">
               <i class="p3 fas fa-bell fa-stack-1x xfa-inverse"></i>
-            </span>
+            </a>
           </a>
         </li>
         <li>
