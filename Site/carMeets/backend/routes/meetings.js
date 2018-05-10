@@ -50,6 +50,7 @@ router.post("/toggleGoing", authentication, function(req, res, next) {
   Meeting.findOneAndUpdate(
     { _id: req.body.idMeeting, listUsersGoing: idGebruiker },
     { $pull: { listUsersGoing: idGebruiker } },
+    {new: true},
 
     function(err, obj) {
       if (err) {
@@ -63,6 +64,7 @@ router.post("/toggleGoing", authentication, function(req, res, next) {
         Meeting.findOneAndUpdate(
           { _id: req.body.idMeeting },
           { $push: { listUsersGoing: idGebruiker } },
+          {new: true},
 
           function(err, obj2) {
             if (err) {
@@ -98,6 +100,7 @@ router.post("/toggleLiked", authentication, function(req, res, next) {
   Meeting.findOneAndUpdate(
     { _id: req.body.idMeeting, listUsersLiked: idGebruiker },
     { $pull: { listUsersLiked: idGebruiker } },
+    {new: true},
 
     function(err, obj) {
       if (err) {
@@ -111,6 +114,7 @@ router.post("/toggleLiked", authentication, function(req, res, next) {
         Meeting.findOneAndUpdate(
           { _id: req.body.idMeeting },
           { $push: { listUsersLiked: idGebruiker } },
+          {new: true},
 
           function(err, obj2) {
             if (err) {

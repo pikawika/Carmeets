@@ -28,10 +28,10 @@
     </div>
     <br>
     <br>
-    <a title="Vind ik leuk!">
-      <i class="far fa-heart"></i> {{meeting.likeAmount}}</a>
-    <a title="Daar ga ik heen!">
-      <i class="far fa-check-circle"></i> {{meeting.goingAmount}}</a>
+    <a (click)="onClickLike()" title="Vind ik leuk!">
+      <i class="far fa-heart"></i> {{likeAmount}}</a>
+    <a (click)="onClickGoing()" title="Daar ga ik heen!">
+      <i class="far fa-check-circle"></i> {{goingAmount}}</a>
     <br>
     <a [routerLink]="['/meet-detail', meeting?.id]" class="button big mt-10">Meer info</a>
   </div>
@@ -41,10 +41,10 @@
           <a [routerLink]="['/meet-detail', meeting?.id]" class="button big mb-15">Meer info</a>
       </div>
       <div class="force-right">
-          <a href="#">
-              <i class="far fa-heart"></i> {{meeting.likeAmount}}</a>
-            <a href="#" class="pr-20">
-              <i class="far fa-comment"></i> {{meeting.commentAmount}}</a>
+          <a (click)="onClickLike()">
+              <i class="far fa-heart"></i> {{likeAmount}}</a>
+            <a (click)="onClickGoing()" class="pr-20">
+              <i class="far fa-check-circle"></i> {{goingAmount}}</a>
       </div>
       
     </footer>
