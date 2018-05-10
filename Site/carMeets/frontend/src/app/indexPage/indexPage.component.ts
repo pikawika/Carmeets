@@ -138,6 +138,7 @@ export class IndexPageComponent implements OnInit {
         i++;
       });
     }
+    console.log(this.soortenMeetingsFilter)
   }
 
 
