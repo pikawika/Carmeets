@@ -60,6 +60,10 @@ hr.cleanPinkSeperator {
   cursor: pointer;
 }
 
+.no-text-decoration-force {
+  text-decoration: none !important;
+}
+
 .no-hover:hover {
   color: inherit !important;
   text-decoration: none;

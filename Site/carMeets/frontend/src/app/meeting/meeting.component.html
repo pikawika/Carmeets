@@ -28,9 +28,9 @@
     </div>
     <br>
     <br>
-    <a (click)="onClickLike()" title="Vind ik leuk!">
+    <a class="no-text-decoration-force clickable-force" (click)="onClickLike()" title="Vind ik leuk!">
       <i [ngClass]="{'color-dark-red': hasLiked}" class="far fa-heart"></i> {{likeAmount}}</a>
-    <a (click)="onClickGoing()" title="Daar ga ik heen!">
+    <a class="no-text-decoration-force clickable-force" (click)="onClickGoing()" title="Daar ga ik heen!">
       <i [ngClass]="{'color-dark-red': isGoing}" class="far fa-check-circle"></i> {{goingAmount}}</a>
     <br>
     <a [routerLink]="['/meet-detail', meeting?.id]" class="button big mt-10">Meer info</a>
@@ -41,10 +41,10 @@
         <a [routerLink]="['/meet-detail', meeting?.id]" class="button big mb-15">Meer info</a>
       </div>
       <div class="force-right pb-15">
-        <a (click)="onClickLike()">
+        <a class="no-text-decoration-force clickable-force" (click)="onClickLike()">
           <i [ngClass]="{'color-dark-red': hasLiked}" class="far fa-heart"></i> {{likeAmount}}</a>
           <br>
-        <a (click)="onClickGoing()" class="pr-20">
+        <a class="no-text-decoration-force clickable-force pr-20" (click)="onClickGoing()">
           <i [ngClass]="{'color-dark-red': isGoing}" class="far fa-check-circle"></i> {{goingAmount}}</a>
       </div>
 
