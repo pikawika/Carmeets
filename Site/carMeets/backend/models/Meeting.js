@@ -1,4 +1,4 @@
-var mongoose = require('mongoose');
+var mongoose = require("mongoose");
 
 var MeetSchema = new mongoose.Schema({
   name: String,
@@ -12,7 +12,9 @@ var MeetSchema = new mongoose.Schema({
   categories: [String],
   afbeeldingNaam: String,
   site: String,
-  idToevoeger: String
+  idToevoeger: String,
+  listUsersGoing: [String],
+  listUsersLiked: [String]
 });
 
-mongoose.model('Meeting', MeetSchema);
+mongoose.model("Meeting", MeetSchema);

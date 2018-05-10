@@ -2,7 +2,8 @@
   <header>
     <div class="title">
       <h2>
-          <a href="#" class="far fa-heart"></a>
+          <a [ngClass]="{'color-dark-red': hasLiked}" (click)="onClickLike()" class="far fa-heart clickable-force no-text-decoration-force"></a>
+          <a [ngClass]="{'color-dark-red': isGoing}" (click)="onClickGoing()" class="far fa-check-circle clickable-force no-text-decoration-force"></a>
         <a class="no-hover">{{singleMeeting.name}}</a>
       </h2>
       <p>{{singleMeeting.shortDescription}}</p>
@@ -15,7 +16,10 @@
       </div>
     </div>
   </header>
-  <img class="mb-15" src="{{singleMeeting.imagePath}}" alt="" />
+  <img class="mb-15 image featured" src="{{singleMeeting.imagePath}}" alt="" />
   <p>{{singleMeeting.fullDescription}}</p>
-  <a href="#" class="far fa-heart">{{singleMeeting.likeAmount}}</a>
+  <a (click)="onClickLike()" class="no-text-decoration-force clickable-force" title="Vind ik leuk!">
+    <i class="far fa-heart" [ngClass]="{'color-dark-red': hasLiked}"></i> {{likeAmount}}</a>
+  <a (click)="onClickGoing()" class="no-text-decoration-force clickable-force" title="Daar ga ik heen!">
+    <i class="far fa-check-circle" [ngClass]="{'color-dark-red': isGoing}"></i> {{goingAmount}}</a>
 </article>

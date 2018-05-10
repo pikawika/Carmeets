@@ -1,25 +1,25 @@
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { Observable } from 'rxjs/Observable';
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { map } from 'rxjs/operators';
-import { Meeting } from '../meeting/meeting.model';
+import { BehaviorSubject } from "rxjs/BehaviorSubject";
+import { Observable } from "rxjs/Observable";
+import { HttpClient } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { map } from "rxjs/operators";
+import { Meeting } from "../meeting/meeting.model";
 
 function parseJwt(token) {
   if (!token) {
     return null;
   }
-  const base64Url = token.split('.')[1];
-  const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+  const base64Url = token.split(".")[1];
+  const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
   return JSON.parse(window.atob(base64));
 }
 
 @Injectable()
 export class AuthenticationService {
-  private readonly _tokenKey = 'CarMeetsUser';
-  private readonly _urlusers = '/API/users';
-  private readonly _urlUpload = '/API/upload';
-  private readonly _urlmeeting = '/API/meetings';
+  private readonly _tokenKey = "CarMeetsUser";
+  private readonly _urlusers = "/API/users";
+  private readonly _urlUpload = "/API/upload";
+  private readonly _urlmeetings = "/API/meetings";
   private _user$: BehaviorSubject<string>;
 
   public redirectUrl: string;
@@ -45,22 +45,36 @@ export class AuthenticationService {
 
   get token(): string {
     const localToken = localStorage.getItem(this._tokenKey);
-    return !!localToken ? localToken : '';
+    return !!localToken ? localToken : "";
+  }
+
+  get isLoggedIn(): boolean {
+    return (localStorage.getItem(this._tokenKey) != null);
+  }
+
+  get idFromToken(): string {
+    if (this.token == ""){
+      return "-1";
+    }
+    let idUitToken = new Buffer(this.token.split(".")[1], "base64").toString();
+    return JSON.parse(idUitToken)._id;
   }
 
   login(username: string, password: string): Observable<boolean> {
-    return this.http.post(`${this._urlusers}/login`, { username, password }).pipe(
-      map((res: any) => {
-        const token = res.token;
-        if (token) {
-          localStorage.setItem(this._tokenKey, token);
-          this._user$.next(username);
-          return true;
-        } else {
-          return false;
-        }
-      })
-    );
+    return this.http
+      .post(`${this._urlusers}/login`, { username, password })
+      .pipe(
+        map((res: any) => {
+          const token = res.token;
+          if (token) {
+            localStorage.setItem(this._tokenKey, token);
+            this._user$.next(username);
+            return true;
+          } else {
+            return false;
+          }
+        })
+      );
   }
 
   logout() {
@@ -70,25 +84,37 @@ export class AuthenticationService {
     }
   }
 
-  register(username: string, password: string, email: string, soortenMeetings: string[]): Observable<boolean> {
-    return this.http.post(`${this._urlusers}/registreer`, { username, password, email, soortenMeetings }).pipe(
-      map((res: any) => {
-        const token = res.token;
-        if (token) {
-          localStorage.setItem(this._tokenKey, token);
-          this._user$.next(username);
-          return true;
-        } else {
-          return false;
-        }
+  register(
+    username: string,
+    password: string,
+    email: string,
+    soortenMeetings: string[]
+  ): Observable<boolean> {
+    return this.http
+      .post(`${this._urlusers}/registreer`, {
+        username,
+        password,
+        email,
+        soortenMeetings
       })
-    );
+      .pipe(
+        map((res: any) => {
+          const token = res.token;
+          if (token) {
+            localStorage.setItem(this._tokenKey, token);
+            this._user$.next(username);
+            return true;
+          } else {
+            return false;
+          }
+        })
+      );
   }
 
   checkUserNameAvailability(username: string): Observable<boolean> {
     return this.http.post(`${this._urlusers}/checkusername`, { username }).pipe(
       map((item: any) => {
-        if (item.username === 'alreadyexists') {
+        if (item.username === "alreadyexists") {
           return false;
         } else {
           return true;
@@ -100,7 +126,7 @@ export class AuthenticationService {
   checkEmailAvailability(email: string): Observable<boolean> {
     return this.http.post(`${this._urlusers}/checkemail`, { email }).pipe(
       map((item: any) => {
-        if (item.email === 'alreadyexists') {
+        if (item.email === "alreadyexists") {
           return false;
         } else {
           return true;
@@ -110,32 +136,36 @@ export class AuthenticationService {
   }
 
   changeUsername(newUsername: string): Observable<boolean> {
-    return this.http.post(`${this._urlusers}/changeUsername`, { newUsername }).pipe(
-      map((res: any) => {
-        const token = res.token;
-        if (token) {
-          localStorage.setItem(this._tokenKey, token);
-          this._user$.next(newUsername);
-          return true;
-        } else {
-          return false;
-        }
-      })
-    );
+    return this.http
+      .post(`${this._urlusers}/changeUsername`, { newUsername })
+      .pipe(
+        map((res: any) => {
+          const token = res.token;
+          if (token) {
+            localStorage.setItem(this._tokenKey, token);
+            this._user$.next(newUsername);
+            return true;
+          } else {
+            return false;
+          }
+        })
+      );
   }
 
   changePassword(newPassword: string): Observable<boolean> {
-    return this.http.post(`${this._urlusers}/changePassword`, { newPassword }).pipe(
-      map((res: any) => {
-        const token = res.token;
-        if (token) {
-          localStorage.setItem(this._tokenKey, token);
-          return true;
-        } else {
-          return false;
-        }
-      })
-    );
+    return this.http
+      .post(`${this._urlusers}/changePassword`, { newPassword })
+      .pipe(
+        map((res: any) => {
+          const token = res.token;
+          if (token) {
+            localStorage.setItem(this._tokenKey, token);
+            return true;
+          } else {
+            return false;
+          }
+        })
+      );
   }
 
   changeEmail(newEmail: string): Observable<boolean> {
@@ -153,15 +183,17 @@ export class AuthenticationService {
   }
 
   changePreferences(soortenMeetings: string[]): Observable<boolean> {
-    return this.http.post(`${this._urlusers}/changePreferences`, { soortenMeetings }).pipe(
-      map((res: any) => {
-        if (res.succes) {
-          return true;
-        } else {
-          return false;
-        }
-      })
-    );
+    return this.http
+      .post(`${this._urlusers}/changePreferences`, { soortenMeetings })
+      .pipe(
+        map((res: any) => {
+          if (res.succes) {
+            return true;
+          } else {
+            return false;
+          }
+        })
+      );
   }
 
   getPreferences(): Observable<string[]> {
@@ -178,28 +210,102 @@ export class AuthenticationService {
 
   //voorlopig een bool maar kan meeting worden om toe te voegen aan lokale lijst
   addMeeting(meeting: Meeting): Observable<string> {
-    return this.http
-      .post(`${this._urlmeeting}/addMeeting`, meeting).pipe(
-        map((res: any) => {
-          const toegevoegd = res.toegevoegd;
-          if (toegevoegd) {
-            return toegevoegd;
-          } else {
-            return null;
-          }
-        })
-      );
-    }
+    return this.http.post(`${this._urlmeetings}/addMeeting`, meeting).pipe(
+      map((res: any) => {
+        const toegevoegd = res.toegevoegd;
+        if (toegevoegd) {
+          return toegevoegd;
+        } else {
+          return null;
+        }
+      })
+    );
+  }
 
-    uploadMeetingImg(data: FormData): Observable<string> {
-      return this.http.post(`${this._urlUpload}/uploadMeetingImg`, data ).pipe(
+  uploadMeetingImg(data: FormData): Observable<string> {
+    return this.http.post(`${this._urlUpload}/uploadMeetingImg`, data).pipe(
+      map((res: any) => {
+        if (res.filename) {
+          return res.filename;
+        } else {
+          return null;
+        }
+      })
+    );
+  }
+
+  toggleLiked(idMeeting: string): Observable<string> {
+    return this.http
+      .post(`${this._urlmeetings}/toggleLiked`, { idMeeting })
+      .pipe(
         map((res: any) => {
-          if (res.filename) {
-            return res.filename;
+          if (res.likeAmount != undefined) {
+            return res.likeAmount;
           } else {
             return null;
           }
         })
       );
-    }
+  }
+
+  toggleGoing(idMeeting: string): Observable<string> {
+    return this.http.post(`${this._urlmeetings}/toggleGoing`, { idMeeting }).pipe(
+      map((res: any) => {
+        if (res.goingAmount != undefined) {
+          return res.goingAmount;
+        } else {
+          return null;
+        }
+      })
+    );
+  }
+
+  getLikedMeetings(): Observable<Meeting[]> {
+    return this.http.get(`${this._urlmeetings}/likedMeetings`).pipe(
+      map((res: any) => {
+        if (res) {
+          return res;
+        } else {
+          return null;
+        }
+      })
+    );
+  }
+
+  getGoingMeetings(): Observable<Meeting[]> {
+    return this.http.get(`${this._urlmeetings}/goingMeetings`).pipe(
+      map((res: any) => {
+        if (res) {
+          return res;
+        } else {
+          return null;
+        }
+      })
+    );
+  }
+
+  getTotalLikedNext7D(): Observable<number> {
+    return this.http.get(`${this._urlmeetings}/getTotalLikedNext7D`).pipe(
+      map((res: any) => {
+        if (res.likeAmount != undefined) {
+          return res.likeAmount;
+        } else {
+          return null;
+        }
+      })
+    );
+  }
+
+  getTotalGoingNext7D(): Observable<number> {
+    return this.http.get(`${this._urlmeetings}/getTotalGoingNext7D`).pipe(
+      map((res: any) => {
+        if (res.goingAmount != undefined) {
+          return res.goingAmount;
+        } else {
+          return null;
+        }
+      })
+    );
+  }
+
 }

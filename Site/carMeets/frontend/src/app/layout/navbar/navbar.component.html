@@ -11,17 +11,53 @@
     <div class="collapse navbar-collapse" id="myNavbar">
 
 
-      <ul *ngIf='(currentUser | async)' class="nav navbar-nav navbar-right dropdown" >
+      <ul *ngIf='(currentUser | async)' class="nav navbar-nav navbar-right dropdown">
+        <li id="notificationsIcon">
+          <a class="nav-link dropdown-toggle font-20 pb-0 p1 fa-stack has-badge" rel="{{aantalLiked7D + aantalGoing7D}}" role="button"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="p3 fas fa-bell fa-stack-1x xfa-inverse"></i>
+          </a>
+          <ul class="dropdown-menu dropdown-style-lennert">
+            <h3 *ngIf='(aantalGoing7D < 1 && aantalLiked7D < 1)' class="text-center pt-10 pl-5 pr-5 pb-10 whiteText-darkBg"> Er zijn geen meetings die je volgt deze week</h3>
+            
+            <h3 *ngIf='(aantalGoing7D > 0)' routerLink="/account/goingMeetings" class="text-center pt-10 pl-5 pr-5 pb-10 whiteText-pinkBg clickable-force">{{aantalGoing7D}} Meeting(s) waar je heen gaat deze week</h3>
+
+            <h3 *ngIf='(aantalLiked7D > 0)' routerLink="/account/likedMeetings" class="text-center pt-10 pl-5 pr-5 pb-10 whiteText-darkBg clickable-force">{{aantalLiked7D}} Gelikete meeting(s) deze week</h3>
+          </ul>
+        </li>
+
+
         <li>
-            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="glyphicon glyphicon-user"></span> {{currentUser|async}} <i class="far fa-caret-square-down color-dark-red"></i>
-              </a>
-              <ul class="dropdown-menu">
-                  <li><a routerLink="/account"><i class="fas fa-cogs"> </i> Uw account</a></li>
-                  <li><a routerLink="/account/voorkeuren"><i class="fas fa-eye"></i> Voorkeuren</a></li>
-                  <li><a routerLink="/meetingToevoegen"><i class="fas fa-plus"> </i> Meeting toevoegen</a></li>
-                  <li><a routerLink="/logout"><i class="fas fa-sign-out-alt"></i> Afmelden</a></li>
-              </ul>
+          <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="glyphicon glyphicon-user"></span> {{currentUser|async}}
+            <i class="far fa-caret-square-down color-dark-red"></i>
+          </a>
+          <ul class="dropdown-menu dropdown-style-lennert">
+            <li>
+              <a routerLink="/account">
+                <i class="fas fa-cogs"> </i> Uw account</a>
+            </li>
+            <li>
+              <a routerLink="/account/voorkeuren">
+                <i class="fas fa-eye"></i> Voorkeuren</a>
+            </li>
+            <li>
+              <a routerLink="/account/likedMeetings">
+                <i class="fas fa-heart"></i> Gelikete meetings</a>
+            </li>
+            <li>
+              <a routerLink="/account/goingMeetings">
+                <i class="fas fa-check-circle"></i> Meetings waar je heen gaat</a>
+            </li>
+            <li>
+              <a routerLink="/meetingToevoegen">
+                <i class="fas fa-plus"> </i> Meeting toevoegen</a>
+            </li>
+            <li>
+              <a routerLink="/logout">
+                <i class="fas fa-sign-out-alt"></i> Afmelden</a>
+            </li>
+          </ul>
         </li>
       </ul>
 

@@ -6,7 +6,7 @@ import { Meeting } from './meeting/meeting.model';
 
 @Injectable()
 export class MeetingDataService {
-  private readonly _apiUrl = '/API/';
+  private readonly _urlmeeting = "/API/meetings";
 
   constructor(private _http: HttpClient) {
     
@@ -14,12 +14,12 @@ export class MeetingDataService {
 
   get meetings(): Observable<Meeting[]> {
     return this._http
-      .get(`${this._apiUrl}meetings/`)
+      .get(`${this._urlmeeting}/alleMeetings`)
       .pipe(map((list: any[]): Meeting[] => list.map(Meeting.fromJSON)));
   }
 
   getMeeting(id: string) {
-    const theUrl = `${this._apiUrl}meeting/${id}`;
+    const theUrl = `${this._urlmeeting}/singleMeeting/${id}`;
     return this._http.get(theUrl).pipe(map(Meeting.fromJSON));
   }
 

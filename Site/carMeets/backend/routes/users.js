@@ -42,7 +42,7 @@ router.post("/login", function(req, res, next) {
     if (user) {
       return res.json({ token: user.generateJWT() });
     } else {
-      return res.status(401).json(info);
+      return res.status(417).json(info);
     }
   })(req, res, next);
 });
@@ -74,7 +74,7 @@ router.post("/changeUsername", authentication, function(req, res, next) {
       .json({ message: "U heeft een veld open gelaten. Vul deze aub in." });
   }
 
-  //id uit token halen -- to implement
+  //id uit token halen
   let token = req.headers.authorization.substring(7);
   let idUitToken = new Buffer(token.split(".")[1], "base64").toString();
   let idGebruiker = JSON.parse(idUitToken)._id;
@@ -85,7 +85,7 @@ router.post("/changeUsername", authentication, function(req, res, next) {
 
     function(err, obj) {
       if (err || obj == null) {
-        return res.status(401).json({
+        return res.status(417).json({
           message:
             "Er liep iets mis met het uitvoeren van deze beveiligde actie."
         });
@@ -95,7 +95,7 @@ router.post("/changeUsername", authentication, function(req, res, next) {
   );
 });
 
-//id uit token halen -- to implement
+//id uit token halen
 router.post("/changePassword", authentication, function(req, res, next) {
   if (!req.body.newPassword) {
     return res
@@ -103,7 +103,7 @@ router.post("/changePassword", authentication, function(req, res, next) {
       .json({ message: "U heeft een veld open gelaten. Vul deze aub in." });
   }
 
-  //id uit token halen -- to implement
+  //id uit token halen
   let token = req.headers.authorization.substring(7);
   let idUitToken = new Buffer(token.split(".")[1], "base64").toString();
   let idGebruiker = JSON.parse(idUitToken)._id;
@@ -113,7 +113,7 @@ router.post("/changePassword", authentication, function(req, res, next) {
 
     function(err, obj) {
       if (err || obj == null) {
-        return res.status(401).json({
+        return res.status(417).json({
           message:
             "Er liep iets mis met het uitvoeren van deze beveiligde actie."
         });
@@ -122,7 +122,7 @@ router.post("/changePassword", authentication, function(req, res, next) {
 
       obj.save(function(err) {
         if (err) {
-          return res.status(401).json({
+          return res.status(417).json({
             message:
               "Er liep iets mis met het uitvoeren van deze beveiligde actie."
           });
@@ -141,7 +141,7 @@ router.post("/changeEmail", authentication, function(req, res, next) {
       .json({ message: "U heeft een veld open gelaten. Vul deze aub in." });
   }
 
-  //id uit token halen -- to implement
+  //id uit token halen
   let token = req.headers.authorization.substring(7);
   let idUitToken = new Buffer(token.split(".")[1], "base64").toString();
   let idGebruiker = JSON.parse(idUitToken)._id;
@@ -152,7 +152,7 @@ router.post("/changeEmail", authentication, function(req, res, next) {
 
     function(err, obj) {
       if (err || obj == null) {
-        return res.status(400).json({
+        return res.status(417).json({
           message:
             "Er liep iets mis met het uitvoeren van deze beveiligde actie."
         });
@@ -163,7 +163,6 @@ router.post("/changeEmail", authentication, function(req, res, next) {
 });
 
 router.get("/getPreferences", function(req, res, next) {
-  //id uit token halen -- to implement
   if (!req.headers.authorization){
     return res.json({ soortenMeetings: [] });
   }
@@ -176,7 +175,7 @@ router.get("/getPreferences", function(req, res, next) {
 
     function(err, obj) {
       if (err || obj == null) {
-        return res.status(401).json({
+        return res.status(417).json({
           message:
             "Er liep iets mis met het uitvoeren van deze beveiligde actie."
         });
@@ -194,7 +193,7 @@ router.post("/changePreferences", authentication, function(req, res, next) {
       .json({ message: "U heeft een veld open gelaten. Vul deze aub in." });
   }
 
-  //id uit token halen -- to implement
+  //id uit token halen
   let token = req.headers.authorization.substring(7);
   let idUitToken = new Buffer(token.split(".")[1], "base64").toString();
   let idGebruiker = JSON.parse(idUitToken)._id;
@@ -205,7 +204,7 @@ router.post("/changePreferences", authentication, function(req, res, next) {
 
     function(err, obj) {
       if (err || obj == null) {
-        return res.status(401).json({
+        return res.status(417).json({
           message:
             "Er liep iets mis met het uitvoeren van deze beveiligde actie."
         });

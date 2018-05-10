@@ -15,7 +15,7 @@
     </div>
   </header>
   <div class="col-lg-9">
-    <a [routerLink]="['/meet-detail', meeting.id]" class="image featured">
+    <a title="Meer info" [routerLink]="['/meet-detail', meeting.id]" class="image featured">
       <img src="{{meeting.imagePath}}" alt="" />
     </a>
   </div>
@@ -28,25 +28,26 @@
     </div>
     <br>
     <br>
-    <a href="#">
-      <i class="far fa-heart"></i> {{meeting.likeAmount}}</a>
-    <a href="#">
-      <i class="far fa-comment"></i> {{meeting.commentAmount}}</a>
+    <a class="no-text-decoration-force clickable-force" (click)="onClickLike()" title="Vind ik leuk!">
+      <i [ngClass]="{'color-dark-red': hasLiked}" class="far fa-heart"></i> {{likeAmount}}</a>
+    <a class="no-text-decoration-force clickable-force" (click)="onClickGoing()" title="Daar ga ik heen!">
+      <i [ngClass]="{'color-dark-red': isGoing}" class="far fa-check-circle"></i> {{goingAmount}}</a>
     <br>
     <a [routerLink]="['/meet-detail', meeting?.id]" class="button big mt-10">Meer info</a>
   </div>
   <div class="hidden-lg">
     <footer class="col-sm-9">
       <div class="">
-          <a [routerLink]="['/meet-detail', meeting?.id]" class="button big mb-15">Meer info</a>
+        <a [routerLink]="['/meet-detail', meeting?.id]" class="button big mb-15">Meer info</a>
       </div>
-      <div class="force-right">
-          <a href="#">
-              <i class="far fa-heart"></i> {{meeting.likeAmount}}</a>
-            <a href="#" class="pr-20">
-              <i class="far fa-comment"></i> {{meeting.commentAmount}}</a>
+      <div class="force-right pb-15">
+        <a class="no-text-decoration-force clickable-force" (click)="onClickLike()">
+          <i [ngClass]="{'color-dark-red': hasLiked}" class="far fa-heart"></i> {{likeAmount}}</a>
+          <br>
+        <a class="no-text-decoration-force clickable-force pr-20" (click)="onClickGoing()">
+          <i [ngClass]="{'color-dark-red': isGoing}" class="far fa-check-circle"></i> {{goingAmount}}</a>
       </div>
-      
+
     </footer>
   </div>
 </article>
