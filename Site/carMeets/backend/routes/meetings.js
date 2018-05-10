@@ -64,23 +64,26 @@ router.post("/toggleGoing", authentication, function(req, res, next) {
           { _id: req.body.idMeeting },
           { $push: { listUsersGoing: idGebruiker } },
 
-          function(err, obj) {
+          function(err, obj2) {
             if (err) {
               return res.status(401).json({
                 message:
                   "Er liep iets mis met het uitvoeren van deze beveiligde actie (going)."
               });
             }
+            return res.json({ goingAmount: obj2.listUsersGoing.length });
           }
         );
         //end going
       }
-      return res.json({ succes: "yes" });
+      else{
+        return res.json({ goingAmount: obj.listUsersGoing.length });
+      }
     }
   );
 });
 
-router.post("/toggleLike", authentication, function(req, res, next) {
+router.post("/toggleLiked", authentication, function(req, res, next) {
   if (!req.body.idMeeting) {
     return res
       .status(400)
@@ -109,18 +112,21 @@ router.post("/toggleLike", authentication, function(req, res, next) {
           { _id: req.body.idMeeting },
           { $push: { listUsersLiked: idGebruiker } },
 
-          function(err, obj) {
+          function(err, obj2) {
             if (err) {
               return res.status(401).json({
                 message:
                   "Er liep iets mis met het uitvoeren van deze beveiligde actie (like)."
               });
             }
+            return res.json({ likeAmount: obj2.listUsersLiked.length });
           }
         );
         //end liken
       }
-      return res.json({ succes: "yes" });
+      else {
+        return res.json({ likeAmount: obj.listUsersLiked.length });
+      }
     }
   );
 });

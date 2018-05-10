@@ -2,7 +2,7 @@
   <header>
     <div class="title">
       <h2>
-          <a href="#" class="far fa-heart"></a>
+          <a (click)="onClickLike()" class="far fa-heart"></a>
         <a class="no-hover">{{singleMeeting.name}}</a>
       </h2>
       <p>{{singleMeeting.shortDescription}}</p>
@@ -17,8 +17,8 @@
   </header>
   <img class="mb-15 image featured" src="{{singleMeeting.imagePath}}" alt="" />
   <p>{{singleMeeting.fullDescription}}</p>
-  <a title="Vind ik leuk!">
-    <i class="far fa-heart"></i> {{singleMeeting.likeAmount}}</a>
-  <a title="Daar ga ik heen!">
-    <i class="far fa-check-circle"></i> {{singleMeeting.goingAmount}}</a>
+  <a (click)="onClickLike()" title="Vind ik leuk!">
+    <i class="far fa-heart"></i> {{likeAmount}}</a>
+  <a (click)="onClickGoing()" title="Daar ga ik heen!">
+    <i class="far fa-check-circle"></i> {{goingAmount}}</a>
 </article>

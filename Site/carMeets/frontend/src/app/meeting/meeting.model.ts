@@ -87,11 +87,11 @@ export class Meeting {
   }
 
   public get likeAmount() {
-    return 40;
+    return this._listUsersLiked.length;
   }
 
   public get goingAmount() {
-    return 400;
+    return this._listUsersGoing.length;
   }
 
   toJSON() {
