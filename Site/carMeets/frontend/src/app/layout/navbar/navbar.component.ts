@@ -8,8 +8,8 @@ import { Observable } from "rxjs/Observable";
   styleUrls: ["./navbar.component.css"]
 })
 export class NavbarComponent implements OnInit {
-  public aantalLiked7D= 10;
-  public aantalGoing7D= 10;
+  public aantalLiked7D= 0;
+  public aantalGoing7D= 0;
 
   constructor(private authService: AuthenticationService) {}
 

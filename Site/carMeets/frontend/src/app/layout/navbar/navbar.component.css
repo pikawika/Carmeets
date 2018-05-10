@@ -1,3 +1,4 @@
+/* counter boven icon*/
 #notificationsIcon .p1[rel]:after{
     position:absolute;
     right:10%;
@@ -8,7 +9,27 @@
     border-radius:50%;
     line-height:1em;
     color: white;
-    background:rgba(255,0,0,.85);
+    background:#e8175d;
     text-align:center;
     min-width: 1em;
+  }
+
+  /* dropdown notif*/
+  .dropdown-style-lennert {
+    background-color: #fff !important;
+    border: 1px solid rgba(0, 0, 0, .15) !important;
+  }
+
+  .whiteText-pinkBg {
+    color: #fff;
+    background-color: #e8175d4a;
+  }
+
+  .whiteText-darkBg {
+    color: #fff;
+    background-color: #0000004a;
+  }
+
+  .dropdown-menu {
+    min-width: 250px !important;
   }
