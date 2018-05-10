@@ -12,7 +12,7 @@ let authentication = jwt({
 //alle meetings verkrijgen sorted on date
 router.get('/alleMeetings', function(req, res, next) {
   Meeting.find(
-    { date: { $gte : new Date().getDate() - 7} },
+    { date: { $gte : new Date().getTime() - (7 * 1000 * 60 * 60 * 24)} },
     
     function(err, meetings) {
     if (err) return next(err);
@@ -54,7 +54,7 @@ router.post("/addMeeting", authentication, function(req, res, next) {
 
   let newMeeting = new Meeting(req.body);
 
-  //id uit token halen -- to implement
+  //id uit token halen
   let token = req.headers.authorization.substring(7);
   let idUitToken = new Buffer(token.split(".")[1], "base64").toString();
   let idGebruiker = JSON.parse(idUitToken)._id;
@@ -177,13 +177,14 @@ router.get('/likedMeetings', authentication, function(req, res, next) {
   let idGebruiker = JSON.parse(idUitToken)._id;
 
   Meeting.find(
-    { listUsersLiked: idGebruiker, date: { $gte : new Date().getDate() - 7} },
+    { listUsersLiked: idGebruiker, date: { $gte : new Date().getTime() - (7 * 1000 * 60 * 60 * 24)} },
     
     function(err, meetings) {
     if (err) return next(err);
     meetings = meetings.sort(function(a,b){
       return new Date(a.date) - new Date(b.date);
-    }).filter(m => new Date(m.date) >= (new Date().getDate() - 7))
+    });
+
     res.json(meetings);
   });
 });
@@ -194,15 +195,56 @@ router.get('/goingMeetings', authentication, function(req, res, next) {
   let idGebruiker = JSON.parse(idUitToken)._id;
 
   Meeting.find(
-    { listUsersGoing: idGebruiker, date: { $gte : new Date().getDate() - 7} },
+    { listUsersGoing: idGebruiker, date: { $gte : new Date().getTime() - (7 * 1000 * 60 * 60 * 24)} },
     
     function(err, meetings) {
     if (err) return next(err);
     meetings = meetings.sort(function(a,b){
       return new Date(a.date) - new Date(b.date);
-    }).filter(m => new Date(m.date) >= (new Date().getDate() - 7))
+    });
+
     res.json(meetings);
   });
+});
+
+router.get("/getTotalLikedNext7D", authentication, function(req, res, next) {
+  let token = req.headers.authorization.substring(7);
+  let idUitToken = new Buffer(token.split(".")[1], "base64").toString();
+  let idGebruiker = JSON.parse(idUitToken)._id;
+
+  Meeting.find(
+    { listUsersLiked: idGebruiker, date: { $lte : new Date().getTime() + (7 * 1000 * 60 * 60 * 24)} },
+
+    function(err, obj) {
+      if (err || obj == null) {
+        return res.status(417).json({
+          message:
+            "Er liep iets mis met het uitvoeren van deze beveiligde actie."
+        });
+      }
+      return res.json({ likeAmount: obj.length });
+    }
+  );
+});
+
+router.get("/getTotalGoingNext7D", authentication, function(req, res, next) {
+  let token = req.headers.authorization.substring(7);
+  let idUitToken = new Buffer(token.split(".")[1], "base64").toString();
+  let idGebruiker = JSON.parse(idUitToken)._id;
+
+  Meeting.find(
+    { listUsersGoing: idGebruiker, date: { $lte : new Date().getTime() + (7 * 1000 * 60 * 60 * 24)} },
+
+    function(err, obj) {
+      if (err || obj == null) {
+        return res.status(417).json({
+          message:
+            "Er liep iets mis met het uitvoeren van deze beveiligde actie."
+        });
+      }
+      return res.json({ goingAmount: obj.length });
+    }
+  );
 });
 
 module.exports = router;

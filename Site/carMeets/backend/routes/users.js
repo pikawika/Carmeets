@@ -74,7 +74,7 @@ router.post("/changeUsername", authentication, function(req, res, next) {
       .json({ message: "U heeft een veld open gelaten. Vul deze aub in." });
   }
 
-  //id uit token halen -- to implement
+  //id uit token halen
   let token = req.headers.authorization.substring(7);
   let idUitToken = new Buffer(token.split(".")[1], "base64").toString();
   let idGebruiker = JSON.parse(idUitToken)._id;
@@ -95,7 +95,7 @@ router.post("/changeUsername", authentication, function(req, res, next) {
   );
 });
 
-//id uit token halen -- to implement
+//id uit token halen
 router.post("/changePassword", authentication, function(req, res, next) {
   if (!req.body.newPassword) {
     return res
@@ -103,7 +103,7 @@ router.post("/changePassword", authentication, function(req, res, next) {
       .json({ message: "U heeft een veld open gelaten. Vul deze aub in." });
   }
 
-  //id uit token halen -- to implement
+  //id uit token halen
   let token = req.headers.authorization.substring(7);
   let idUitToken = new Buffer(token.split(".")[1], "base64").toString();
   let idGebruiker = JSON.parse(idUitToken)._id;
@@ -141,7 +141,7 @@ router.post("/changeEmail", authentication, function(req, res, next) {
       .json({ message: "U heeft een veld open gelaten. Vul deze aub in." });
   }
 
-  //id uit token halen -- to implement
+  //id uit token halen
   let token = req.headers.authorization.substring(7);
   let idUitToken = new Buffer(token.split(".")[1], "base64").toString();
   let idGebruiker = JSON.parse(idUitToken)._id;
@@ -163,7 +163,6 @@ router.post("/changeEmail", authentication, function(req, res, next) {
 });
 
 router.get("/getPreferences", function(req, res, next) {
-  //id uit token halen -- to implement
   if (!req.headers.authorization){
     return res.json({ soortenMeetings: [] });
   }
@@ -194,7 +193,7 @@ router.post("/changePreferences", authentication, function(req, res, next) {
       .json({ message: "U heeft een veld open gelaten. Vul deze aub in." });
   }
 
-  //id uit token halen -- to implement
+  //id uit token halen
   let token = req.headers.authorization.substring(7);
   let idUitToken = new Buffer(token.split(".")[1], "base64").toString();
   let idGebruiker = JSON.parse(idUitToken)._id;

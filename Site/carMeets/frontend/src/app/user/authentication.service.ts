@@ -283,4 +283,29 @@ export class AuthenticationService {
       })
     );
   }
+
+  getTotalLikedNext7D(): Observable<number> {
+    return this.http.get(`${this._urlmeetings}/getTotalLikedNext7D`).pipe(
+      map((res: any) => {
+        if (res.likeAmount != undefined) {
+          return res.likeAmount;
+        } else {
+          return null;
+        }
+      })
+    );
+  }
+
+  getTotalGoingNext7D(): Observable<number> {
+    return this.http.get(`${this._urlmeetings}/getTotalGoingNext7D`).pipe(
+      map((res: any) => {
+        if (res.goingAmount != undefined) {
+          return res.goingAmount;
+        } else {
+          return null;
+        }
+      })
+    );
+  }
+
 }
