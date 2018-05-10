@@ -53,7 +53,7 @@ Meer informatie over het project is te vinden op [Trello](https://trello.com/web
 
 Via multer wordt de geslecteerde afbeelding voor een nieuwe meeting gecontroleerd op enkele parameters.
 
-U kan enkele afbeeldingen die voldoen aan deze parameters onder [de map "Sample images"](Sample%20images) vinden.
+U kan enkele afbeeldingen die voldoen aan deze parameters onder [de map "Sample files/Sample images"](Sample%20files/Sample%20images) vinden.
 
 
 * * *
