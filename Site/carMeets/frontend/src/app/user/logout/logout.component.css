@@ -25,7 +25,8 @@ body{text-align:center;padding:80px;overflow:hidden}
 }
 .car{
 	z-index:1;
-	margin:0 auto;
+    margin:0;
+    margin-left: calc(50% - 58px) ;
 	position:relative;
 	display:inline-block;
 }
@@ -207,7 +208,7 @@ body{text-align:center;padding:80px;overflow:hidden}
 	left:50%;
 	color:#fff;
 	height:12px;
-	font-size:8px;
+	font-size:12px;
 	padding:1px 4px;
 	font-weight:500;
 	margin-top:-6px;
@@ -215,7 +216,7 @@ body{text-align:center;padding:80px;overflow:hidden}
 	text-align:center;
 	white-space:nowrap;
 	content:attr(data-numb);
-	background-color:#E9573F;
+	background-color:#8a0934;
 	transform:translateX(-50%);
 }
 .car .bumper .bottom{
@@ -279,7 +280,7 @@ body{text-align:center;padding:80px;overflow:hidden}
 	margin:auto;
 	margin-top:30px;
 	margin-bottom:30px;
-	background-color:#fff;
+	background-color: #e8175d;
 	animation:lane 4s linear infinite;
 }
 .road-wrap .lane>div:nth-child(1){height:15px}
