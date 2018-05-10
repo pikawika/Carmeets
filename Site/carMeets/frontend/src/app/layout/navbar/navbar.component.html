@@ -11,19 +11,45 @@
     <div class="collapse navbar-collapse" id="myNavbar">
 
 
-      <ul *ngIf='(currentUser | async)' class="nav navbar-nav navbar-right dropdown" >
+      <ul *ngIf='(currentUser | async)' class="nav navbar-nav navbar-right dropdown">
+        <li id="notificationsIcon">
+          <a class="nav-link font-20 pt-5 pb-0">
+            <span class="p1 fa-stack has-badge" data-count="10">
+              <i class="p3 fas fa-bell fa-stack-1x xfa-inverse"></i>
+            </span>
+          </a>
+        </li>
         <li>
-            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="glyphicon glyphicon-user"></span> {{currentUser|async}} <i class="far fa-caret-square-down color-dark-red"></i>
-              </a>
-              <ul class="dropdown-menu">
-                  <li><a routerLink="/account"><i class="fas fa-cogs"> </i> Uw account</a></li>
-                  <li><a routerLink="/account/voorkeuren"><i class="fas fa-eye"></i> Voorkeuren</a></li>
-                  <li><a routerLink="/account/likedMeetings"><i class="fas fa-heart"></i> Gelikete meetings</a></li>
-                  <li><a routerLink="/account/goingMeetings"><i class="fas fa-check-circle"></i> Meetings waar je heen gaat</a></li>
-                  <li><a routerLink="/meetingToevoegen"><i class="fas fa-plus"> </i> Meeting toevoegen</a></li>
-                  <li><a routerLink="/logout"><i class="fas fa-sign-out-alt"></i> Afmelden</a></li>
-              </ul>
+          <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="glyphicon glyphicon-user"></span> {{currentUser|async}}
+            <i class="far fa-caret-square-down color-dark-red"></i>
+          </a>
+          <ul class="dropdown-menu">
+            <li>
+              <a routerLink="/account">
+                <i class="fas fa-cogs"> </i> Uw account</a>
+            </li>
+            <li>
+              <a routerLink="/account/voorkeuren">
+                <i class="fas fa-eye"></i> Voorkeuren</a>
+            </li>
+            <li>
+              <a routerLink="/account/likedMeetings">
+                <i class="fas fa-heart"></i> Gelikete meetings</a>
+            </li>
+            <li>
+              <a routerLink="/account/goingMeetings">
+                <i class="fas fa-check-circle"></i> Meetings waar je heen gaat</a>
+            </li>
+            <li>
+              <a routerLink="/meetingToevoegen">
+                <i class="fas fa-plus"> </i> Meeting toevoegen</a>
+            </li>
+            <li>
+              <a routerLink="/logout">
+                <i class="fas fa-sign-out-alt"></i> Afmelden</a>
+            </li>
+          </ul>
         </li>
       </ul>
 
