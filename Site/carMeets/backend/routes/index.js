@@ -14,7 +14,7 @@ router.get('/API/meetings', function(req, res, next) {
     if (err) return next(err);
     meetings = meetings.sort(function(a,b){
       return new Date(a.date) - new Date(b.date);
-    })
+    }).filter(m => new Date(m.date) >= (new Date().getDate() - 7))
     res.json(meetings);
   });
 });
