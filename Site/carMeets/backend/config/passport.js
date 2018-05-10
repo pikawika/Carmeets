@@ -1,7 +1,7 @@
-let passport = require('passport');
-let LocalStrategy = require('passport-local').Strategy;
-let mongoose = require('mongoose');
-let User = mongoose.model('User');
+let passport = require("passport");
+let LocalStrategy = require("passport-local").Strategy;
+let mongoose = require("mongoose");
+let User = mongoose.model("User");
 
 passport.use(
   new LocalStrategy(function(username, password, done) {
@@ -10,12 +10,25 @@ passport.use(
         return done(err);
       }
       if (!user) {
-        return done(null, false, { message: 'Gebruikersnaam is onjuist.' });
+        User.findOne({ email: username }, function(err, user2) {
+          if (err) {
+            return done(err);
+          }
+          if (!user2) {
+            return done(null, false, { message: "geen user gevonden met die username of email." });
+          }
+          if (!user2.validPassword(password)) {
+            return done(null, false, { message: "Wachtwoord incorrect." });
+          }
+          return done(null, user2);
+        });
       }
-      if (!user.validPassword(password)) {
-        return done(null, false, { message: 'Wachtwoord is onjuist.' });
+      else {
+        if (!user.validPassword(password)) {
+          return done(null, false, { message: "Wachtwoord incorrect." });
+        }
+        return done(null, user);
       }
-      return done(null, user);
     });
   })
 );
