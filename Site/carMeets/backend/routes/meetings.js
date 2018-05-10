@@ -11,11 +11,15 @@ let authentication = jwt({
 
 //alle meetings verkrijgen sorted on date
 router.get('/alleMeetings', function(req, res, next) {
-  Meeting.find(function(err, meetings) {
+  Meeting.find(
+    { date: { $gte : new Date().getDate() - 7} },
+    
+    function(err, meetings) {
     if (err) return next(err);
     meetings = meetings.sort(function(a,b){
       return new Date(a.date) - new Date(b.date);
-    }).filter(m => new Date(m.date) >= (new Date().getDate() - 7))
+    });
+
     res.json(meetings);
   });
 });
@@ -165,6 +169,40 @@ router.post("/toggleLiked", authentication, function(req, res, next) {
       }
     }
   );
+});
+
+router.get('/likedMeetings', authentication, function(req, res, next) {
+  let token = req.headers.authorization.substring(7);
+  let idUitToken = new Buffer(token.split(".")[1], "base64").toString();
+  let idGebruiker = JSON.parse(idUitToken)._id;
+
+  Meeting.find(
+    { listUsersLiked: idGebruiker },
+    
+    function(err, meetings) {
+    if (err) return next(err);
+    meetings = meetings.sort(function(a,b){
+      return new Date(a.date) - new Date(b.date);
+    }).filter(m => new Date(m.date) >= (new Date().getDate() - 7))
+    res.json(meetings);
+  });
+});
+
+router.get('/goingMeetings', authentication, function(req, res, next) {
+  let token = req.headers.authorization.substring(7);
+  let idUitToken = new Buffer(token.split(".")[1], "base64").toString();
+  let idGebruiker = JSON.parse(idUitToken)._id;
+
+  Meeting.find(
+    { listUsersGoing: idGebruiker },
+    
+    function(err, meetings) {
+    if (err) return next(err);
+    meetings = meetings.sort(function(a,b){
+      return new Date(a.date) - new Date(b.date);
+    }).filter(m => new Date(m.date) >= (new Date().getDate() - 7))
+    res.json(meetings);
+  });
 });
 
 module.exports = router;

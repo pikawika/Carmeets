@@ -19,7 +19,7 @@ export class AuthenticationService {
   private readonly _tokenKey = "CarMeetsUser";
   private readonly _urlusers = "/API/users";
   private readonly _urlUpload = "/API/upload";
-  private readonly _urlmeeting = "/API/meetings";
+  private readonly _urlmeetings = "/API/meetings";
   private _user$: BehaviorSubject<string>;
 
   public redirectUrl: string;
@@ -210,7 +210,7 @@ export class AuthenticationService {
 
   //voorlopig een bool maar kan meeting worden om toe te voegen aan lokale lijst
   addMeeting(meeting: Meeting): Observable<string> {
-    return this.http.post(`${this._urlmeeting}/addMeeting`, meeting).pipe(
+    return this.http.post(`${this._urlmeetings}/addMeeting`, meeting).pipe(
       map((res: any) => {
         const toegevoegd = res.toegevoegd;
         if (toegevoegd) {
@@ -236,7 +236,7 @@ export class AuthenticationService {
 
   toggleLiked(idMeeting: string): Observable<string> {
     return this.http
-      .post(`${this._urlmeeting}/toggleLiked`, { idMeeting })
+      .post(`${this._urlmeetings}/toggleLiked`, { idMeeting })
       .pipe(
         map((res: any) => {
           if (res.likeAmount != undefined) {
@@ -249,10 +249,34 @@ export class AuthenticationService {
   }
 
   toggleGoing(idMeeting: string): Observable<string> {
-    return this.http.post(`${this._urlmeeting}/toggleGoing`, { idMeeting }).pipe(
+    return this.http.post(`${this._urlmeetings}/toggleGoing`, { idMeeting }).pipe(
       map((res: any) => {
         if (res.goingAmount != undefined) {
           return res.goingAmount;
+        } else {
+          return null;
+        }
+      })
+    );
+  }
+
+  getLikedMeetings(): Observable<Meeting[]> {
+    return this.http.get(`${this._urlmeetings}/likedMeetings`).pipe(
+      map((res: any) => {
+        if (res) {
+          return res;
+        } else {
+          return null;
+        }
+      })
+    );
+  }
+
+  getGoingMeetings(): Observable<Meeting[]> {
+    return this.http.get(`${this._urlmeetings}/goingMeetings`).pipe(
+      map((res: any) => {
+        if (res) {
+          return res;
         } else {
           return null;
         }
