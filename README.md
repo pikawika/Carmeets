@@ -7,7 +7,9 @@ Dit is de GitHub repository voor mijn project carmeets.be dat ik realiseerde als
 > - [Online versie van dit project](#online-versie-van-dit-project)
 > - [Gebruikers](#gebruikers)
 > - [Trello](#trello)
+> - [Databank importeren](#databank-importeren)
 > - [Project lokaal starten](#project-lokaal-starten)
+> - [Databank exporteren](#databank-exporteren)
 > - [Ondersteunde afbeeldingen voor meeting](#ondersteunde-afbeeldingen-voor-meeting)
 
 ## Online versie van dit project
@@ -34,6 +36,22 @@ Meer informatie over het project is te vinden op [Trello](https://trello.com/web
 - Users:
     - [Hier vindt u alle gebruikers die initieel aangemaakt werden](https://trello.com/b/scDIM7Ob/2-users) ([Lennert](mailto:lennert.bontinck.y9785@student.hogent.be) en [lector](mailto:Karine.Samyn@hogent.be))
 
+## Databank importeren
+
+De initieele databank voorzien van [enkele gebruikers](#gebruikers) en meetings inladen doet u als volgt.
+
+> - Zorg dat u niet aangemeld bent op de website
+> - CMD (databank importeren)
+>     - cd folder\naar\web4-20172018-2a-aalst-pikawika\Sample files\Sample DB
+>     - mongorestore --db carmeetdb carmeetdb
+> - File explorer (images die bij databank horen importeren)
+>    - kopieer alle inhoud van de folder:
+>         - folder\naar\web4-20172018-2a-aalst-pikawika\Sample files\Sample DB\uploads
+>    - plak de gekopieerde inhoud naar de folder:
+>        - folder\naar\web4-20172018-2a-aalst-pikawika\Site\carMeets\frontend\src\images\uploads
+
+U kan het [project nu starten zoals hieronder beschreven](#project-lokaal-starten)
+
 ## Project lokaal starten
 
 > - terminal1:
@@ -48,6 +66,17 @@ Meer informatie over het project is te vinden op [Trello](https://trello.com/web
 >     - npm start
 > - Browser (Google Chrome aanbevolen):
 >     - [localhost:4200](http://localhost:4200/)
+
+## Databank exporteren
+
+De huidige databank exporteren doet u zo:
+
+> - CMD (databank exporteren)
+>     - cd /folder/waar/je/db/wilt/opslaan
+>     - mongodump --db carmeetdb
+> - File explorer (images die bij databank horen exporteren)
+>     - kopieer alle inhoud van de folder behalve .gitignore naar een backup folder naar keuze:
+>         - web4-20172018-2a-aalst-pikawika\Site\carMeets\frontend\src\images\uploads
 
 ## Ondersteunde afbeeldingen voor meeting
 
