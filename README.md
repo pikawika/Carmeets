@@ -1,31 +1,53 @@
-# Project Web IV 2017-2018 Lennert Bontinck 2TINA
+# Project Web IV 2017-2018 [Bontinck Lennert](mailto:lennert.bontinck.y9785@student.hogent.be) 2TINA
 
-Dit is de GitHub repository voor mijn project dat ik realiseerde als opdracht voor WebApplicaties IV.
+Dit is de GitHub repository voor mijn project carmeets.be dat ik realiseerde als opdracht voor WebApplicaties IV te HoGent.
 
-Volgende gebruikers bestaan:
-- STANDAARD GEBRUIKER 1
-    - username: web4
-    - password: gelukkiggeennetbeans
-        
-- Project starten
-    - terminal1: mongod
-    - terminal 2: backend; npm install en start
-    - terminal 3: frontend; npm install en start
-    
-Meer informatie is te vinden op trello:
-- volledige trello:
-    - https://trello.com/web4opdracht
+## Inhoudsopgave
+
+- [Online versie van dit project](#online-versie-van-dit-project)
+- [Gebruikers](#gebruikers)
+- [Trello](#trello)
+- [Project lokaal starten](#project-lokaal-starten)
+
+## Online versie van dit project
+
+[De online versie van het project carmeets.be is hier te vinden]() of via onderstaande url:
+
+> Coming soon
+
+
+## Gebruikers
+
+U kan eenvoudig zelf een account aanmaken om de functionaliteit van de site te testen. De onderstaande standaard accounts zijn onder andere ter beschikking gesteld op [de online versie](#online-versie-van-dit-project). Alle initiele gebruikers staan vermeld op [Trello](#trello) toegankelijk voor [Lennert](mailto:lennert.bontinck.y9785@student.hogent.be) en [lector](mailto:Karine.Samyn@hogent.be)
+> - STANDAARD GEBRUIKER 1
+>     - Gebruikersnaam: web4
+>     - Wachtwoord: gelukkiggeennetbeans
+>     - Voorkeuren: toon alle soorten meetings
+
+
+
+## Trello
+Meer informatie over het project is te vinden op [Trello](https://trello.com/web4opdracht):
 - Branches:
-    - https://trello.com/b/w6b3P4nx/1-branches (public)
+    - [Hier vindt u uitleg over wat er in elke branch gebeurt is](https://trello.com/b/w6b3P4nx/1-branches) (public)
 - Users:
-    - https://trello.com/b/scDIM7Ob/2-users (public)
-- Bugs:
-    - https://trello.com/b/JQfYn9Y4/3-bugs (Lennert en Lector)
-- Dingen die ik wil implementeren:
-    - https://trello.com/b/3JObOUSS/4-dingen-die-ik-wil-implementeren (Lennert en Lector)
-- Vragen voor leerkracht:
-    - https://trello.com/b/GbzMltAR/5-vragen-voor-leerkracht (Lennert en Lector)
-- Aanbevelingen van leerkracht:
-    - https://trello.com/b/ZNrV66wj/6-aanbevelingen-van-leerkracht (Lennert en Lector)
-    
-© Bontinck Lennert 2TINA 2017-2018
+    - [Hier vindt u alle gebruikers die initieel aangemaakt werden](https://trello.com/b/scDIM7Ob/2-users) ([Lennert](mailto:lennert.bontinck.y9785@student.hogent.be) en [lector](mailto:Karine.Samyn@hogent.be))
+
+## Project lokaal starten
+
+> - terminal1:
+>     - mongod
+> - terminal 2:
+>     - cd ./backend/
+>     - npm install
+>     - npm start
+> - terminal 3:
+>     - cd ./frontend/
+>     - npm install
+>     - npm start
+> - Browser (Google Chrome aanbevolen):
+>     - [localhost:4200](http://localhost:4200/)
+
+
+* * *
+© [Bontinck Lennert](https://www.lennertbontinck.com/) 2TINA 2017-2018
