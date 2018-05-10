@@ -9,6 +9,38 @@ let authentication = jwt({
   secret: process.env.MEETING_BACKEND_SECRET
 });
 
+//alle meetings verkrijgen sorted on date
+router.get('/alleMeetings', function(req, res, next) {
+  Meeting.find(function(err, meetings) {
+    if (err) return next(err);
+    meetings = meetings.sort(function(a,b){
+      return new Date(a.date) - new Date(b.date);
+    }).filter(m => new Date(m.date) >= (new Date().getDate() - 7))
+    res.json(meetings);
+  });
+});
+
+//1 meeting adhv id krijgen
+router.param('singleMeeting', function(req, res, next, id) {
+  let query = Meeting.findById(id);
+  query.exec(function(err, meeting) {
+    if (err) {
+      return next(err);
+    }
+    if (!meeting) {
+      return next(new Error('not found ' + id));
+    }
+    req.meeting = meeting;
+    return next();
+  });
+});
+
+//meeting aanvraag met id als param verwerken door singlemeeting te callen
+router.get('/singleMeeting/:singleMeeting', function(req, res, next) {
+  res.json(req.meeting);
+});
+
+
 router.post("/addMeeting", authentication, function(req, res, next) {
   if (!req.body) {
     return res
