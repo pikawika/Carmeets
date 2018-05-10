@@ -15,6 +15,8 @@ import { AccountSettingsComponent } from '../user/account-page/account-settings/
 import { AccountPreferencesComponent } from '../user/account-page/account-preferences/account-preferences.component';
 import { AddMeetingPageComponent } from '../user/account-page/add-meeting-page/add-meeting-page.component';
 import { PreferenceResolver } from '../user/account-page/account-preferences/preference-resolver';
+import { LikedMeetingsComponent } from '../user/account-page/liked-meetings/liked-meetings.component';
+import { GoingMeetingsComponent } from '../user/account-page/going-meetings/going-meetings.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: IndexPageComponent, resolve: {dbSoortenMeetings: PreferenceResolver}},
@@ -27,7 +29,11 @@ const appRoutes: Routes = [
   { path: 'account', canActivate: [ AuthGuardService ], redirectTo: 'account/instellingen', pathMatch: 'full' },
   { path: 'account/instellingen', canActivate: [ AuthGuardService ], component: AccountSettingsComponent },
   { path: 'account/voorkeuren', canActivate: [ AuthGuardService ], component: AccountPreferencesComponent, resolve: {dbSoortenMeetings: PreferenceResolver} },
+  { path: 'account/likedMeetings', canActivate: [ AuthGuardService ], component: LikedMeetingsComponent },
+  { path: 'account/goingMeetings', canActivate: [ AuthGuardService ], component: GoingMeetingsComponent },
+
   { path: 'meetingToevoegen', canActivate: [ AuthGuardService ], component: AddMeetingPageComponent },
+  
 
   { path: '', redirectTo: 'home', pathMatch: 'full'},
   { path: '**', component: PageNotFoundComponent}

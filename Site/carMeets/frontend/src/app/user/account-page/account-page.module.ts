@@ -9,6 +9,8 @@ import { AccountSettingsPasschangeComponent } from './account-settings/account-s
 import { AccountSettingsUsernamechangeComponent } from './account-settings/account-settings-usernamechange/account-settings-usernamechange.component';
 import { AccountSettingsEmailchangeComponent } from './account-settings/account-settings-emailchange/account-settings-emailchange.component';
 import { AddMeetingPageComponent } from './add-meeting-page/add-meeting-page.component';
+import { LikedMeetingsComponent } from './liked-meetings/liked-meetings.component';
+import { GoingMeetingsComponent } from './going-meetings/going-meetings.component';
 
 @NgModule({
   imports: [
@@ -23,7 +25,9 @@ import { AddMeetingPageComponent } from './add-meeting-page/add-meeting-page.com
     AccountSettingsPasschangeComponent,
     AccountSettingsUsernamechangeComponent,
     AccountSettingsEmailchangeComponent,
-    AddMeetingPageComponent
+    AddMeetingPageComponent,
+    LikedMeetingsComponent,
+    GoingMeetingsComponent
   ]
 })
 export class AccountPageModule { }
