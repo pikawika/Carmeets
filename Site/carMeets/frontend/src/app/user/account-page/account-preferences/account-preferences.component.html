@@ -10,8 +10,10 @@
         <div class="input100Max600px center-block">
           <div *ngIf='categoryErrorMsg != ""' class="text-center text-danger">{{categoryErrorMsg}}</div>
           <div *ngFor="let keuze of soortenMeetings">
-            <a class="col-md-4">
-              <input type="checkbox" name="categorie" [value]="keuze" [checked]="isCheckedInDb(keuze)" (change)="onCheckChange($event)">{{keuze}}</a>
+            <div class="col-md-4 mt-0 ml-0 mr-0 mb-0">
+              <input type="checkbox" name="categorie" id="{{keuze}}" [value]="keuze" [checked]="isCheckedInDb(keuze)" (change)="onCheckChange($event)">
+              <label class="goodlabel" for="{{keuze}}">{{keuze}}</label>
+            </div>
           </div>
         </div>
 

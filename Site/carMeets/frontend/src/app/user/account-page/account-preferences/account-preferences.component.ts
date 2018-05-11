@@ -74,10 +74,8 @@ export class AccountPreferencesComponent implements OnInit {
       // ittereren tot match
       let i: number = 0;
       formArray.controls.forEach((ctrl: FormControl) => {
-        console.log
         if(ctrl.value == event.target.value) {
           formArray.removeAt(i);
-          console.log(formArray);
           if (formArray.length == 0){
             this.categoryErrorMsg = "U moet minstens 1 categorie kiezen.";
           }
@@ -105,8 +103,6 @@ export class AccountPreferencesComponent implements OnInit {
         for(let i = control.length-1; i >= 0; i--) {
             control.removeAt(i)
     }
-    
-    console.log(control);
   }
 
   onSubmitChangePreferences() {

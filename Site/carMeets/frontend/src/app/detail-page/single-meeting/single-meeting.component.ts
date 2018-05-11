@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { Meeting } from "../../meeting/meeting.model";
 import { AuthenticationService } from "../../user/authentication.service";
 
@@ -18,7 +18,8 @@ export class SingleMeetingComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
+    private router: Router
   ) {}
 
   
@@ -60,7 +61,7 @@ export class SingleMeetingComponent implements OnInit {
       .deleteMeeting(this.singleMeeting.id)
       .subscribe(val => {
         if (val === true) {
-          window.location.reload(true);
+          this.router.navigate(["home"]);
         }
         else {
           alert("failed!");
