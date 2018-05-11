@@ -39,6 +39,14 @@ export class SingleMeetingComponent implements OnInit {
     }
   }
 
+  getGoogleDirectionUrl(): string {
+    return "https://www.google.com/maps/search/?api=1&query=" +
+          this.singleMeeting.straatnaam + "%20" + 
+          this.singleMeeting.straatnr + ",%20" +
+          this.singleMeeting.postcode + "%20" +
+          this.singleMeeting.gemeente;
+  }
+
   getGoogleCalanderUrl(): string {
     return "https://calendar.google.com/calendar/r/eventedit?" +
             "text=" + this.singleMeeting.name.replace(' ', '%20') +
