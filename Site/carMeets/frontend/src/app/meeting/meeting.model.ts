@@ -93,6 +93,10 @@ export class Meeting {
     return this._categories;
   }
 
+  public get idToevoeger() {
+    return this._idToevoeger;
+  }
+
   public get listUsersLiked() {
     return this._listUsersLiked;
   }

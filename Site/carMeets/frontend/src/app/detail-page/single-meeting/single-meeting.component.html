@@ -20,4 +20,5 @@
   <p>{{singleMeeting.fullDescription}}</p>
 
   <a class="button" href="https://calendar.google.com/calendar/r/eventedit?text={{singleMeeting.name.replace(' ', '%20')}}&dates={{singleMeeting.date | date : 'yyyyMMdd'}}/{{date1DagLater | date : 'yyyyMMdd'}}&details={{singleMeeting.shortDescription.replace(' ', '%20') +'%0A%0AToegevoegd%20via%20carmeets.be'}}&location={{singleMeeting.straatnaam.replace(' ', '%20')}}%20{{singleMeeting.straatnr.replace(' ', '%20')}},%20{{singleMeeting.postcode.replace(' ', '%20')}}%20{{singleMeeting.gemeente.replace(' ', '%20')}}" target="_blank"><i class="fab fa-google"></i> opslaan in agenda</a>
+  <a *ngIf="showDelete()" (click)="onClickDelete()" class="button"><i class="fas fa-trash"></i>Delete deze meeting</a>
 </article>

@@ -60,6 +60,14 @@ export class AuthenticationService {
     return JSON.parse(idUitToken)._id;
   }
 
+  get roleFromToken(): string {
+    if (this.token == ""){
+      return "-1";
+    }
+    let roleUitToken = new Buffer(this.token.split(".")[1], "base64").toString();
+    return JSON.parse(roleUitToken).role;
+  }
+
   login(username: string, password: string): Observable<boolean> {
     return this.http
       .post(`${this._urlusers}/login`, { username, password })
@@ -306,6 +314,20 @@ export class AuthenticationService {
         }
       })
     );
+  }
+
+  deleteMeeting(idMeeting: string): Observable<boolean> {
+    return this.http
+      .post(`${this._urlmeetings}/deleteMeeting`, { idMeeting })
+      .pipe(
+        map((res: any) => {
+          if (res.deleted === true) {
+            return true;
+          } else {
+            return false;
+          }
+        })
+      );
   }
 
 }
