@@ -37,7 +37,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     IndexPageModule,
     CategoryModule,
     MeetingModule,
-    UserModule
+    UserModule,
   ],
   providers: [httpInterceptorProviders, MeetingDataService, MeetingResolver, AuthenticationService, AuthGuardService, PreferenceResolver, LikedMeetingsResolver, GoingMeetingsResolver],
   bootstrap: [AppComponent]
