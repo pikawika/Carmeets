@@ -14,11 +14,15 @@ export class SingleMeetingComponent implements OnInit {
   goingAmount: string;
   hasLiked: boolean;
   isGoing: boolean;
+  date1DagLater: Date;
+  
   constructor(private route: ActivatedRoute, private authenticationService: AuthenticationService) { }
 
   ngOnInit() {
     this.route.data.subscribe(item=>this.singleMeeting = item['meeting']);
     this.likeAmount = this.singleMeeting.likeAmount.toString();
+    this.date1DagLater = new Date(this.singleMeeting.date);
+    this.date1DagLater.setDate(this.date1DagLater.getDate() +1);
     this.goingAmount = this.singleMeeting.goingAmount.toString();
     let id = this.authenticationService.idFromToken;
     if (id != "-1"){
@@ -26,6 +30,8 @@ export class SingleMeetingComponent implements OnInit {
       this.isGoing = (this.singleMeeting.listUsersGoing.indexOf(id) > -1);
     }
   }
+
+
 
 
   onClickLike() {
