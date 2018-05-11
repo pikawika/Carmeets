@@ -35,7 +35,7 @@ import { GoingMeetingsResolver } from './user/account-page/going-meetings/going-
     IndexPageModule,
     CategoryModule,
     MeetingModule,
-    UserModule
+    UserModule,
   ],
   providers: [httpInterceptorProviders, MeetingDataService, MeetingResolver, AuthenticationService, AuthGuardService, PreferenceResolver, LikedMeetingsResolver, GoingMeetingsResolver],
   bootstrap: [AppComponent]
