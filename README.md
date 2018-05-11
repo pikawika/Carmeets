@@ -36,7 +36,7 @@ Buiten de eenvoudig aan te maken standaard gebruikers is er één admin account 
 >     - Gebruikersnaam: web4
 >     - E-mailadres: web4@carmeets.be
 >     - Wachtwoord: gelukkiggeennetbeans
->     - Voorkeuren: 1/3de van de categorieen
+>     - Voorkeuren: show 4 van de categorieen
 > - Standaard gebruiker 2
 >     - Gebruikersnaam: standaard2
 >     - E-mailadres: standaard2@carmeets.be
