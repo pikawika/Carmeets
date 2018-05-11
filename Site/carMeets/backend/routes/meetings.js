@@ -4,6 +4,7 @@ let mongoose = require("mongoose");
 let passport = require("passport");
 let jwt = require("express-jwt");
 let Meeting = mongoose.model("Meeting");
+const fs = require('fs');
 
 let authentication = jwt({
   secret: process.env.MEETING_BACKEND_SECRET
@@ -60,6 +61,7 @@ router.post("/deleteMeeting", authentication, function(req, res, next) {
 
   let query = Meeting.findById(req.body.idMeeting);
   let idAanmaker;
+  let afbeelding;
 
   query.exec(function(err, meeting) {
     if (err) {
@@ -69,6 +71,7 @@ router.post("/deleteMeeting", authentication, function(req, res, next) {
       return next(new Error("not found " + id));
     }
     idAanmaker = meeting.idToevoeger;
+    afbeelding = meeting.afbeeldingNaam;
 
     if (roleGebruiker != "admin" && idAanmaker != idGebruiker) {
       return res
@@ -85,6 +88,7 @@ router.post("/deleteMeeting", authentication, function(req, res, next) {
         if (err) {
           return next(err);
         }
+        fs.unlink('public/images/uploads/' + afbeelding);
         return res.json({ deleted: true });
       }
     );
