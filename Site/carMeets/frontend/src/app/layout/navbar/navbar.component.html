@@ -18,11 +18,11 @@
             <i class="p3 fas fa-bell fa-stack-1x xfa-inverse"></i>
           </a>
           <ul class="dropdown-menu dropdown-style-lennert">
-            <h3 *ngIf='(aantalGoing7D < 1 && aantalLiked7D < 1)' class="text-center pt-10 pl-5 pr-5 pb-10 whiteText-darkBg"> Er zijn geen meetings die je volgt deze week</h3>
+            <h3 *ngIf='(aantalGoing7D < 1 && aantalLiked7D < 1)' class="text-center pt-10 pl-5 pr-5 pb-10 whiteText-darkBg mb-0"> Er zijn geen meetings die je volgt deze week</h3>
             
-            <h3 *ngIf='(aantalGoing7D > 0)' routerLink="/account/goingMeetings" class="text-center pt-10 pl-5 pr-5 pb-10 whiteText-pinkBg clickable-force">{{aantalGoing7D}} Meeting(s) waar je heen gaat deze week</h3>
+            <h3 *ngIf='(aantalGoing7D > 0)' routerLink="/account/goingMeetings" class="text-center pt-10 pl-5 pr-5 pb-10 whiteText-pinkBg clickable-force mb-0">{{aantalGoing7D}} Meeting(s) waar je heen gaat deze week</h3>
 
-            <h3 *ngIf='(aantalLiked7D > 0)' routerLink="/account/likedMeetings" class="text-center pt-10 pl-5 pr-5 pb-10 whiteText-darkBg clickable-force">{{aantalLiked7D}} Gelikete meeting(s) deze week</h3>
+            <h3 *ngIf='(aantalLiked7D > 0)' routerLink="/account/likedMeetings" class="text-center pt-10 pl-5 pr-5 pb-10 whiteText-darkBg clickable-force mb-0">{{aantalLiked7D}} Gelikete meeting(s) deze week</h3>
           </ul>
         </li>
 
