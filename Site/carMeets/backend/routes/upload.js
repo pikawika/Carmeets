@@ -13,7 +13,7 @@ function fileFilter(req, file, cb){
 
 //maximum +-500kb en 1 file + fotocheck implemented
 var uploading = multer({
-  dest: "../frontend/src/images/uploads",
+  dest: "public/images/uploads",
   limits: {fileSize: 1024 * 500, files:1},
   fileFilter : fileFilter
 });

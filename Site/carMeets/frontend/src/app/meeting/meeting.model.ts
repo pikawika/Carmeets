@@ -91,7 +91,7 @@ export class Meeting {
 
   //logisch berekende dingen
   public get imagePath() {
-    return "images/uploads/" + this._afbeeldingNaam;
+    return "http://localhost:3000/uploadImages/" + this._afbeeldingNaam;
   }
 
   public get likeAmount() {
