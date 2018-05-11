@@ -24,8 +24,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/uploadImages', express.static(path.join(__dirname, 'public/images/uploads')))
 app.use(passport.initialize());
-
 app.use('/', index);
 app.use('/API/upload', upload);
 app.use('/API/meetings', meetings);
