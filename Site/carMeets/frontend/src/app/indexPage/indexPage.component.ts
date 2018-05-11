@@ -108,6 +108,8 @@ export class IndexPageComponent implements OnInit {
     }
 
     this.filterMeetingName = this.filterFormGroup.value.naam;
+    window.scrollTo(window.scrollX, window.scrollY + 1);
+    window.scrollTo(window.scrollX, window.scrollY - 1);
   }
 
   fillFormArrayWithDBChecked() {
@@ -139,7 +141,8 @@ export class IndexPageComponent implements OnInit {
         i++;
       });
     }
-    console.log(this.soortenMeetingsFilter)
+    window.scrollTo(window.scrollX, window.scrollY + 1);
+    window.scrollTo(window.scrollX, window.scrollY - 1);
   }
 
 

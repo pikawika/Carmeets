@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { SingleMeetingComponent } from './single-meeting/single-meeting.component';
 import { DetailPageComponent } from './detail-page.component';
+import { CategoryModule } from '../category/category.module';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    CategoryModule
   ],
   declarations: [
     SingleMeetingComponent,
@@ -13,6 +15,9 @@ import { DetailPageComponent } from './detail-page.component';
   ],
   exports: [
     DetailPageComponent
+  ],
+  providers: [
+    DatePipe
   ]
 })
 export class DetailPageModule { }

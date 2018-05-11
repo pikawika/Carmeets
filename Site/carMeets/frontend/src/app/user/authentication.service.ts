@@ -21,6 +21,8 @@ export class AuthenticationService {
   private readonly _urlUpload = "/API/upload";
   private readonly _urlmeetings = "/API/meetings";
   private _user$: BehaviorSubject<string>;
+  private _AmountLikedNex7D$: BehaviorSubject<number>;
+  private _AmountGoingNex7D$: BehaviorSubject<number>;
 
   public redirectUrl: string;
 
@@ -37,10 +39,24 @@ export class AuthenticationService {
     this._user$ = new BehaviorSubject<string>(
       parsedToken && parsedToken.username
     );
+    this._AmountLikedNex7D$ = new BehaviorSubject<number>(
+      0
+    );
+    this._AmountGoingNex7D$ = new BehaviorSubject<number>(
+      0
+    );
   }
 
   get user$(): BehaviorSubject<string> {
     return this._user$;
+  }
+
+  get amountLikedNext7D$(): BehaviorSubject<number> {
+    return this._AmountLikedNex7D$;
+  }
+
+  get amountGoingNext7D$(): BehaviorSubject<number> {
+    return this._AmountGoingNex7D$;
   }
 
   get token(): string {
@@ -248,6 +264,7 @@ export class AuthenticationService {
       .pipe(
         map((res: any) => {
           if (res.likeAmount != undefined) {
+            this.setTotalLikedNext7D();
             return res.likeAmount;
           } else {
             return null;
@@ -260,6 +277,7 @@ export class AuthenticationService {
     return this.http.post(`${this._urlmeetings}/toggleGoing`, { idMeeting }).pipe(
       map((res: any) => {
         if (res.goingAmount != undefined) {
+          this.setTotalGoingNext7D();
           return res.goingAmount;
         } else {
           return null;
@@ -292,7 +310,7 @@ export class AuthenticationService {
     );
   }
 
-  getTotalLikedNext7D(): Observable<number> {
+  setTotalLikedNext7D() {
     return this.http.get(`${this._urlmeetings}/getTotalLikedNext7D`).pipe(
       map((res: any) => {
         if (res.likeAmount != undefined) {
@@ -301,10 +319,15 @@ export class AuthenticationService {
           return null;
         }
       })
-    );
+    ).subscribe(val => {
+      if (val != null) {
+        this._AmountLikedNex7D$.next(val);
+      }
+    });;
   }
 
-  getTotalGoingNext7D(): Observable<number> {
+
+  setTotalGoingNext7D() {
     return this.http.get(`${this._urlmeetings}/getTotalGoingNext7D`).pipe(
       map((res: any) => {
         if (res.goingAmount != undefined) {
@@ -313,7 +336,11 @@ export class AuthenticationService {
           return null;
         }
       })
-    );
+    ).subscribe(val => {
+      if (val != null) {
+        this._AmountGoingNex7D$.next(val);
+      }
+    });;
   }
 
   deleteMeeting(idMeeting: string): Observable<boolean> {
@@ -322,6 +349,8 @@ export class AuthenticationService {
       .pipe(
         map((res: any) => {
           if (res.deleted === true) {
+            this.setTotalGoingNext7D();
+            this.setTotalLikedNext7D();
             return true;
           } else {
             return false;

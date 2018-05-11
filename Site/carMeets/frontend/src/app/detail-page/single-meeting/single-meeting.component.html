@@ -1,9 +1,9 @@
-<article class="post">
+<article class="post clearfix">
   <header>
     <div class="title">
       <h2>
-          <a [ngClass]="{'color-dark-red': hasLiked}" (click)="onClickLike()" class="far fa-heart clickable-force no-text-decoration-force"></a>
-          <a [ngClass]="{'color-dark-red': isGoing}" (click)="onClickGoing()" class="far fa-check-circle clickable-force no-text-decoration-force"></a>
+        <a [ngClass]="{'color-dark-red': hasLiked}" (click)="onClickLike()" class="far fa-heart clickable-force no-text-decoration-force"></a>
+        <a [ngClass]="{'color-dark-red': isGoing}" (click)="onClickGoing()" class="far fa-check-circle clickable-force no-text-decoration-force"></a>
         <a class="no-hover">{{singleMeeting.name}}</a>
       </h2>
       <p>{{singleMeeting.shortDescription}}</p>
@@ -19,6 +19,22 @@
   <img class="mb-15 image featured" src="{{singleMeeting.imagePath}}" alt="" />
   <p>{{singleMeeting.fullDescription}}</p>
 
-  <a class="button" href="https://calendar.google.com/calendar/r/eventedit?text={{singleMeeting.name.replace(' ', '%20')}}&dates={{singleMeeting.date | date : 'yyyyMMdd'}}/{{date1DagLater | date : 'yyyyMMdd'}}&details={{singleMeeting.shortDescription.replace(' ', '%20') +'%0A%0AToegevoegd%20via%20carmeets.be'}}&location={{singleMeeting.straatnaam.replace(' ', '%20')}}%20{{singleMeeting.straatnr.replace(' ', '%20')}},%20{{singleMeeting.postcode.replace(' ', '%20')}}%20{{singleMeeting.gemeente.replace(' ', '%20')}}" target="_blank"><i class="fab fa-google"></i> opslaan in agenda</a>
-  <a *ngIf="showDelete()" (click)="onClickDelete()" class="button"><i class="fas fa-trash"></i>Delete deze meeting</a>
+
+  <div>
+    <h3>Categoriën:</h3>
+    <li class="col-lg-3 col-md-4 col-xs-6" *ngFor="let categorie of singleMeeting.categories">
+      {{categorie}}
+    </li>
+  </div>
+
+  <div class="col-xs-12 mt-20">
+    <a *ngIf="singleMeeting.site" href="{{singleMeeting.site}}" target="_blank" class="button width-100percent-980LG mb-10">
+      <i class="fas fa-globe"></i> Bezoek de website</a>
+    <a class="button width-100percent-980LG mb-10" href="{{getGoogleDirectionUrl()}}" target="_blank">
+      <i class="fas fa-location-arrow"></i> Route berekenen</a>
+    <a class="button width-100percent-980LG mb-10" href="{{getGoogleCalanderUrl()}}" target="_blank">
+      <i class="fab fa-google"></i> Opslaan in agenda</a>
+    <a *ngIf="showDelete()" (click)="onClickDelete()" class="button width-100percent-980LG mb-10">
+      <i class="fas fa-trash"></i> Delete deze meeting</a>
+  </div>
 </article>
