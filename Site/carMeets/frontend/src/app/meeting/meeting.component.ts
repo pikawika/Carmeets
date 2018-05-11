@@ -1,11 +1,26 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input, HostListener, ElementRef } from "@angular/core";
 import { Meeting } from "./meeting.model";
 import { AuthenticationService } from "../user/authentication.service";
+import { trigger,state,style,transition,animate,keyframes, query, stagger, group } from '@angular/animations';
 
 @Component({
   selector: "app-meeting",
   templateUrl: "./meeting.component.html",
-  styleUrls: ["./meeting.component.css"]
+  styleUrls: ["./meeting.component.css"],
+  animations: [
+    trigger('scrollAnimation', [
+      state('show', style({
+        opacity: 1,
+        transform: "translateY(0)"
+      })),
+      state('hide', style({
+        opacity: 0,
+        transform: "translateY(+100%)"
+      })),
+      transition('show => hide', animate('700ms ease-out')),
+      transition('hide => show', animate('700ms ease-in'))
+    ])
+  ]
 })
 export class MeetingComponent implements OnInit {
   @Input() public meeting: Meeting;
@@ -22,10 +37,25 @@ export class MeetingComponent implements OnInit {
   goingAmount: string;
   hasLiked: boolean;
   isGoing: boolean;
+  state = 'hide';
 
-  constructor(private authenticationService: AuthenticationService) {}
+  constructor(private authenticationService: AuthenticationService, public el: ElementRef) {}
+
+  @HostListener('window:scroll', ['$event'])
+    checkScroll() {
+      const componentPosition = this.el.nativeElement.offsetTop
+      const scrollPosition = window.pageYOffset + (document.documentElement.clientHeight *0.6);
+
+      if (scrollPosition >= componentPosition) {
+        this.state = 'show'
+      } else {
+        this.state = 'hide'
+      }
+
+    }
 
   ngOnInit() {
+    this.checkScroll();
     this.likeAmount = this.meeting.likeAmount.toString();
     this.goingAmount = this.meeting.goingAmount.toString();
     let id = this.authenticationService.idFromToken;

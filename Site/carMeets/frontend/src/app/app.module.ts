@@ -20,6 +20,7 @@ import { AuthGuardService } from './user/auth-guard.service';
 import { PreferenceResolver } from './user/account-page/account-preferences/preference-resolver';
 import { LikedMeetingsResolver } from './user/account-page/liked-meetings/liked-meetings-resolver';
 import { GoingMeetingsResolver } from './user/account-page/going-meetings/going-meetings-resolver';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { GoingMeetingsResolver } from './user/account-page/going-meetings/going-
     ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
     LayoutModule,
