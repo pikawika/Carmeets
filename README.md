@@ -48,7 +48,7 @@ De initieele databank voorzien van [enkele gebruikers](#gebruikers) en meetings 
 >    - kopieer alle inhoud van de folder:
 >         - folder\naar\web4-20172018-2a-aalst-pikawika\Sample files\Sample DB\uploads
 >    - plak de gekopieerde inhoud naar de folder:
->        - folder\naar\web4-20172018-2a-aalst-pikawika\Site\carMeets\frontend\src\images\uploads
+>        - folder\naar\web4-20172018-2a-aalst-pikawika\Site\carMeets\backend\public\images\uploads
 
 U kan het [project nu starten zoals hieronder beschreven](#project-lokaal-starten)
 
@@ -76,7 +76,7 @@ De huidige databank exporteren doet u zo:
 >     - mongodump --db carmeetdb
 > - File explorer (images die bij databank horen exporteren)
 >     - kopieer alle inhoud van de folder behalve .gitignore naar een backup folder naar keuze:
->         - web4-20172018-2a-aalst-pikawika\Site\carMeets\frontend\src\images\uploads
+>         - web4-20172018-2a-aalst-pikawika\Site\carMeets\backend\public\images\uploads
 
 ## Ondersteunde afbeeldingen voor meeting
 
