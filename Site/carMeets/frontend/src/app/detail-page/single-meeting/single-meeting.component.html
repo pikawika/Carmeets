@@ -18,6 +18,10 @@
   </header>
   <img class="mb-15 image featured" src="{{singleMeeting.imagePath}}" alt="" />
   <p>{{singleMeeting.fullDescription}}</p>
+
+  <a class="button" href="https://calendar.google.com/calendar/r/eventedit?text={{singleMeeting.name.replace(' ', '%20')}}&dates={{singleMeeting.date | date : 'yyyyMMdd'}}/{{date1DagLater | date : 'yyyyMMdd'}}&details={{singleMeeting.shortDescription.replace(' ', '%20') +'%0A%0AToegevoegd%20via%20carmeets.be'}}&location={{singleMeeting.straatnaam.replace(' ', '%20')}}%20{{singleMeeting.straatnr.replace(' ', '%20')}},%20{{singleMeeting.postcode.replace(' ', '%20')}}%20{{singleMeeting.gemeente.replace(' ', '%20')}}" target="_blank"><i class="far fa-calendar-check fa-2x"></i> Opslaan in google calander</a>
+
+  <br><br>
   <a (click)="onClickLike()" class="no-text-decoration-force clickable-force" title="Vind ik leuk!">
     <i class="far fa-heart" [ngClass]="{'color-dark-red': hasLiked}"></i> {{likeAmount}}</a>
   <a (click)="onClickGoing()" class="no-text-decoration-force clickable-force" title="Daar ga ik heen!">

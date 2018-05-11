@@ -37,7 +37,7 @@ export class Meeting {
     this._gemeente = gemeente;
     this._postcode = postcode;
     this._straatnaam = straatnaam;
-    this._straatnr = straatnaam;
+    this._straatnr = straatnr;
     this._shortDescription = shortDescription;
     this._fullDescription = fullDescription;
     this._categories = categories;
@@ -67,6 +67,18 @@ export class Meeting {
 
   public get gemeente() {
     return this._gemeente;
+  }
+
+  public get postcode() {
+    return this._postcode;
+  }
+
+  public get straatnaam() {
+    return this._straatnaam;
+  }
+
+  public get straatnr() {
+    return this._straatnr;
   }
 
   public get shortDescription() {
