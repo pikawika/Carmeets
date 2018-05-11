@@ -8,28 +8,19 @@ import { Observable } from "rxjs/Observable";
   styleUrls: ["./navbar.component.css"]
 })
 export class NavbarComponent implements OnInit {
-  public aantalLiked7D= 0;
-  public aantalGoing7D= 0;
-
   constructor(private authService: AuthenticationService) {}
 
   get currentUser(): Observable<string> {
     return this.authService.user$;
   }
 
-  ngOnInit() {
-    if (this.authService.isLoggedIn){
-      this.authService.getTotalLikedNext7D().subscribe(val => {
-        if (val != null) {
-          this.aantalLiked7D = val;
-        }
-      });
-  
-      this.authService.getTotalGoingNext7D().subscribe(val => {
-        if (val != null) {
-          this.aantalGoing7D = val;
-        }
-      });
-    }
+  get aantalLiked7D(): Observable<number> {
+    return this.authService.amountLikedNext7D$;
   }
+
+  get aantalGoing7D(): Observable<number> {
+    return this.authService.amountGoingNext7D$;
+  }
+
+  ngOnInit() {}
 }

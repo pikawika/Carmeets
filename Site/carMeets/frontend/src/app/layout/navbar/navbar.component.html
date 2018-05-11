@@ -13,16 +13,16 @@
 
       <ul *ngIf='(currentUser | async)' class="nav navbar-nav navbar-right dropdown">
         <li id="notificationsIcon">
-          <a class="nav-link dropdown-toggle font-20 pb-0 p1 fa-stack has-badge" rel="{{aantalLiked7D + aantalGoing7D}}" role="button"
+          <a class="nav-link dropdown-toggle font-20 pb-0 p1 fa-stack has-badge" rel="{{(aantalLiked7D | async) + (aantalGoing7D | async)}}" role="button"
             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="p3 fas fa-bell fa-stack-1x xfa-inverse"></i>
           </a>
           <ul class="dropdown-menu dropdown-style-lennert">
-            <h3 *ngIf='(aantalGoing7D < 1 && aantalLiked7D < 1)' class="text-center pt-10 pl-5 pr-5 pb-10 whiteText-darkBg mb-0"> Er zijn geen meetings die je volgt deze week</h3>
+            <h3 *ngIf='((aantalGoing7D | async) < 1 && (aantalLiked7D | async) < 1)' class="text-center pt-10 pl-5 pr-5 pb-10 whiteText-darkBg mb-0"> Er zijn geen meetings die je volgt deze week</h3>
             
-            <h3 *ngIf='(aantalGoing7D > 0)' routerLink="/account/goingMeetings" class="text-center pt-10 pl-5 pr-5 pb-10 whiteText-pinkBg clickable-force mb-0">{{aantalGoing7D}} Meeting(s) waar je heen gaat deze week</h3>
+            <h3 *ngIf='((aantalGoing7D | async) > 0)' routerLink="/account/goingMeetings" class="text-center pt-10 pl-5 pr-5 pb-10 whiteText-pinkBg clickable-force mb-0">{{aantalGoing7D | async}} Meeting(s) waar je heen gaat deze week</h3>
 
-            <h3 *ngIf='(aantalLiked7D > 0)' routerLink="/account/likedMeetings" class="text-center pt-10 pl-5 pr-5 pb-10 whiteText-darkBg clickable-force mb-0">{{aantalLiked7D}} Gelikete meeting(s) deze week</h3>
+            <h3 *ngIf='((aantalLiked7D | async) > 0)' routerLink="/account/likedMeetings" class="text-center pt-10 pl-5 pr-5 pb-10 whiteText-darkBg clickable-force mb-0">{{aantalLiked7D | async}} Gelikete meeting(s) deze week</h3>
           </ul>
         </li>
 
