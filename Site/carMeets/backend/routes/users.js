@@ -82,6 +82,8 @@ router.post("/changeUsername", authentication, function(req, res, next) {
   User.findOneAndUpdate(
     { _id: idGebruiker },
     { $set: { username: req.body.newUsername } },
+    { new: true },
+
 
     function(err, obj) {
       if (err || obj == null) {
