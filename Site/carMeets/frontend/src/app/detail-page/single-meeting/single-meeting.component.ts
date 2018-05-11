@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Meeting } from "../../meeting/meeting.model";
 import { AuthenticationService } from "../../user/authentication.service";
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: "app-single-meeting",
@@ -19,7 +20,8 @@ export class SingleMeetingComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private authenticationService: AuthenticationService,
-    private router: Router
+    private router: Router,
+    private datePipe: DatePipe
   ) {}
 
   
@@ -35,6 +37,14 @@ export class SingleMeetingComponent implements OnInit {
       this.hasLiked = this.singleMeeting.listUsersLiked.indexOf(id) > -1;
       this.isGoing = this.singleMeeting.listUsersGoing.indexOf(id) > -1;
     }
+  }
+
+  getGoogleCalanderUrl(): string {
+    return "https://calendar.google.com/calendar/r/eventedit?" +
+            "text=" + this.singleMeeting.name.replace(' ', '%20') +
+            "&dates=" + this.datePipe.transform(this.singleMeeting.date, 'yyyyMMdd') + "/" + this.datePipe.transform(this.date1DagLater, 'yyyyMMdd') + 
+            "&details=" + this.singleMeeting.shortDescription.replace(' ', '%20') + "%0A%0AToegevoegd%20via%20carmeets.be" +
+            "&location=" + this.singleMeeting.straatnaam.replace(' ', '%20') + "%20" + this.singleMeeting.straatnr.replace(' ', '%20') + ",%20" + this.singleMeeting.postcode.replace(' ', '%20') + "%20" + this.singleMeeting.gemeente.replace(' ', '%20')
   }
 
   showDelete(): boolean {
