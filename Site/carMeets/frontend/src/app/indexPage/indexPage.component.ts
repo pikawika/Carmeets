@@ -4,11 +4,13 @@ import { Meeting } from '../meeting/meeting.model';
 import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
+
 @Component({
   selector: 'app-indexPage',
   templateUrl: './IndexPage.component.html',
   styleUrls: ['./IndexPage.component.css']
 })
+
 export class IndexPageComponent implements OnInit {
   private _meetings: Meeting[];
   public filterMeetingName: string;

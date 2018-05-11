@@ -10,29 +10,30 @@ let authentication = jwt({
 });
 
 //alle meetings verkrijgen sorted on date
-router.get('/alleMeetings', function(req, res, next) {
+router.get("/alleMeetings", function(req, res, next) {
   Meeting.find(
-    { date: { $gte : new Date().getTime() - (7 * 1000 * 60 * 60 * 24)} },
-    
-    function(err, meetings) {
-    if (err) return next(err);
-    meetings = meetings.sort(function(a,b){
-      return new Date(a.date) - new Date(b.date);
-    });
+    { date: { $gte: new Date().getTime() - 7 * 1000 * 60 * 60 * 24 } },
 
-    res.json(meetings);
-  });
+    function(err, meetings) {
+      if (err) return next(err);
+      meetings = meetings.sort(function(a, b) {
+        return new Date(a.date) - new Date(b.date);
+      });
+
+      res.json(meetings);
+    }
+  );
 });
 
 //1 meeting adhv id krijgen
-router.param('singleMeeting', function(req, res, next, id) {
+router.param("singleMeeting", function(req, res, next, id) {
   let query = Meeting.findById(id);
   query.exec(function(err, meeting) {
     if (err) {
       return next(err);
     }
     if (!meeting) {
-      return next(new Error('not found ' + id));
+      return next(new Error("not found " + id));
     }
     req.meeting = meeting;
     return next();
@@ -40,10 +41,55 @@ router.param('singleMeeting', function(req, res, next, id) {
 });
 
 //meeting aanvraag met id als param verwerken door singlemeeting te callen
-router.get('/singleMeeting/:singleMeeting', function(req, res, next) {
+router.get("/singleMeeting/:singleMeeting", function(req, res, next) {
   res.json(req.meeting);
 });
 
+router.post("/deleteMeeting", authentication, function(req, res, next) {
+  if (!req.body.idMeeting) {
+    return res
+      .status(400)
+      .json({ message: "U heeft een veld open gelaten. Vul deze aub in." });
+  }
+
+  //id uit token halen
+  let token = req.headers.authorization.substring(7);
+  let idUitToken = new Buffer(token.split(".")[1], "base64").toString();
+  let idGebruiker = JSON.parse(idUitToken)._id;
+  let roleGebruiker = JSON.parse(idUitToken).role;
+
+  let query = Meeting.findById(req.body.idMeeting);
+  let idAanmaker;
+
+  query.exec(function(err, meeting) {
+    if (err) {
+      return next(err);
+    }
+    if (!meeting) {
+      return next(new Error("not found " + id));
+    }
+    idAanmaker = meeting.idToevoeger;
+
+    if (roleGebruiker != "admin" && idAanmaker != idGebruiker) {
+      return res
+        .status(401)
+        .json({
+          message:
+            "U heeft niet voldoende rechten voor deze operatie." + idAanmaker
+        });
+    }
+    Meeting.remove(
+      { _id: req.body.idMeeting },
+
+      function(err, rec) {
+        if (err) {
+          return next(err);
+        }
+        return res.json({ deleted: true });
+      }
+    );
+  });
+});
 
 router.post("/addMeeting", authentication, function(req, res, next) {
   if (!req.body) {
@@ -86,7 +132,7 @@ router.post("/toggleGoing", authentication, function(req, res, next) {
   Meeting.findOneAndUpdate(
     { _id: req.body.idMeeting, listUsersGoing: idGebruiker },
     { $pull: { listUsersGoing: idGebruiker } },
-    {new: true},
+    { new: true },
 
     function(err, obj) {
       if (err) {
@@ -100,7 +146,7 @@ router.post("/toggleGoing", authentication, function(req, res, next) {
         Meeting.findOneAndUpdate(
           { _id: req.body.idMeeting },
           { $push: { listUsersGoing: idGebruiker } },
-          {new: true},
+          { new: true },
 
           function(err, obj2) {
             if (err) {
@@ -113,8 +159,7 @@ router.post("/toggleGoing", authentication, function(req, res, next) {
           }
         );
         //end going
-      }
-      else{
+      } else {
         return res.json({ goingAmount: obj.listUsersGoing.length });
       }
     }
@@ -136,7 +181,7 @@ router.post("/toggleLiked", authentication, function(req, res, next) {
   Meeting.findOneAndUpdate(
     { _id: req.body.idMeeting, listUsersLiked: idGebruiker },
     { $pull: { listUsersLiked: idGebruiker } },
-    {new: true},
+    { new: true },
 
     function(err, obj) {
       if (err) {
@@ -150,7 +195,7 @@ router.post("/toggleLiked", authentication, function(req, res, next) {
         Meeting.findOneAndUpdate(
           { _id: req.body.idMeeting },
           { $push: { listUsersLiked: idGebruiker } },
-          {new: true},
+          { new: true },
 
           function(err, obj2) {
             if (err) {
@@ -163,48 +208,55 @@ router.post("/toggleLiked", authentication, function(req, res, next) {
           }
         );
         //end liken
-      }
-      else {
+      } else {
         return res.json({ likeAmount: obj.listUsersLiked.length });
       }
     }
   );
 });
 
-router.get('/likedMeetings', authentication, function(req, res, next) {
+router.get("/likedMeetings", authentication, function(req, res, next) {
   let token = req.headers.authorization.substring(7);
   let idUitToken = new Buffer(token.split(".")[1], "base64").toString();
   let idGebruiker = JSON.parse(idUitToken)._id;
 
   Meeting.find(
-    { listUsersLiked: idGebruiker, date: { $gte : new Date().getTime() - (7 * 1000 * 60 * 60 * 24)} },
-    
-    function(err, meetings) {
-    if (err) return next(err);
-    meetings = meetings.sort(function(a,b){
-      return new Date(a.date) - new Date(b.date);
-    });
+    {
+      listUsersLiked: idGebruiker,
+      date: { $gte: new Date().getTime() - 7 * 1000 * 60 * 60 * 24 }
+    },
 
-    res.json(meetings);
-  });
+    function(err, meetings) {
+      if (err) return next(err);
+      meetings = meetings.sort(function(a, b) {
+        return new Date(a.date) - new Date(b.date);
+      });
+
+      res.json(meetings);
+    }
+  );
 });
 
-router.get('/goingMeetings', authentication, function(req, res, next) {
+router.get("/goingMeetings", authentication, function(req, res, next) {
   let token = req.headers.authorization.substring(7);
   let idUitToken = new Buffer(token.split(".")[1], "base64").toString();
   let idGebruiker = JSON.parse(idUitToken)._id;
 
   Meeting.find(
-    { listUsersGoing: idGebruiker, date: { $gte : new Date().getTime() - (7 * 1000 * 60 * 60 * 24)} },
-    
-    function(err, meetings) {
-    if (err) return next(err);
-    meetings = meetings.sort(function(a,b){
-      return new Date(a.date) - new Date(b.date);
-    });
+    {
+      listUsersGoing: idGebruiker,
+      date: { $gte: new Date().getTime() - 7 * 1000 * 60 * 60 * 24 }
+    },
 
-    res.json(meetings);
-  });
+    function(err, meetings) {
+      if (err) return next(err);
+      meetings = meetings.sort(function(a, b) {
+        return new Date(a.date) - new Date(b.date);
+      });
+
+      res.json(meetings);
+    }
+  );
 });
 
 router.get("/getTotalLikedNext7D", authentication, function(req, res, next) {
@@ -213,7 +265,10 @@ router.get("/getTotalLikedNext7D", authentication, function(req, res, next) {
   let idGebruiker = JSON.parse(idUitToken)._id;
 
   Meeting.find(
-    { listUsersLiked: idGebruiker, date: { $lte : new Date().getTime() + (7 * 1000 * 60 * 60 * 24)} },
+    {
+      listUsersLiked: idGebruiker,
+      date: { $lte: new Date().getTime() + 7 * 1000 * 60 * 60 * 24 }
+    },
 
     function(err, obj) {
       if (err || obj == null) {
@@ -233,7 +288,10 @@ router.get("/getTotalGoingNext7D", authentication, function(req, res, next) {
   let idGebruiker = JSON.parse(idUitToken)._id;
 
   Meeting.find(
-    { listUsersGoing: idGebruiker, date: { $lte : new Date().getTime() + (7 * 1000 * 60 * 60 * 24)} },
+    {
+      listUsersGoing: idGebruiker,
+      date: { $lte: new Date().getTime() + 7 * 1000 * 60 * 60 * 24 }
+    },
 
     function(err, obj) {
       if (err || obj == null) {
