@@ -18,16 +18,18 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.authService.getTotalLikedNext7D().subscribe(val => {
-      if (val != null) {
-        this.aantalLiked7D = val;
-      }
-    });
-
-    this.authService.getTotalGoingNext7D().subscribe(val => {
-      if (val != null) {
-        this.aantalGoing7D = val;
-      }
-    });
+    if (this.authService.isLoggedIn){
+      this.authService.getTotalLikedNext7D().subscribe(val => {
+        if (val != null) {
+          this.aantalLiked7D = val;
+        }
+      });
+  
+      this.authService.getTotalGoingNext7D().subscribe(val => {
+        if (val != null) {
+          this.aantalGoing7D = val;
+        }
+      });
+    }
   }
 }

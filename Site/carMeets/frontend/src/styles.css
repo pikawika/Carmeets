@@ -3,6 +3,14 @@
 
 /*---------------------------------------------------------------------------------------------------------------------------------------------------*/
 /* Custom */
+.navbar {
+  z-index: 99;
+}
+
+.modal {
+  max-width: 100vw;
+}
+
 .not-allowed-force {
   cursor: not-allowed !important;
 }
@@ -42,6 +50,7 @@ hr.cleanPinkSeperator {
 @media screen and (max-width: 1200px) {
   .post {
     position: relative;
+    display: block !important;
   }
   .image.featured img {
     width: 100% !important;
@@ -530,6 +539,7 @@ body {
 
 body {
   background: #f4f4f4;
+  word-wrap: break-word;
 }
 
 body.is-loading *,

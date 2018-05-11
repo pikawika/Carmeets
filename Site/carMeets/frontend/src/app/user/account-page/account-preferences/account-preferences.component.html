@@ -15,6 +15,12 @@
           </div>
         </div>
 
+        <div class="container-changePreferences100-form-btn input100Max300px center-block">
+          <button  type="reset" (click)="uncheckAll()" class="changePreferences100-form-btn">
+            Alles uitvinken
+          </button>
+        </div>
+
         <div class="container-changePreferences100-form-btn input100Max600px center-block" [ngClass]="{'not-allowed-force':!changePreferencesFormGroup.valid}">
           <button type='submit' [disabled]='!changePreferencesFormGroup.valid' id='chnangePasswordBtn' class="changePreferences100-form-btn">
             Wijzig uw voorkeuren

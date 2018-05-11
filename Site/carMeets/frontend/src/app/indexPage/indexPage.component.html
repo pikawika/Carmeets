@@ -12,27 +12,27 @@
   <!-- Search -->
   <section class="blurb text-center mb-20">
     <h2>Filter de meetings</h2>
-    <!-- naam -->
-    <div>
-      <input class="mb-10 width-100prcnt" type='text' placeholder='filter meeting op naam...' #filterNaam>
-      <button (click)="applyFilterName(filterNaam.value)">filter op naam</button>
-    </div>
+    <form [formGroup]='filterFormGroup' (ngSubmit)='applyFilter()'>
+      <!-- naam -->
+      <div>
+        <input formControlName='naam' class="mb-10 width-100prcnt" type='text' placeholder='filter meeting op naam...' #filterNaam>
+      </div>
 
-    <!-- datum -->
-    <form [formGroup]='filterDateFormGroup' (ngSubmit)='applyFilterDate()'>
-      <div class="mt-30">
+      <!-- datum -->
+
+      <div class="mt-10">
         <input class="col-xs-5" type='text' placeholder='Startdatum' formControlName='startDate'>
         <input class="col-xs-offset-2 col-xs-5" type='text' placeholder='Einddatum' formControlName='endDate'>
-        <div class='wrap-input100 text-danger font-12 font-12' *ngIf='(filterDateFormGroup.get("startDate").touched && filterDateFormGroup.get("startDate").errors?.pattern) || (filterDateFormGroup.get("endDate").touched && filterDateFormGroup.get("endDate").errors?.pattern)'>
+        <div class='wrap-input100 text-danger font-12 font-12' *ngIf='(filterFormGroup.get("startDate").touched && filterFormGroup.get("startDate").errors?.pattern) || (filterFormGroup.get("endDate").touched && filterFormGroup.get("endDate").errors?.pattern)'>
           Het datumveld moet volgende indeling hebben: dd/mm/yyyy.
         </div>
-        <button class="mt-10" type="submit" [disabled]='!filterDateFormGroup.valid'>filter op datum</button>
+        <button class="mt-10 fullwidth" type="submit" [disabled]='!filterFormGroup.valid'>filter</button>
       </div>
     </form>
-
+    <hr>
     <!-- categorie uitklappen -->
     <div class="mt-30">
-      <button data-toggle="collapse" data-target="#categorieFilter">Toon filter voor categorie</button>
+      <button class="fullwidth" data-toggle="collapse" data-target="#categorieFilter">Filter op categorie</button>
     </div>
     <div class="collapse" id="categorieFilter">
       <div class="center-block">
@@ -42,10 +42,10 @@
         </div>
       </div>
     </div>
-  </section> 
+  </section>
 
   <!-- About -->
-  <section class="blurb text-center">
+  <section class="blurb text-center visible-lg">
     <h2>Over CarMeets.be</h2>
     <p>Net zoals vele autoliefhebbers was ik het beu steeds te moeten horen dat ik weer een kwaliteitsmeeting gemist had omdat
       ik niet wist wanneer deze plaatsvond. Daarom besloot ik,
@@ -56,29 +56,30 @@
 
 <!-- Main -->
 <div class="col-lg-9" id="main">
-
   <!-- Meeting -->
-  <app-meeting *ngFor='let localMeeting of meetings | meetingFilter: filterMeetingName:filterDateStart:filterDateEnd:soortenMeetingsFilter' [meeting]='localMeeting'></app-meeting>
+  <app-meeting *ngFor='let localMeeting of meetings | meetingFilter: filterMeetingName:filterDateStart:filterDateEnd:soortenMeetingsFilter'
+    [meeting]='localMeeting'></app-meeting>
 </div>
 
 <!-- Button trigger modal -->
-<button type="button" id="modalAanmeldenVereistKnop" [hidden]="true" data-toggle="modal" data-target="#modalAanmeldenVereist" ></button>
+<button type="button" id="modalAanmeldenVereistKnop" [hidden]="true" data-toggle="modal" data-target="#modalAanmeldenVereist"></button>
 
 <!-- Modal: U Moet aanmelden voor deze functies -->
 <div class="modal fade" id="modalAanmeldenVereist" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title pt-20 pl-10 pb-10">Aanmelden vereist <a type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <i class="far fa-window-close color-dark-red"></i>
-        </a></h5>
-        
+        <h5 class="modal-title pt-20 pl-10 pb-10">Aanmelden vereist
+          <a type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <i class="far fa-window-close color-dark-red"></i>
+          </a>
+        </h5>
+
       </div>
       <div class="modal-body">
         Om deze actie uit te voeren moet u aangemeld zijn.
         <br>
-        <br>
-        Meld je aan of maak éénvoudig een account aan en profiteer van alle functies dat carmeets.be te offeren heeft!
+        <br> Meld je aan of maak éénvoudig een account aan en profiteer van alle functies dat carmeets.be te offeren heeft!
       </div>
       <div class="modal-footer">
         <button data-dismiss="modal" routerLink="/registreer" type="button" class="button">Registreer</button>

@@ -68,7 +68,7 @@ export class AuthenticationService {
           const token = res.token;
           if (token) {
             localStorage.setItem(this._tokenKey, token);
-            this._user$.next(username);
+            this._user$.next(res.username);
             return true;
           } else {
             return false;
