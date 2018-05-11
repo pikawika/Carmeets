@@ -22,5 +22,8 @@ export class NavbarComponent implements OnInit {
     return this.authService.amountGoingNext7D$;
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.authService.setTotalGoingNext7D();
+    this.authService.setTotalLikedNext7D();
+  }
 }

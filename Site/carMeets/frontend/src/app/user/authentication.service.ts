@@ -92,6 +92,8 @@ export class AuthenticationService {
           const token = res.token;
           if (token) {
             localStorage.setItem(this._tokenKey, token);
+            this.setTotalGoingNext7D();
+            this.setTotalLikedNext7D();
             this._user$.next(res.username);
             return true;
           } else {
