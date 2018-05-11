@@ -19,11 +19,18 @@
   <img class="mb-15 image featured" src="{{singleMeeting.imagePath}}" alt="" />
   <p>{{singleMeeting.fullDescription}}</p>
 
-  <a *ngIf="singleMeeting.site" href="{{singleMeeting.site}}" target="_blank" class="button">
+
+  <div class="mb-20">
+    <h3>Categoriën:</h3>
+    <li *ngFor="let categorie of singleMeeting.categories">
+      <app-category [name]="categorie"></app-category>
+    </li>
+  </div>
+
+  <a *ngIf="singleMeeting.site" href="{{singleMeeting.site}}" target="_blank" class="button width-100percent-980LG mb-10">
     <i class="fas fa-globe"></i> Bezoek de website</a>
-  <a class="button" href="{{getGoogleCalanderUrl()}}"
-    target="_blank">
+  <a class="button width-100percent-980LG mb-10" href="{{getGoogleCalanderUrl()}}" target="_blank">
     <i class="fab fa-google"></i> Opslaan in agenda</a>
-  <a *ngIf="showDelete()" (click)="onClickDelete()" class="button">
+  <a *ngIf="showDelete()" (click)="onClickDelete()" class="button width-100percent-980LG mb-10">
     <i class="fas fa-trash"></i> Delete deze meeting</a>
 </article>

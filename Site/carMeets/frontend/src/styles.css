@@ -3,6 +3,12 @@
 
 /*---------------------------------------------------------------------------------------------------------------------------------------------------*/
 /* Custom */
+@media screen and (max-width: 980px) {
+  .width-100percent-980LG {
+    width: 100%;
+  }
+}
+
 .goodlabel{
   display: inline !important;
   font-weight: normal !important;
