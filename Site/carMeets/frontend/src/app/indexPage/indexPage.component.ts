@@ -12,7 +12,7 @@ import { ActivatedRoute } from '@angular/router';
 export class IndexPageComponent implements OnInit {
   private _meetings: Meeting[];
   public filterMeetingName: string;
-  public filterDateFormGroup: FormGroup;
+  public filterFormGroup: FormGroup;
   public filterDateStart: Date;
   public filterDateEnd: Date;
   public soortenMeetings: string[];
@@ -63,7 +63,8 @@ export class IndexPageComponent implements OnInit {
 
     this.fillFormArrayWithDBChecked();
 
-    this.filterDateFormGroup = this.filterDateFb.group({
+    this.filterFormGroup = this.filterDateFb.group({
+      naam: [""],
       startDate: [
         "",
         [
@@ -87,12 +88,8 @@ export class IndexPageComponent implements OnInit {
     return this._meetings;
   }
 
-  applyFilterName(filterNaam: string) {
-    this.filterMeetingName = filterNaam;
-  }
-
-  applyFilterDate() {
-    let startDateFrom = this.filterDateFormGroup.value.startDate.split("/");
+  applyFilter() {
+    let startDateFrom = this.filterFormGroup.value.startDate.split("/");
     if (startDateFrom != null && startDateFrom != ""){
       let startDate = new Date(startDateFrom[2], startDateFrom[1] - 1, startDateFrom[0]);
       this.filterDateStart = startDate;
@@ -100,13 +97,15 @@ export class IndexPageComponent implements OnInit {
       this.filterDateStart = null;
     }
 
-    let endDateFrom = this.filterDateFormGroup.value.endDate.split("/");
+    let endDateFrom = this.filterFormGroup.value.endDate.split("/");
     if (endDateFrom != null && endDateFrom != ""){
       let endDate = new Date(endDateFrom[2], endDateFrom[1] - 1, endDateFrom[0]);
       this.filterDateEnd = endDate;
     } else {
       this.filterDateEnd = null;
     }
+
+    this.filterMeetingName = this.filterFormGroup.value.naam;
   }
 
   fillFormArrayWithDBChecked() {
