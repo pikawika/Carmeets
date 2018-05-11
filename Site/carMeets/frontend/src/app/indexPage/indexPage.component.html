@@ -37,8 +37,8 @@
     <div class="collapse" id="categorieFilter">
       <div class="center-block">
         <div *ngFor="let keuze of soortenMeetings" class="text-left">
-          <a>
-            <input type="checkbox" name="categorie" [value]="keuze" [checked]="isCheckedInDb(keuze)" (change)="onCheckChange($event)">{{keuze}}</a>
+          <input type="checkbox" name="categorie" id="{{keuze}}" [value]="keuze" [checked]="isCheckedInDb(keuze)" (change)="onCheckChange($event)">
+          <label class="goodlabel" for="{{keuze}}">{{keuze}}</label>
         </div>
       </div>
     </div>

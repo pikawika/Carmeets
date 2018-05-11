@@ -21,20 +21,74 @@ Dit is de GitHub repository voor mijn project carmeets.be dat ik realiseerde als
 
 ## Gebruikers
 
-U kan eenvoudig zelf een account aanmaken om de functionaliteit van de site te testen. De onderstaande standaard accounts zijn onder andere ter beschikking gesteld op [de online versie](#online-versie-van-dit-project). Alle initiele gebruikers staan vermeld op [Trello](#trello) toegankelijk voor [Lennert](mailto:lennert.bontinck.y9785@student.hogent.be) en [lector](mailto:Karine.Samyn@hogent.be)
-> - STANDAARD GEBRUIKER 1
->     - Gebruikersnaam: web4
->     - Wachtwoord: gelukkiggeennetbeans
+U kan eenvoudig zelf een account aanmaken om de functionaliteit van de site te testen. De onderstaande accounts zijn onder ter beschikking gesteld op [de online versie](#online-versie-van-dit-project) en de [ter beschikking gestelde databank](#databank-importeren).
+
+U kan aanmelden met het e-mailadres of de username.
+
+Buiten de eenvoudig aan te maken standaard gebruikers is er één admin account voorzien. Met dit account kan u via de detail pagina van een meeting de meeting verwijderen, ookal bent u de eigenaar niet! Het wachtwoord van dit admin account is beschikbaar voor de [ter beschikking gestelde databank](#databank-importeren). Indien u het wachtwoord wenst voor de admin op de online site kan u terrecht op [Trello](#trello) toegankelijk voor [Lennert](mailto:lennert.bontinck.y9785@student.hogent.be) en [lector](mailto:Karine.Samyn@hogent.be) of een mail sturen naar [Lennert](mailto:lennert.bontinck.y9785@student.hogent.be).
+> - Administrator
+>     - Gebruikersnaam: admin
+>     - E-mailadres: admin@carmeets.be
+>     - Wachtwoord (lokaal): administrator
+>     - Online: [Op aanvraag](mailto:lennert.bontinck.y9785@student.hogent.be)
 >     - Voorkeuren: toon alle soorten meetings
-
-
+> - Standaard gebruiker 1
+>     - Gebruikersnaam: web4
+>     - E-mailadres: web4@carmeets.be
+>     - Wachtwoord: gelukkiggeennetbeans
+>     - Voorkeuren: 1/3de van de categorieen
+> - Standaard gebruiker 2
+>     - Gebruikersnaam: standaard2
+>     - E-mailadres: standaard2@carmeets.be
+>     - Wachtwoord: standaard2
+>     - Voorkeuren: alle van de categorieen
+> - Standaard gebruiker 3
+>     - Gebruikersnaam: standaard3
+>     - E-mailadres: standaard3@carmeets.be
+>     - Wachtwoord: standaard3
+>     - Voorkeuren: 2/3 van de categorieen
+> - Standaard gebruiker 4
+>     - Gebruikersnaam: standaard4
+>     - E-mailadres: standaard4@carmeets.be
+>     - Wachtwoord: standaard4
+>     - Voorkeuren: 2/3 van de categorieen
+> - Standaard gebruiker 5
+>     - Gebruikersnaam: standaard5
+>     - E-mailadres: standaard5@carmeets.be
+>     - Wachtwoord: standaard5
+>     - Voorkeuren: 2/3 van de categorieen
+> - Standaard gebruiker 6
+>     - Gebruikersnaam: standaard6
+>     - E-mailadres: standaard6@carmeets.be
+>     - Wachtwoord: standaard6
+>     - Voorkeuren: 1/3 van de categorieen
+> - Standaard gebruiker 7
+>     - Gebruikersnaam: standaard7
+>     - E-mailadres: standaard7@carmeets.be
+>     - Wachtwoord: standaard7
+>     - Voorkeuren: 1/3 van de categorieen
+> - Standaard gebruiker 8
+>     - Gebruikersnaam: standaard8
+>     - E-mailadres: standaard8@carmeets.be
+>     - Wachtwoord: standaard8
+>     - Voorkeuren: 1/3 van de categorieen
+> - Standaard gebruiker 9
+>     - Gebruikersnaam: standaard9
+>     - E-mailadres: standaard9@carmeets.be
+>     - Wachtwoord: standaard9
+>     - Voorkeuren: 1/2 van de categorieen
+> - Standaard gebruiker 10
+>     - Gebruikersnaam: standaard10
+>     - E-mailadres: standaard10@carmeets.be
+>     - Wachtwoord: standaard10
+>     - Voorkeuren: 1/2 van de categorieen
 
 ## Trello
 Meer informatie over het project is te vinden op [Trello](https://trello.com/web4opdracht):
 - Branches:
     - [Hier vindt u uitleg over wat er in elke branch gebeurt is](https://trello.com/b/w6b3P4nx/1-branches) (public)
 - Users:
-    - [Hier vindt u alle gebruikers die initieel aangemaakt werden](https://trello.com/b/scDIM7Ob/2-users) ([Lennert](mailto:lennert.bontinck.y9785@student.hogent.be) en [lector](mailto:Karine.Samyn@hogent.be))
+    - [Hier vindt u de admin accounts voor de online site](https://trello.com/b/scDIM7Ob/2-users) ([Lennert](mailto:lennert.bontinck.y9785@student.hogent.be) en [lector](mailto:Karine.Samyn@hogent.be))
 
 ## Databank importeren
 
