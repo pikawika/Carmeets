@@ -13,7 +13,7 @@ Dit is de GitHub repository voor mijn project carmeets.be dat ik realiseerde als
 > - [Ondersteunde afbeeldingen voor meeting](#ondersteunde-afbeeldingen-voor-meeting)
 
 ## Online versie van dit project
-<small>Vergeten in de master zetten, stond wel in de heroku branch voor de deadline.<small>
+<sub>Vergeten in de master zetten, stond wel in de heroku branch voor de deadline.<sub>
 [De online versie van het project carmeets.be is hier te vinden](https://carmeets-frontend.herokuapp.com/home) of via onderstaande url:
 
 > https://carmeets-frontend.herokuapp.com/home
