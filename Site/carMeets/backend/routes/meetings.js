@@ -271,8 +271,7 @@ router.get("/getTotalLikedNext7D", authentication, function(req, res, next) {
   Meeting.find(
     {
       listUsersLiked: idGebruiker,
-      date: { $lte: new Date().getTime() + 7 * 1000 * 60 * 60 * 24 },
-      date: { $gte: new Date().getTime() }
+	  { $and: [ { date: { $lte: new Date().getTime() + 7 * 1000 * 60 * 60 * 24 } }, { date: { $gte: new Date().getTime() } } ] }
     },
 
     function(err, obj) {
@@ -295,8 +294,7 @@ router.get("/getTotalGoingNext7D", authentication, function(req, res, next) {
   Meeting.find(
     {
       listUsersGoing: idGebruiker,
-      date: { $lte: new Date().getTime() + 7 * 1000 * 60 * 60 * 24 },
-      date: { $gte: new Date().getTime() }
+      { $and: [ { date: { $lte: new Date().getTime() + 7 * 1000 * 60 * 60 * 24 } }, { date: { $gte: new Date().getTime() } } ] }
     },
 
     function(err, obj) {
