@@ -87,6 +87,14 @@ router.post("/changeUsername", authentication, function(req, res, next) {
       .status(400)
       .json({ message: "U heeft een veld open gelaten. Vul deze aub in." });
   }
+  
+  User.find({ username: req.body.username }, function(err, result) {
+    if (result.length) {
+      return res
+      .status(400)
+      .json({ message: "Gebruikersnaam reeds in gebruik" });
+    }
+  });
 
   //id uit token halen
   let token = req.headers.authorization.substring(7);
@@ -156,6 +164,14 @@ router.post("/changeEmail", authentication, function(req, res, next) {
       .status(400)
       .json({ message: "U heeft een veld open gelaten. Vul deze aub in." });
   }
+  
+  User.find({ email: req.body.email }, function(err, result) {
+    if (result.length) {
+      return res
+      .status(400)
+      .json({ message: "E-mailadres reeds in gebruik" });
+    }
+  });
 
   //id uit token halen
   let token = req.headers.authorization.substring(7);
