@@ -88,7 +88,7 @@ router.post("/changeUsername", authentication, function(req, res, next) {
       .json({ message: "U heeft een veld open gelaten. Vul deze aub in." });
   }
   
-  User.find({ username: req.body.username }, function(err, result) {
+  User.find({ username: req.body.newUsername }, function(err, result) {
     if (result.length) {
       return res
       .status(400)
@@ -165,7 +165,7 @@ router.post("/changeEmail", authentication, function(req, res, next) {
       .json({ message: "U heeft een veld open gelaten. Vul deze aub in." });
   }
   
-  User.find({ email: req.body.email }, function(err, result) {
+  User.find({ email: req.body.newEmail }, function(err, result) {
     if (result.length) {
       return res
       .status(400)
