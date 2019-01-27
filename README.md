@@ -4,6 +4,7 @@ Dit is de GitHub repository voor mijn project carmeets.be dat ik realiseerde als
 
 ## Inhoudsopgave
 
+> - [Ontwikkelaar](#ontwikkelaar)
 > - [Online versie van dit project](#online-versie-van-dit-project)
 > - [Gebruikers](#gebruikers)
 > - [Databank importeren](#databank-importeren)
@@ -11,21 +12,28 @@ Dit is de GitHub repository voor mijn project carmeets.be dat ik realiseerde als
 > - [Databank exporteren](#databank-exporteren)
 > - [Ondersteunde afbeeldingen voor meeting](#ondersteunde-afbeeldingen-voor-meeting)
 
+## Ontwikkelaar
+
+| Naam             | GitHub                        | E-mail                                                       |
+| :--------------- | :---------------------------- | :----------------------------------------------------------- |
+| Bontinck Lennert | <https://github.com/pikawika> | [lennert.bontinck.y9785@student.hogent.be](mailto:lennert.bontinck.y9785@student.hogent.be) |
+
 ## Online versie van dit project
-<sub>Vergeten in de master zetten, stond wel in de heroku branch voor de deadline.</sub>
 
-[De online versie van het project carmeets.be is hier te vinden](https://carmeets-frontend.herokuapp.com/home) of via onderstaande url:
+[De online versie van het project carmeets.be is hier te vinden](http://carmeets.lennertbontinck.com) of via onderstaande url:
 
-> https://carmeets-frontend.herokuapp.com/home
+> http://carmeets.lennertbontinck.com
+
+<sub>Dit project is gehost op een gratis heroku server en mlab databank, beide kunnen even duren om op te starten dus gelieve de website even tijd te geven om op te starten.</sub>
 
 
 ## Gebruikers
 
-U kan eenvoudig zelf een account aanmaken om de functionaliteit van de site te testen. De onderstaande accounts zijn onder ter beschikking gesteld op [de online versie](#online-versie-van-dit-project) en de [ter beschikking gestelde databank](#databank-importeren).
+U kan eenvoudig zelf een account aanmaken om de functionaliteit van de site te testen. De onderstaande accounts zijn ingeladen bij de [ter beschikking gestelde databank](#databank-importeren).
 
 U kan aanmelden met het e-mailadres of de username.
 
-Buiten de eenvoudig aan te maken standaard gebruikers is er één admin account voorzien. Met dit account kan u via de detail pagina van een meeting de meeting verwijderen, ookal bent u de eigenaar niet! Het wachtwoord van dit admin account is beschikbaar voor de [ter beschikking gestelde databank](#databank-importeren). Indien u het wachtwoord wenst voor de admin op de online site kan u terrecht op [Trello](#trello) toegankelijk voor [Lennert](mailto:lennert.bontinck.y9785@student.hogent.be) en [lector](mailto:Karine.Samyn@hogent.be) of een mail sturen naar [Lennert](mailto:lennert.bontinck.y9785@student.hogent.be).
+Buiten de eenvoudig aan te maken standaard gebruikers is er één admin account voorzien. Met dit account kan u via de detail pagina van een meeting de meeting verwijderen, ookal bent u de eigenaar niet! Het wachtwoord van dit admin account is beschikbaar voor de [ter beschikking gestelde databank](#databank-importeren). Indien u het wachtwoord wenst voor de admin op de online site kan u een mail sturen naar [Lennert](mailto:lennert.bontinck.y9785@student.hogent.be).
 > - Administrator - lokaal
 >     - Gebruikersnaam: admin
 >     - E-mailadres: admin@carmeets.be
@@ -85,7 +93,6 @@ De huidige databank exporteren doet u zo:
 Via multer wordt de geslecteerde afbeelding voor een nieuwe meeting gecontroleerd op enkele parameters.
 
 U kan enkele afbeeldingen die voldoen aan deze parameters onder [de map "Sample files/Sample images"](Sample%20files/Sample%20images) vinden.
-
 
 * * *
 © [Bontinck Lennert](https://www.lennertbontinck.com/) 2TINA 2017-2018
